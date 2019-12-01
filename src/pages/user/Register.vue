@@ -1,0 +1,160 @@
+<template>
+    <div class="login">
+
+        <el-row>
+            <el-col :span="8"><div class="grid-content bg-purple">-</div></el-col>
+            <el-col :span="8">
+                <div class="box-shadow box-bg-white box-radius m-20px p-20px">
+                    <div class="grid-content bg-purple-light">
+
+                        <center>
+                            <h1>注册</h1>
+                            <br>
+
+
+                            <el-form
+                                    :model="ruleForm"
+                                    status-icon
+                                    :rules="rules"
+                                    ref="ruleForm"
+                                    label-width="140px"
+                                    class="demo-ruleForm m-top-60px">
+                                <el-form-item label="帐号" class="">
+                                    <el-input class="float-left width-60" v-model="ruleForm.username">
+
+                                    </el-input>
+                                </el-form-item>
+
+                                <el-form-item label="密码" prop="pass">
+                                    <el-input class="float-left width-60" type="password"
+                                              v-model="ruleForm.password" autocomplete="off">
+                                    </el-input>
+                                </el-form-item>
+
+                                <!--            <el-form-item label="确认密码" prop="checkPass">-->
+                                <!--                <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>-->
+                                <!--            </el-form-item>-->
+
+                                <div class="">
+                                    <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+                                    <el-button @click="resetForm('ruleForm')">重置</el-button>
+                                </div>
+
+                            </el-form>
+
+
+
+                        </center>
+                    </div>
+
+
+                </div>
+            </el-col>
+            <el-col :span="8"><div class="grid-content bg-purple">-</div></el-col>
+        </el-row>
+
+
+
+    </div>
+</template>
+
+
+<script>
+    export default {
+
+        name:'login',
+        data() {
+
+            var validatePass = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('请输入密码'));
+                } else {
+                    if (this.ruleForm.checkPass !== '') {
+                        this.$refs.ruleForm.validateField('checkPass');
+                    }
+                    callback();
+                }
+            };
+            // var validatePass2 = (rule, value, callback) => {
+            //     if (value === '') {
+            //         callback(new Error('请再次输入密码'));
+            //     } else if (value !== this.ruleForm.pass) {
+            //         callback(new Error('两次输入密码不一致!'));
+            //     } else {
+            //         callback();
+            //     }
+            // };
+            return {
+
+                ruleForm: {
+                    username:'',
+                    password: '',
+                    checkPass: '',
+                    age: ''
+                },
+                rules: {
+                    pass: [
+                        { validator: validatePass, trigger: 'blur' }
+                    ],
+                    // checkPass: [
+                    //     { validator: validatePass2, trigger: 'blur' }
+                    // ],
+
+                }
+            };
+        },
+        methods: {
+            //发送get请求
+            sendGet:function (path) {
+                let url = this.createUrl(path);
+                this.requestGet(url);
+            },
+
+            //发送post请求
+            sendPost:function(path, data){
+                let url = this.createUrl(path);
+                this.requestPost(url, data);
+            },
+
+            //发送请求
+            sendRequest:function(path, data){
+                let url = this.createUrl(path);
+                let headers = {
+                    // 'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                };
+                let res = this.request('post', url, data, headers);
+                console.log(res);
+            },
+
+            submitForm(formName) {
+                let data = {
+                    username : this.ruleForm.username,
+                    password : this.ruleForm.password
+                };
+
+                console.log(data);
+
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+
+                        this.sendRequest('/user/login', data);
+
+
+                    } else {
+                        // console.log('error submit!!');
+                        return false;
+                    }
+                });
+            },
+            resetForm(formName) {
+                this.$refs[formName].resetFields();
+            }
+        }
+    }
+</script>
+
+<style>
+
+
+</style>
