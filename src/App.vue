@@ -22,8 +22,11 @@
                 </el-submenu>
             </el-submenu>
             <el-menu-item index="3" >消息中心</el-menu-item>
+
             <el-menu-item index="4" @click="goPage('/login')">登录</el-menu-item>
             <el-menu-item index="5" @click="goPage('/register')">注册</el-menu-item>
+
+            <el-menu-item index="6" @click="goPage('/test')">测试</el-menu-item>
 
         </el-menu>
 
@@ -76,6 +79,10 @@
 
     .box-bg-white{
         background-color: #ffffff;
+    }
+
+    .box-bg-fcfcfc{
+        background-color: #fcfcfc;
     }
 
     .p-10px{

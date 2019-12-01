@@ -2,15 +2,32 @@
     <div>
         <center>
             <h1>测试页面</h1>
-
-            <button @click="sendGet('/works/get/all')">发送get请求</button>
-
-
-
-
-
-
+            <br>
+            <br>
         </center>
+            <el-button type="primary" @click="sendGet('/works/get/all')">发送get请求</el-button>
+
+            <div class="">
+                <el-row>
+                    <el-col :span="8"><div class="grid-content bg-purple">-</div></el-col>
+                    <el-col :span="8">
+                        <div class="box-shadow box-bg-white box-radius m-20px p-20px">
+                            <h3>返回数据</h3>
+
+                            <div class="box-bg-fcfcfc m-20px p-20px box-radius">
+                                {{result}}
+                            </div>
+                        </div>
+                    </el-col>
+                    <el-col :span="8"><div class="grid-content bg-purple">-</div></el-col>
+                </el-row>
+
+            </div>
+
+
+
+
+
 
 
     </div>
