@@ -25,8 +25,9 @@
 
             <el-menu-item index="4" @click="goPage('/login')">登录</el-menu-item>
             <el-menu-item index="5" @click="goPage('/register')">注册</el-menu-item>
+            <el-menu-item index="6" @click="goPage('/profile')">个人主页</el-menu-item>
 
-            <el-menu-item index="6" @click="goPage('/test')">测试</el-menu-item>
+            <el-menu-item index="7" @click="goPage('/test')">测试</el-menu-item>
 
         </el-menu>
 
@@ -59,6 +60,11 @@
         color: #2c3e50;
         /*margin-top: 60px;*/
         /*background-color: #fcfcfc;*/
+    }
+
+    *{
+        margin: 0;
+        padding: 0;
     }
 
     html{

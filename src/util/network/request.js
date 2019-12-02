@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-// let ip = "localhost";
-let ip = "47.103.204.62";
+let ip = "localhost";
+// let ip = "47.103.204.62";
 let port = "8083";
 let prefix = "http://" + ip + ':' + port;
 
 export function request(config) {
     const instance = axios.create({
             baseURL:prefix,
-            timeout:10000
+            timeout:100000
     });
 
     return instance(config);

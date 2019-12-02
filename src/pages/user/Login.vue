@@ -1,4 +1,4 @@
-<template>
+<template class="">
     <div class="login">
 
         <el-row>
@@ -106,15 +106,8 @@
             };
         },
         methods: {
-            //发送get请求
-            sendGet:function (path) {
-
-            },
-
-            //发送post请求
-            sendPost:function(path, data){
-                let url = this.createUrl(path);
-                this.requestPost(url, data);
+            goPage:function(path){
+                this.gotoPage(path);
             },
 
             //发送请求
@@ -154,6 +147,8 @@
                             console.log(res);
                             if (res.code == 200){
                                 this.$message('登录成功');
+                                sessionStorage.setItem("userinfo", JSON.stringify(res.data));
+                                this.goPage('/profile');
                             }else {
                                 this.$message('登录失败');
                             }
@@ -175,6 +170,8 @@
 </script>
 
 <style>
-
+    .page{
+        background-color: #000000;
+    }
 
 </style>
