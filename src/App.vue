@@ -75,6 +75,13 @@
         border: solid 1px red;
     }
 
+    .box-shadow-radius-bgwhite-p20-m20{
+        border-radius: 20px;
+        box-shadow: 3px 5px 16px #e4e4e4;
+        background-color: #ffffff;
+        padding: 20px;
+        margin: 20px;
+    }
     .box-radius{
         border-radius: 20px;
     }

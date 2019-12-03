@@ -7,6 +7,7 @@ import index from '../pages/index/Index'
 import login from '../pages/user/Login'
 import register from '../pages/user/Register'
 import profile from '../pages/user/Profile'
+import userinfo from '../pages/user/UserInfo'
 
 
 //1.使用插件
@@ -37,6 +38,10 @@ const routes = [
     {
         path:'/profile',
         component:profile
+    },
+    {
+        path:'/userinfo',
+        component:userinfo
     }
 ];
 const router = new VueRouter({
