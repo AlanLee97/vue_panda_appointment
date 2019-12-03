@@ -2,7 +2,7 @@
     <div class="login">
 
         <el-row>
-            <el-col :span="8"><div class="grid-content bg-purple">-</div></el-col>
+            <el-col :span="8"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
             <el-col :span="8">
                 <div class="box-shadow box-bg-white box-radius m-20px p-20px">
                     <div class="grid-content bg-purple-light">
@@ -50,7 +50,7 @@
 
                 </div>
             </el-col>
-            <el-col :span="8"><div class="grid-content bg-purple">-</div></el-col>
+            <el-col :span="8"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
         </el-row>
 
 

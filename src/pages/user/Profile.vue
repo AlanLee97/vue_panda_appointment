@@ -1,5 +1,78 @@
 <template>
     <div>
+
+
+        <el-drawer
+                title="个人信息"
+                :visible.sync="drawer"
+                :direction="direction"
+                :before-close="handleClose">
+
+
+            <el-row>
+                <el-col :span="2">
+                    <pre> </pre>
+                </el-col>
+
+                <el-col :span="20">
+                    <div class="">
+                        <div class="box-shadow-radius-bgwhite-p20-m20">
+                            <span>头像</span>
+                            <el-avatar :src="userinfo.headPortraitImg"></el-avatar>
+                        </div>
+
+                        <div class="box-shadow-radius-bgwhite-p20-m20">
+                            <span>用户名</span>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.username"></el-input>
+
+                        </div>
+
+                        <div class="box-shadow-radius-bgwhite-p20-m20">
+                            <span>昵称</span>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.nickname"></el-input>
+
+                        </div>
+
+                        <div class="box-shadow-radius-bgwhite-p20-m20">
+                            <span>性别</span>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.gender"></el-input>
+
+                        </div>
+
+                        <div class="box-shadow-radius-bgwhite-p20-m20">
+                            <span>年龄</span>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.age"></el-input>
+
+                        </div>
+
+                        <div class="box-shadow-radius-bgwhite-p20-m20">
+                            <span>手机号</span>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.nickname"></el-input>
+
+                        </div>
+
+                        <div class="box-shadow-radius-bgwhite-p20-m20">
+                            <span>身份</span>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.identity"></el-input>
+                        </div>
+
+                        <div class="box-shadow-radius-bgwhite-p20-m20">
+                            <span>认证</span>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.isAuthenticated"></el-input>
+
+                        </div>
+                    </div>
+                </el-col>
+
+                <el-col :span="2">
+                    <pre> </pre>
+                </el-col>
+            </el-row>
+
+
+        </el-drawer>
+
+
         <!--上半部分-->
         <el-row>
             <el-col :span="24" >
@@ -11,7 +84,7 @@
 
                     </el-image>
                     <div style="padding: 14px;">
-                        <div class="block"><el-avatar :size="50" :src="user_face"></el-avatar></div>
+                        <div @click="drawer = true" class="block"><el-avatar :size="50" :src="user_face" ></el-avatar></div>
                         <span>{{userinfo.nickname}}</span>
                         <div class="bottom clearfix">
                             <time class="time">{{ currentDate }}</time>
@@ -131,6 +204,9 @@
     export default {
         data() {
             return {
+                isDisabled:true,
+                drawer: false,
+                direction: 'rtl',
                 activeName: 'second',
                 fit:'cover',
                 user_face:'https://hbimg.huabanimg.com/666a1a1f72c5eae973ca0f0977adca58b89a119f236a1-3vh1WC_fw658',
@@ -157,6 +233,14 @@
             },
             handleClick(tab, event) {
                 console.log(tab, event);
+            },
+
+            handleClose(done) {
+                this.$confirm('确认关闭？')
+                        .then(_ => {
+                            done();
+                        })
+                        .catch(_ => {});
             }
         },
         mounted:function () {
