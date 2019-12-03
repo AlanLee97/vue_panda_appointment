@@ -8,7 +8,11 @@
                     <div class="grid-content bg-purple-light">
 
                         <center>
-                            <h1>登录</h1>
+                            <div>
+                                <img src="../../assets/pandalogo.png">
+                                <h1>登录</h1>
+                            </div>
+
                             <br>
 
 
@@ -20,14 +24,14 @@
                                     label-width="140px"
                                     class="demo-ruleForm m-top-60px">
                                 <el-form-item label="帐号" class="">
-                                    <el-input class="float-left width-60" v-model="ruleForm.username">
+                                    <el-input class="float-left width-60" v-model="ruleForm.username" placeholder="请输入账号">
 
                                     </el-input>
                                 </el-form-item>
 
                                 <el-form-item label="密码" prop="pass">
                                     <el-input class="float-left width-60" type="password"
-                                              v-model="ruleForm.password" autocomplete="off">
+                                              v-model="ruleForm.password" autocomplete="off" placeholder="请输入密码">
                                     </el-input>
                                 </el-form-item>
 
@@ -101,11 +105,14 @@
                     // checkPass: [
                     //     { validator: validatePass2, trigger: 'blur' }
                     // ],
-
                 }
             };
         },
         methods: {
+            logoUrl() {
+              return '../../assets/panda.png'
+            },
+
             goPage:function(path){
                 this.gotoPage(path);
             },

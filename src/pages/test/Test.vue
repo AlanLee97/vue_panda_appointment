@@ -14,6 +14,8 @@
                         <div class="box-shadow box-bg-white box-radius m-20px p-20px">
                             <h3>返回数据</h3>
 
+                            <h2>{{introduction}}</h2>
+
                             <div class="box-bg-fcfcfc m-20px p-20px box-radius">
                                 {{result}}
                             </div>
@@ -41,7 +43,8 @@
         name: "Test",
         data:function(){
             return {
-                result:''
+                result:'',
+                introduction:''
             }
         },
         methods:{
@@ -56,7 +59,9 @@
                     this.result = res;
                     console.log(res);
                     this.result = res.data.data;
+                    this.introduction = res.data.data[0].introduction;
                     console.log(this.result);
+                    console.log(this.introduction);
 
                 }).catch(err => {
                     console.log(err);
