@@ -105,9 +105,8 @@
             </el-col>
             <el-col :span="16">
                 <el-tabs stretch="true" v-model="activeName" @tab-click="handleClick">
+
                     <el-tab-pane label="动态" name="first" >
-
-
                         <div>
                             <el-row>
                                 <el-col :span="8" v-for="(o, index) in 20" :key="o" :offset="index > 0 ? 2 : 0">
@@ -123,11 +122,8 @@
                                     </el-card>
                                 </el-col>
                             </el-row>
-
                         </div>
-
                     </el-tab-pane>
-
 
                     <el-tab-pane label="相册" name="second">
                         <div class="demo-image__lazy">
@@ -140,8 +136,8 @@
 
                             </el-image>
                         </div>
-
                     </el-tab-pane>
+
                     <el-tab-pane label="作品" name="third">
                         <div>
                             <el-row>
@@ -158,13 +154,10 @@
                                     </el-card>
                                 </el-col>
                             </el-row>
-
                         </div>
-
-
                     </el-tab-pane>
-                    <el-tab-pane label="文章" name="fourth">
 
+                    <el-tab-pane label="文章" name="fourth">
                         <div>
                             <el-row>
                                 <el-col :span="24" v-for="(o, index) in 20" :key="o" :offset="index > 0 ? 2 : 0">
@@ -180,11 +173,9 @@
                                     </el-card>
                                 </el-col>
                             </el-row>
-
                         </div>
-
-
                     </el-tab-pane>
+
                 </el-tabs>
             </el-col>
             <el-col :span="4">
