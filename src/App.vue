@@ -21,13 +21,14 @@
                     <el-menu-item index="2-4-3">选项3</el-menu-item>
                 </el-submenu>
             </el-submenu>
-            <el-menu-item index="3" >消息中心</el-menu-item>
+            <el-menu-item index="3" @click="goPage('/message')">消息中心</el-menu-item>
 
             <el-menu-item index="4" @click="goPage('/login')">登录</el-menu-item>
             <el-menu-item index="5" @click="goPage('/register')">注册</el-menu-item>
             <el-menu-item index="6" @click="goPage('/profile')">个人主页</el-menu-item>
+            <el-menu-item index="7" @click="goPage('/appointissue')">约拍</el-menu-item>
 
-            <el-menu-item index="7" @click="goPage('/test')">测试</el-menu-item>
+            <el-menu-item index="8" @click="goPage('/test')">测试</el-menu-item>
 
         </el-menu>
 
