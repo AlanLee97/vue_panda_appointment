@@ -8,6 +8,8 @@ import login from '../pages/user/Login'
 import register from '../pages/user/Register'
 import profile from '../pages/user/Profile'
 import userinfo from '../pages/user/UserInfo'
+import appointissue from '../pages/user/AppointIssue'
+import message from '../pages/user/Message'
 
 
 //1.使用插件
@@ -42,6 +44,14 @@ const routes = [
     {
         path:'/userinfo',
         component:userinfo
+    },
+    {
+        path:'/message',
+        component:message
+    },
+    {
+        path:'/appointissue',
+        component:appointissue
     }
 ];
 const router = new VueRouter({
