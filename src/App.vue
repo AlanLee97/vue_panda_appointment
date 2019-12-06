@@ -27,10 +27,12 @@
             <el-menu-item index="5" @click="goPage('/register')">注册</el-menu-item>
             <el-menu-item index="6" @click="goPage('/profile')">个人主页</el-menu-item>
             <el-menu-item index="7" @click="goPage('/appointissue')">约拍</el-menu-item>
+            <el-menu-item index="8" @click="goPage('/works/add')">发表作品</el-menu-item>
 
-            <el-menu-item index="8" @click="goPage('/test')">测试</el-menu-item>
+            <el-menu-item index="9" @click="goPage('/test')">测试</el-menu-item>
 
         </el-menu>
+
 
         <router-view>
 
@@ -43,9 +45,18 @@
 
     export default {
         name: 'app',
+        data(){
+            return {
+                activeIndex: '1',
+                activeIndex2: '1'
+            }
+        },
         methods: {
             goPage:function (path) {
                 this.gotoPage(path);
+            },
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
             }
         }
 

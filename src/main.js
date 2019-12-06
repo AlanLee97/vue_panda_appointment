@@ -191,8 +191,8 @@ Vue.prototype.$message = Message;
 
 Vue.config.productionTip = false;
 
-let domain = '47.103.204.62';
-// let domain = 'localhost';
+// let domain = '47.103.204.62';
+let domain = 'localhost';
 let port = '8083';
 
 // 生成url的函数
@@ -232,7 +232,7 @@ Vue.prototype.request = function(method, url, data, headers){
     axios({
         method : method,
         url : url,
-        data : Qs.stringify(data),
+        data : this.qsParam(data),
         headers : headers
     }).then(res => {
         console.log(res);
@@ -240,6 +240,12 @@ Vue.prototype.request = function(method, url, data, headers){
     })
 
     return this.res;
+}
+
+
+//全局函数：获取用户信息
+Vue.prototype.getUserInfo = function() {
+    return JSON.parse(sessionStorage.getItem("userinfo"));
 }
 
 Vue.use(ElementUI);

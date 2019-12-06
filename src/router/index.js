@@ -10,6 +10,7 @@ import profile from '../pages/user/Profile'
 import userinfo from '../pages/user/UserInfo'
 import appointissue from '../pages/user/AppointIssue'
 import message from '../pages/user/Message'
+import addWorks from '../pages/works/AddWorks'
 
 
 //1.使用插件
@@ -52,6 +53,10 @@ const routes = [
     {
         path:'/appointissue',
         component:appointissue
+    },
+    {
+        path:'/works/add',
+        component:addWorks
     }
 ];
 const router = new VueRouter({

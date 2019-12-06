@@ -13,12 +13,12 @@
         <!--================ 顶部轮播图 结束==================-->
 
         <!--================ 网页基本布局 开始 ==================-->
-        <el-low>
+        <el-row>
           <el-col :span="3">
             <pre> </pre>
           </el-col>
           <el-col :span="35">
-            <el-tabs stretch="true" v-model="activeName" @tab-click="handleClick">
+            <el-tabs stretch v-model="activeName" @tab-click="handleClick">
               <el-tab-pane label="熊猫约拍" name="first" >
                 <div>
                   <el-row>
@@ -114,7 +114,7 @@
           <el-col :span="3">
             <pre> </pre>
           </el-col>
-        </el-low>
+        </el-row>
 
 
         <!--================ 网页基本布局 结束 ==================-->
