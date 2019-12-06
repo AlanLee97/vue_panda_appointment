@@ -107,7 +107,7 @@
         data() {
             return {
             	//上传图片的地址
-	            url: this.createUrl('/test/upload/return-id'),
+	            url: this.createUrl('/upload/image/return-id'),
 	            // url:'https://jsonplaceholder.typicode.com/posts/',
 
 	            //要发送的数据
