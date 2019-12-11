@@ -14,108 +14,54 @@
 
         <!--================ 网页基本布局 开始 ==================-->
         <el-row>
-          <el-col :span="3">
-            <pre> </pre>
+          <el-col :span="2"><pre> </pre></el-col>
+          <el-col :span="20">
+            <el-row>
+              <el-col :span="10"><pre> </pre></el-col>
+              <el-col :span="4">
+                <div>标题1</div>
+              </el-col>
+              <el-col :span="10"><pre> </pre></el-col>
+            </el-row>
+
+            <el-row>
+              <el-col :span="4"><pre> </pre></el-col>
+              <el-col :span="16">
+                <div>介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍</div>
+              </el-col>
+              <el-col :span="4"><pre> </pre></el-col>
+            </el-row>
+
+
+            <el-row>
+              <el-col :span="4"><pre> </pre></el-col>
+              <el-col :span="16">
+                <div>
+
+                  <el-row>
+                    <el-col :span="8" v-for="(o, index) in 4" :key="o" :offset="index > 0 ? 4 : 0">
+                      <el-card :body-style="{ padding: '0px' }">
+                        <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+                        <div style="padding: 14px;">
+                          <span>好吃的汉堡</span>
+                          <div class="bottom clearfix">
+                            <time class="time">{{ currentDate }}</time>
+                            <el-button type="text" class="button">操作按钮</el-button>
+                          </div>
+                        </div>
+                      </el-card>
+                    </el-col>
+                  </el-row>
+
+                </div>
+              </el-col>
+              <el-col :span="4"><pre> </pre></el-col>
+            </el-row>
+
+
           </el-col>
-          <el-col :span="35">
-            <el-tabs stretch v-model="activeName" @tab-click="handleClick">
-              <el-tab-pane label="熊猫约拍" name="first" >
-                <div>
-                  <el-row>
-                    <el-col :span="8" v-for="(o, index) in 20" :key="o" :offset="index > 0 ? 2 : 2">
-                      <el-card :body-style="{ padding: '0px' }">
-                        <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3633122639,797398275&fm=26&gp=0.jpg">
-                      </el-card>
-                    </el-col>
-                  </el-row>
-                </div>
-              </el-tab-pane>
-
-              <el-tab-pane label="约拍作品" name="second">
-              <div class="demo-image__lazy">
-                <table border="0">
-                  <tr>
-                    <td>
-                      <el-image
-                              v-for="url in article_image"
-                              :key="url"
-                              :src="url"
-                              :preview-src-list="article_image"
-                              lazy>
-                      </el-image>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </el-tab-pane>
-
-              <el-tab-pane label="约拍景点" name="third">
-                <div class="demo-image__placeholder">
-                  <div class="block">
-                    <el-image
-                            v-for="item in scenic_image"
-                            :key="item"
-                            :src="item" ></el-image>
-                  </div>
-                </div>
-              </el-tab-pane>
-
-              <el-tab-pane label="摄影文章" name="fourth">
-                <div>
-                  <el-row>
-                    <el-col :span="8" v-for="(o, index) in 20" :key="o" :offset="index > 0 ? 2 : 2">
-                      <el-card :body-style="{ padding: '0px' }">
-                        <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3591964128,3111085818&fm=26&gp=0.jpg">
-                      </el-card>
-                    </el-col>
-                  </el-row>
-                </div>
-              </el-tab-pane>
-
-
-              <el-tab-pane label="熊猫商城" name="fifth">
-                <div>
-                  <el-row>
-                    <el-col :span="8" v-for="(o, index) in 20" :key="o" :offset="index > 0 ? 2 : 2">
-                      <el-card :body-style="{ padding: '0px' }">
-                        <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3732978684,4182633409&fm=26&gp=0.jpg">
-                      </el-card>
-                    </el-col>
-                  </el-row>
-                </div>
-              </el-tab-pane>
-
-              <el-tab-pane label="熊猫客服" name="sixth">
-                <div>
-                  <el-row>
-                    <el-col :span="8" v-for="(o, index) in 20" :key="o" :offset="index > 0 ? 2 : 2">
-                      <el-card :body-style="{ padding: '0px' }">
-                        <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1635589346,1937641&fm=26&gp=0.jpg" class="article-image">
-                      </el-card>
-                    </el-col>
-                  </el-row>
-                </div>
-              </el-tab-pane>
-
-              <el-tab-pane label="关于我们" name="seventh">
-                <div>
-                  <el-row>
-                    <el-col :span="8" v-for="(o, index) in 20" :key="o" :offset="index > 0 ? 2 : 2">
-                      <el-card>
-                        <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1952912020,3409873688&fm=26&gp=0.jpg">
-                      </el-card>
-                    </el-col>
-                  </el-row>
-                </div>
-              </el-tab-pane>
-
-            </el-tabs>
-          </el-col>
-          <el-col :span="3">
-            <pre> </pre>
-          </el-col>
+          <el-col :span="2"><pre> </pre></el-col>
         </el-row>
-
 
         <!--================ 网页基本布局 结束 ==================-->
 
