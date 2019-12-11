@@ -5,7 +5,7 @@
             <br>
             <br>
         </center>
-            <el-button type="primary" @click="sendGet('/works/get/all')">发送get请求</el-button>
+            <el-button type="primary" @click="sendGet('/works/get/all-user')">发送get请求</el-button>
 
             <div class="">
                 <el-row>

@@ -107,12 +107,12 @@
         data() {
             return {
             	//上传图片的地址
-	            url: this.createUrl('/test/upload/return-id'),
+	            url: this.createUrl('/upload/image/return-id'),
 	            // url:'https://jsonplaceholder.typicode.com/posts/',
 
 	            //要发送的数据
 	            sendData: {
-		            uid: '',
+		            uid: 1,
 		            content: '',
 		            imgIds: ''
 	            },
@@ -177,7 +177,7 @@
 	        //发送请求
 	        startRequest:function(){
 		        let userinfo = this.getUserInfo();
-		        this.sendData.uid = userinfo.id;
+		        // this.sendData.uid = userinfo.id;
 
 		        request({
 			        method:'post',
