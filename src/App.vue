@@ -1,37 +1,47 @@
 <template>
     <div id="app">
-        <el-menu
-                :default-active="activeIndex2"
-                class="el-menu-demo"
-                mode="horizontal"
-                @select="handleSelect"
-                background-color="#545c64"
-                text-color="#fff"
-                active-text-color="#ffd04b">
-            <el-menu-item index="1" @click="goPage('/index')">主页</el-menu-item>
-            <el-submenu index="2">
-                <template slot="title">我的工作台</template>
-                <el-menu-item index="2-1">选项1</el-menu-item>
-                <el-menu-item index="2-2">选项2</el-menu-item>
-                <el-menu-item index="2-3">选项3</el-menu-item>
-                <el-submenu index="2-4">
-                    <template slot="title">选项4</template>
-                    <el-menu-item index="2-4-1">选项1</el-menu-item>
-                    <el-menu-item index="2-4-2">选项2</el-menu-item>
-                    <el-menu-item index="2-4-3">选项3</el-menu-item>
-                </el-submenu>
-            </el-submenu>
-            <el-menu-item index="3" @click="goPage('/message')">消息中心</el-menu-item>
 
-            <el-menu-item index="4" @click="goPage('/login')">登录</el-menu-item>
-            <el-menu-item index="5" @click="goPage('/register')">注册</el-menu-item>
-            <el-menu-item index="6" @click="goPage('/profile')">个人主页</el-menu-item>
-            <el-menu-item index="7" @click="goPage('/appointissue')">约拍</el-menu-item>
 
-            <el-menu-item index="8" @click="goPage('/test')">测试</el-menu-item>
+        <el-row>
+            <el-col :span="4"><pre> </pre></el-col>
+            <el-col :span="16">
+                <el-menu
+                        :default-active="activeIndex2"
+                        class="el-menu-demo"
+                        mode="horizontal"
+                        @select="handleSelect"
+                        background-color="#fcfcfc"
+                        active-text-color="#ffd04b">
+                    <el-menu-item index="1" @click="goPage('/index')">主页</el-menu-item>
+                    <el-submenu index="2">
+                        <template slot="title">我的工作台</template>
+                        <el-menu-item index="2-1">选项1</el-menu-item>
+                        <el-menu-item index="2-2">选项2</el-menu-item>
+                        <el-menu-item index="2-3">选项3</el-menu-item>
+                        <el-submenu index="2-4">
+                            <template slot="title">选项4</template>
+                            <el-menu-item index="2-4-1">选项1</el-menu-item>
+                            <el-menu-item index="2-4-2">选项2</el-menu-item>
+                            <el-menu-item index="2-4-3">选项3</el-menu-item>
+                        </el-submenu>
+                    </el-submenu>
+                    <el-menu-item index="3" @click="goPage('/message')">消息中心</el-menu-item>
 
-        </el-menu>
+                    <el-menu-item index="4" @click="goPage('/login')">登录</el-menu-item>
+                    <el-menu-item index="5" @click="goPage('/register')">注册</el-menu-item>
+                    <el-menu-item index="6" @click="goPage('/profile')">个人主页</el-menu-item>
+                    <el-menu-item index="7" @click="goPage('/appointissue')">约拍</el-menu-item>
 
+                    <el-menu-item index="8" @click="goPage('/test')">测试</el-menu-item>
+                    <el-menu-item index="9" @click="goPage('/mytest')">1测试</el-menu-item>
+
+
+                </el-menu>
+
+
+            </el-col>
+            <el-col :span="4"><pre> </pre></el-col>
+        </el-row>
         <router-view>
 
         </router-view>
@@ -137,6 +147,12 @@
 
     .float-left{
         float: left;
+    }
+
+
+
+    .el-menu.el-menu--horizontal{
+        border-bottom: none;
     }
 
 </style>

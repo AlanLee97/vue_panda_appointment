@@ -72,104 +72,104 @@
     <el-row class="content_center_top">
       <el-col :span="2" class=""><div class="grid-content"></div></el-col>
       <el-col :span="20" class="content_center_top1">
-        <el-row>
-          <el-col :span="6" class="">
-            <div class="grid-content" style="padding-right: 10px">
-              <table>
-                <tr>
-                  <td>
-                    <img class="img1" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1952912020,3409873688&fm=26&gp=0.jpg">
-                  </td>
-                </tr>
-                <tr>
-                  <td><font color="black">@欧阳娜娜</font> </td>
-                </tr>
-                <tr>
-                  <td><font size="1px" color="#a9a9a9">{{currentDate}}</font></td>
-                </tr>
-                <tr>
-                  <td>
-                    <font size="2px">
-                      给自己的一份特殊的成人礼,是一本勇气与野心之书.每个人在生活的每一个阶段都要做出各种各样的选择,哪个选择是对的,什么决定又是错的,当下都无从判断 ！
-                    </font>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </el-col>
-          <el-col :span="6" class="">
-            <div class="grid-content" style="padding-right: 10px">
-              <table>
-                <tr>
-                  <td>
-                    <img class="img1" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=136618023,3186690137&fm=26&gp=0.jpg">
-                  </td>
-                </tr>
-                <tr>
-                  <td><font color="black">@欧阳娜娜</font> </td>
-                </tr>
-                <tr>
-                  <td><font size="1px" color="#a9a9a9">{{currentDate}}</font></td>
-                </tr>
-                <tr>
-                  <td>
-                    <font size="2px">
-                      给自己的一份特殊的成人礼,是一本勇气与野心之书.每个人在生活的每一个阶段都要做出各种各样的选择,哪个选择是对的,什么决定又是错的,当下都无从判断 ！
-                    </font>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </el-col>
-          <el-col :span="6" class="">
-            <div class="grid-content" style="padding-right: 10px">
-              <table>
-                <tr>
-                  <td>
-                    <img class="img1" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3633122639,797398275&fm=26&gp=0.jpg">
-                  </td>
-                </tr>
-                <tr>
-                  <td><font color="black">@欧阳娜娜</font> </td>
-                </tr>
-                <tr>
-                  <td><font size="1px" color="#a9a9a9">{{currentDate}}</font></td>
-                </tr>
-                <tr>
-                  <td>
-                    <font size="2px">
-                      给自己的一份特殊的成人礼,是一本勇气与野心之书.每个人在生活的每一个阶段都要做出各种各样的选择,哪个选择是对的,什么决定又是错的,当下都无从判断 ！
-                    </font>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </el-col>
-          <el-col :span="6" class="">
-            <div class="grid-content" style="padding-right: 10px">
-              <table>
-                <tr>
-                  <td>
-                    <img class="img1" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3732978684,4182633409&fm=26&gp=0.jpg">
-                  </td>
-                </tr>
-                <tr>
-                  <td><font color="black">@欧阳娜娜</font> </td>
-                </tr>
-                <tr>
-                  <td><font size="1px" color="#a9a9a9">{{currentDate}}</font></td>
-                </tr>
-                <tr>
-                  <td>
-                    <font size="2px">
-                      给自己的一份特殊的成人礼,是一本勇气与野心之书.每个人在生活的每一个阶段都要做出各种各样的选择,哪个选择是对的,什么决定又是错的,当下都无从判断 ！
-                    </font>
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </el-col>
-        </el-row>
+          <el-row>
+            <el-col :span="6" class="">
+              <div class="grid-content" style="padding-right: 10px">
+                <table>
+                  <tr>
+                    <td>
+                      <img class="img1" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1952912020,3409873688&fm=26&gp=0.jpg">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><font color="black">@欧阳娜娜</font> </td>
+                  </tr>
+                  <tr>
+                    <td><font size="1px" color="#a9a9a9">{{currentDate}}</font></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <font size="2px">
+                        给自己的一份特殊的成人礼,是一本勇气与野心之书.每个人在生活的每一个阶段都要做出各种各样的选择,哪个选择是对的,什么决定又是错的,当下都无从判断 ！
+                      </font>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </el-col>
+            <el-col :span="6" class="">
+              <div class="grid-content" style="padding-right: 10px">
+                <table>
+                  <tr>
+                    <td>
+                      <img class="img1" src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=136618023,3186690137&fm=26&gp=0.jpg">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><font color="black">@欧阳娜娜</font> </td>
+                  </tr>
+                  <tr>
+                    <td><font size="1px" color="#a9a9a9">{{currentDate}}</font></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <font size="2px">
+                        给自己的一份特殊的成人礼,是一本勇气与野心之书.每个人在生活的每一个阶段都要做出各种各样的选择,哪个选择是对的,什么决定又是错的,当下都无从判断 ！
+                      </font>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </el-col>
+            <el-col :span="6" class="">
+              <div class="grid-content" style="padding-right: 10px">
+                <table>
+                  <tr>
+                    <td>
+                      <img class="img1" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3633122639,797398275&fm=26&gp=0.jpg">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><font color="black">@欧阳娜娜</font> </td>
+                  </tr>
+                  <tr>
+                    <td><font size="1px" color="#a9a9a9">{{currentDate}}</font></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <font size="2px">
+                        给自己的一份特殊的成人礼,是一本勇气与野心之书.每个人在生活的每一个阶段都要做出各种各样的选择,哪个选择是对的,什么决定又是错的,当下都无从判断 ！
+                      </font>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </el-col>
+            <el-col :span="6" class="">
+              <div class="grid-content" style="padding-right: 10px">
+                <table>
+                  <tr>
+                    <td>
+                      <img class="img1" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3732978684,4182633409&fm=26&gp=0.jpg">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><font color="black">@欧阳娜娜</font> </td>
+                  </tr>
+                  <tr>
+                    <td><font size="1px" color="#a9a9a9">{{currentDate}}</font></td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <font size="2px">
+                        给自己的一份特殊的成人礼,是一本勇气与野心之书.每个人在生活的每一个阶段都要做出各种各样的选择,哪个选择是对的,什么决定又是错的,当下都无从判断 ！
+                      </font>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </el-col>
+          </el-row>
       </el-col>
       <el-col :span="2" class=""><div class="grid-content"></div></el-col>
     </el-row>
@@ -222,20 +222,20 @@
               <center><font size="4px" color="black">最新精品</font></center>
             </th>
             <tr>
-              <table cellspacing="10px">
-                <tr>
-                  <td rowspan="2">
-                    <img class="img2" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3565992163,971880450&fm=26&gp=0.jpg">
-                  </td>
-                  <td><strong>寻找广州拍摄旅游景点</strong></td>
-                </tr>
-                <tr>
-                  <td>
-                    <font>发布日期:</font> <br>
-                    <font size="1px">{{currentDate}}</font>
-                  </td>
-                </tr>
-              </table>
+            <table cellspacing="10px">
+              <tr>
+                <td rowspan="2">
+                  <img class="img2" src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3565992163,971880450&fm=26&gp=0.jpg">
+                </td>
+                <td><strong>寻找广州拍摄旅游景点</strong></td>
+              </tr>
+              <tr>
+                <td>
+                  <font>发布日期:</font> <br>
+                  <font size="1px">{{currentDate}}</font>
+                </td>
+              </tr>
+            </table>
             </tr>
             <tr>
               <table cellspacing="10px">
