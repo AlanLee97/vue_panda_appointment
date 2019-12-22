@@ -104,7 +104,7 @@
                 <pre> </pre>
             </el-col>
             <el-col :span="16">
-                <el-tabs stretch="true" v-model="activeName" @tab-click="handleClick">
+                <el-tabs stretch v-model="activeName" @tab-click="handleClick">
 
                     <el-tab-pane label="动态" name="first" >
                         <div>

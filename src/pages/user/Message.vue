@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-tabs v-model="activeName" type="card" @tab-click="handleClick" :style="center">
+    <el-tabs v-model="activeName" type="card" @tab-click="handleClick" align="center">
       <el-tab-pane label="通知" name="first">你还没有收到任何消息</el-tab-pane>
       <el-tab-pane label="私聊" name="second">私聊</el-tab-pane>
     </el-tabs>
