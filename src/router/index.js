@@ -9,6 +9,7 @@ import register from '../pages/user/Register'
 import profile from '../pages/user/Profile'
 import userinfo from '../pages/user/UserInfo'
 import appointissue from '../pages/user/AppointIssue'
+import DynamicPage from '../pages/user/DynamicPage'
 import message from '../pages/user/Message'
 import addWorks from '../pages/works/AddWorks'
 
@@ -53,6 +54,10 @@ const routes = [
     {
         path:'/appointissue',
         component:appointissue
+    },
+    {
+        path:'/DynamicPage',
+        component:DynamicPage
     },
     {
         path:'/works/add',

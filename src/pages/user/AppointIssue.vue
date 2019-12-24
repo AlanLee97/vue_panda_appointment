@@ -11,7 +11,7 @@
                         <el-input v-model="apt.title" placeholder="请简述你约拍主题" type="textarea"></el-input>
                     </el-form-item>
 
-                    <el-form-item label="约拍类型" prop="type" align="left">
+                    <el-form-item label="约拍类型" prop="apt_type" align="left">
                         <el-select v-model="apt.apt_type" placeholder="请选择约拍类型">
                             <el-option label="毕业照" value="graduatePhotograph"></el-option>
                             <el-option label="婚纱照" value="lifePhotograph"></el-option>
@@ -20,11 +20,11 @@
                         </el-select>
                     </el-form-item>
 
-                    <el-form-item label="地点" prop="site">
+                    <el-form-item label="地点" prop="apt_site">
                         <el-input v-model="apt.apt_site" placeholder="请输入你的约拍地点（尽量详细，建议添加地标建筑进行描述）" type="textarea"></el-input>
                     </el-form-item>
 
-                    <el-form-item label="开始时间" prop="startDatetime">
+                    <el-form-item label="开始时间" prop="apt_date">
                         <el-input v-model="apt.apt_date" placeholder="请输入你的约拍时间（例如：2019年12月31日早上8点）" type="textarea"></el-input>
                     </el-form-item>
 
@@ -32,9 +32,54 @@
                         <el-input type="textarea" v-model="apt.ask" placeholder="例如摄影师的性别、年龄、摄影特长或者对模特的身高、年龄、风格、着装等"></el-input>
                     </el-form-item>
 
-                    <el-form-item label="费用" prop="fee">
+                    <el-form-item label="费用" prop="apt_fee">
                         <el-input v-model="apt.apt_fee" placeholder="请输入你的费用（例如：200，100-200，详谈等）" type="textarea"></el-input>
                     </el-form-item>
+
+                    <el-form-item label="上传图片" prop="apt_image">
+                        <div class="box-bg-fcfcfc m-20px p-20px box-radius">
+                            <el-upload
+                                    action="#"
+                                    list-type="picture-card"
+                                    multiple
+                                    :auto-upload="false">
+                                <i slot="default" class="el-icon-plus"></i>
+                                <div slot="file" slot-scope="{file}">
+                                    <img
+                                            class="el-upload-list__item-thumbnail"
+                                            :src="file.url" alt=""
+                                    >
+                                    <span class="el-upload-list__item-actions">
+                                    <span
+                                            class="el-upload-list__item-preview"
+                                            @click="handlePictureCardPreview(file)"
+                                    >
+                                      <i class="el-icon-zoom-in"></i>
+                                    </span>
+                                    <span
+                                            v-if="!disabled"
+                                            class="el-upload-list__item-delete"
+                                            @click="handleDownload(file)"
+                                    >
+                                      <i class="el-icon-download"></i>
+                                    </span>
+                                    <span
+                                            v-if="!disabled"
+                                            class="el-upload-list__item-delete"
+                                            @click="handleRemove(file)"
+                                    >
+                                      <i class="el-icon-delete"></i>
+                                    </span>
+                                  </span>
+                                </div>
+                            </el-upload>
+                            <el-dialog :visible.sync="dialogVisible">
+                                <img width="100%" :src="dialogImageUrl" alt="">
+                            </el-dialog>
+
+                        </div>
+                    </el-form-item>
+
 
 
 
@@ -59,6 +104,8 @@
   export default {
     data() {
       return {
+        dialogImageUrl: '',
+        dialogVisible: false,
         apt: {
             userId:0,
             title: '',
@@ -107,7 +154,6 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
 
-
           if (valid) {
 
               request({
@@ -134,6 +180,13 @@
             return false;
           }
         });
+      },
+      handlePictureCardPreview:function(file) {
+        this.dialogImageUrl = file.url;
+        this.dialogVisible = true;
+      },
+      handleRemove:function(file, fileList) {
+        console.log(file, fileList);
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();

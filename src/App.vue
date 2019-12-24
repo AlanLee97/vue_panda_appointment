@@ -22,8 +22,9 @@
             <el-menu-item index="6" @click="goPage('/profile')">个人主页</el-menu-item>
             <el-menu-item index="7" @click="goPage('/appointissue')">约拍</el-menu-item>
             <el-menu-item index="8" @click="goPage('/works/add')">发表作品</el-menu-item>
+            <el-menu-item index="9" @click="goPage('/DynamicPage')">动态</el-menu-item>
 
-            <el-menu-item index="9" @click="goPage('/test')">测试</el-menu-item>
+            <el-menu-item index="10" @click="goPage('/test')">测试</el-menu-item>
 
 
         </el-menu>
