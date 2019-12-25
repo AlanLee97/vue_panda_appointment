@@ -4,220 +4,33 @@
             <el-col :span="3"><pre> </pre></el-col>
             <el-col :span="14">
                 <div class="lists">
-                    <div class="item">
+                    <div class="item" v-for="item in result">
                         <div class="item_avatar">
                             <a class="item_info_user_name" target="_blank" href="#">
-                                <img width="40" height="40" src="http://img.mdyuepai.com/lq7DhsGgbQQxG3aj_pUrzBuivg_g-psmallimg">
+                                <img width="40" height="40" :src="item.tuser.headPortraitImg">
                             </a>
                         </div>
                         <div class="item_info">
                             <div class="item_info_top">
                                 <div class="item_info_user">
-                                        Kevin
-                                    <div class="item_info_user_type">毕业照 | 费用:200</div>
+                                        {{item.tuser.nickname}}
+                                    <div class="item_info_user_type">{{item.aptTypeId}} | 费用:{{item.fee}}</div>
                                 </div>
                                 <div class="item_info_city">
+                                    <p>约拍地点:</p>
                                     <img :src="cityLogin">
-                                    <a> 广州</a>
+                                    <a>{{item.address}}</a>
                                 </div>
                             </div>
                             <div class="item_info_title" target="_blank" href="#">
-                                <div class="item_info_title1">要求:穿汉服</div>
-                                <div class="item_info_title1">时间:12月30号早上8点</div>
+                                <div class="item_info_title1">要求:{{item.ask}}</div>
+                                <div class="item_info_title1">时间:{{item.startDatetime}}</div>
                             </div>
                             <p class="item_info_content" target="_blank" href="#">
-                                寻找一位身高168cm左右的小姐姐约拍汉服照
+                                {{item.title}}
                             </p>
                             <a class="item_info_imgs" target="_blank" href="#">
-                                <img src="http://img.mdyuepai.com/luvAHANfDkbHF1JWkMt3FHbUOj9h-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/lq7DhsGgbQQxG3aj_pUrzBuivg_g-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/lhNa9ceiUR78oBC9q4oCGjj1dxyE-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/liMENRwp6u_dUvArS1vJaFI5VFMx-psmallimg" class="img">
-                            </a>
-                            <div class="item_info_bottom">
-                                <div class="item_info_time">1分钟前</div>
-                                <div class="item_view_count">阅读 10086</div>
-                                <div class="item_yuepa_count">约拍 6</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item_avatar">
-                            <a class="item_info_user_name" target="_blank" href="#">
-                                <img width="40" height="40" src="http://img.mdyuepai.com/lq7DhsGgbQQxG3aj_pUrzBuivg_g-psmallimg">
-                            </a>
-                        </div>
-                        <div class="item_info">
-                            <div class="item_info_top">
-                                <div class="item_info_user">
-                                    Kevin
-                                    <div class="item_info_user_type">毕业照 | 费用:200</div>
-                                </div>
-                                <div class="item_info_city">
-                                    <img :src="cityLogin">
-                                    <a> 广州</a>
-                                </div>
-                            </div>
-                            <div class="item_info_title" target="_blank" href="#">
-                                <div class="item_info_title1">要求:穿汉服</div>
-                                <div class="item_info_title1">时间:12月30号早上8点</div>
-                            </div>
-                            <p class="item_info_content" target="_blank" href="#">
-                                寻找一位身高168cm左右的小姐姐约拍汉服照
-                            </p>
-                            <a class="item_info_imgs" target="_blank" href="#">
-                                <img src="http://img.mdyuepai.com/luvAHANfDkbHF1JWkMt3FHbUOj9h-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/lq7DhsGgbQQxG3aj_pUrzBuivg_g-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/lhNa9ceiUR78oBC9q4oCGjj1dxyE-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/liMENRwp6u_dUvArS1vJaFI5VFMx-psmallimg" class="img">
-                            </a>
-                            <div class="item_info_bottom">
-                                <div class="item_info_time">1分钟前</div>
-                                <div class="item_view_count">阅读 10086</div>
-                                <div class="item_yuepa_count">约拍 6</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item_avatar">
-                            <a class="item_info_user_name" target="_blank" href="#">
-                                <img width="40" height="40" src="http://img.mdyuepai.com/lq7DhsGgbQQxG3aj_pUrzBuivg_g-psmallimg">
-                            </a>
-                        </div>
-                        <div class="item_info">
-                            <div class="item_info_top">
-                                <div class="item_info_user">
-                                    Kevin
-                                    <div class="item_info_user_type">毕业照 | 费用:200</div>
-                                </div>
-                                <div class="item_info_city">
-                                    <img :src="cityLogin">
-                                    <a> 广州</a>
-                                </div>
-                            </div>
-                            <div class="item_info_title" target="_blank" href="#">
-                                <div class="item_info_title1">要求:穿汉服</div>
-                                <div class="item_info_title1">时间:12月30号早上8点</div>
-                            </div>
-                            <p class="item_info_content" target="_blank" href="#">
-                                寻找一位身高168cm左右的小姐姐约拍汉服照
-                            </p>
-                            <a class="item_info_imgs" target="_blank" href="#">
-                                <img src="http://img.mdyuepai.com/luvAHANfDkbHF1JWkMt3FHbUOj9h-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/lq7DhsGgbQQxG3aj_pUrzBuivg_g-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/lhNa9ceiUR78oBC9q4oCGjj1dxyE-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/liMENRwp6u_dUvArS1vJaFI5VFMx-psmallimg" class="img">
-                            </a>
-                            <div class="item_info_bottom">
-                                <div class="item_info_time">1分钟前</div>
-                                <div class="item_view_count">阅读 10086</div>
-                                <div class="item_yuepa_count">约拍 6</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item_avatar">
-                            <a class="item_info_user_name" target="_blank" href="#">
-                                <img width="40" height="40" src="http://img.mdyuepai.com/lq7DhsGgbQQxG3aj_pUrzBuivg_g-psmallimg">
-                            </a>
-                        </div>
-                        <div class="item_info">
-                            <div class="item_info_top">
-                                <div class="item_info_user">
-                                    Kevin
-                                    <div class="item_info_user_type">毕业照 | 费用:200</div>
-                                </div>
-                                <div class="item_info_city">
-                                    <img :src="cityLogin">
-                                    <a> 广州</a>
-                                </div>
-                            </div>
-                            <div class="item_info_title" target="_blank" href="#">
-                                <div class="item_info_title1">要求:穿汉服</div>
-                                <div class="item_info_title1">时间:12月30号早上8点</div>
-                            </div>
-                            <p class="item_info_content" target="_blank" href="#">
-                                寻找一位身高168cm左右的小姐姐约拍汉服照
-                            </p>
-                            <a class="item_info_imgs" target="_blank" href="#">
-                                <img src="http://img.mdyuepai.com/luvAHANfDkbHF1JWkMt3FHbUOj9h-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/lq7DhsGgbQQxG3aj_pUrzBuivg_g-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/lhNa9ceiUR78oBC9q4oCGjj1dxyE-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/liMENRwp6u_dUvArS1vJaFI5VFMx-psmallimg" class="img">
-                            </a>
-                            <div class="item_info_bottom">
-                                <div class="item_info_time">1分钟前</div>
-                                <div class="item_view_count">阅读 10086</div>
-                                <div class="item_yuepa_count">约拍 6</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item_avatar">
-                            <a class="item_info_user_name" target="_blank" href="#">
-                                <img width="40" height="40" src="http://img.mdyuepai.com/lq7DhsGgbQQxG3aj_pUrzBuivg_g-psmallimg">
-                            </a>
-                        </div>
-                        <div class="item_info">
-                            <div class="item_info_top">
-                                <div class="item_info_user">
-                                    Kevin
-                                    <div class="item_info_user_type">毕业照 | 费用:200</div>
-                                </div>
-                                <div class="item_info_city">
-                                    <img :src="cityLogin">
-                                    <a> 广州</a>
-                                </div>
-                            </div>
-                            <div class="item_info_title" target="_blank" href="#">
-                                <div class="item_info_title1">要求:穿汉服</div>
-                                <div class="item_info_title1">时间:12月30号早上8点</div>
-                            </div>
-                            <p class="item_info_content" target="_blank" href="#">
-                                寻找一位身高168cm左右的小姐姐约拍汉服照
-                            </p>
-                            <a class="item_info_imgs" target="_blank" href="#">
-                                <img src="http://img.mdyuepai.com/luvAHANfDkbHF1JWkMt3FHbUOj9h-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/lq7DhsGgbQQxG3aj_pUrzBuivg_g-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/lhNa9ceiUR78oBC9q4oCGjj1dxyE-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/liMENRwp6u_dUvArS1vJaFI5VFMx-psmallimg" class="img">
-                            </a>
-                            <div class="item_info_bottom">
-                                <div class="item_info_time">1分钟前</div>
-                                <div class="item_view_count">阅读 10086</div>
-                                <div class="item_yuepa_count">约拍 6</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="item_avatar">
-                            <a class="item_info_user_name" target="_blank" href="#">
-                                <img width="40" height="40" src="http://img.mdyuepai.com/lq7DhsGgbQQxG3aj_pUrzBuivg_g-psmallimg">
-                            </a>
-                        </div>
-                        <div class="item_info">
-                            <div class="item_info_top">
-                                <div class="item_info_user">
-                                    Kevin
-                                    <div class="item_info_user_type">毕业照 | 费用:200</div>
-                                </div>
-                                <div class="item_info_city">
-                                    <img :src="cityLogin">
-                                    <a> 广州</a>
-                                </div>
-                            </div>
-                            <div class="item_info_title" target="_blank" href="#">
-                                <div class="item_info_title1">要求:穿汉服</div>
-                                <div class="item_info_title1">时间:12月30号早上8点</div>
-                            </div>
-                            <p class="item_info_content" target="_blank" href="#">
-                                寻找一位身高168cm左右的小姐姐约拍汉服照
-                            </p>
-                            <a class="item_info_imgs" target="_blank" href="#">
-                                <img src="http://img.mdyuepai.com/luvAHANfDkbHF1JWkMt3FHbUOj9h-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/lq7DhsGgbQQxG3aj_pUrzBuivg_g-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/lhNa9ceiUR78oBC9q4oCGjj1dxyE-psmallimg" class="img">
-                                <img src="http://img.mdyuepai.com/liMENRwp6u_dUvArS1vJaFI5VFMx-psmallimg" class="img">
+                                <img :src="item.image" class="img">
                             </a>
                             <div class="item_info_bottom">
                                 <div class="item_info_time">1分钟前</div>
@@ -234,6 +47,8 @@
 </template>
 
 <script>
+  import {request} from "../../util/network/request";
+
   export default {
     data() {
       return{
@@ -243,10 +58,29 @@
         photograph4: 'http://img.mdyuepai.com/liMENRwp6u_dUvArS1vJaFI5VFMx-psmallimg',
         user_face:'https://hbimg.huabanimg.com/666a1a1f72c5eae973ca0f0977adca58b89a119f236a1-3vh1WC_fw658',
         cityLogin: 'https://www.mdyuepai.com/public/static/index/img/common/city.png',
+        result: [],
       }
     },
     mounted:function() {
-
+        this.getData()
+    },
+    created() {
+      this.getData()
+    },
+    methods:{
+      getData() {
+        request({
+          method: 'get',
+          url: '/appointment/get/apt-user',
+        }).then(res => {
+          this.result = res;
+          console.log(res);
+          this.result = res.data.data;
+          console.log(this.result)
+        }).catch(err => {
+          console.log(err);
+        })
+      },
     }
   }
 </script>
