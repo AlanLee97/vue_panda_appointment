@@ -37,9 +37,12 @@
                     </el-form-item>
 
                     <el-form-item label="上传图片" prop="apt_image">
-                        <div class="box-bg-fcfcfc m-20px p-20px box-radius">
+                        <div class="al-box-bg-fcfcfc al-m-20px al-p-20px al-box-radius">
                             <el-upload
-                                    action="#"
+                                    ref="uploadImg"
+                                    :data="uploadData"
+                                    :action="uploadImgUrl"
+                                    :on-success="uploadSuccess"
                                     list-type="picture-card"
                                     multiple
                                     :auto-upload="false">
@@ -104,6 +107,12 @@
   export default {
     data() {
       return {
+          uploadData:{//上传图片时需要用户id
+              uid:1
+          },
+          uploadImgUrl:this.createUrl('/upload/return-url'),  //图片上传的地址
+          flag:false,
+        imgId:'',
         dialogImageUrl: '',
         dialogVisible: false,
         apt: {
@@ -145,36 +154,69 @@
         let userinfo = JSON.parse(sessionStorage.getItem('userinfo'));
         console.log(userinfo);
         this.apt.userId = userinfo.id;
+        //上传图片时需要用户id
+        this.uploadData.uid = userinfo.id;
         console.log(this.apt.userId);
 
 
     },
 
     methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
+        //开始图片上传
+        startUpload:function () {
+            this.$refs.uploadImg.submit();
+        },
 
-          if (valid) {
+        //图片上传成功后的回调函数
+        uploadSuccess:function(res, file, fileList){
+            console.log(res);
+            this.apt.apt_image = res;
+            this.flag = true;
 
-              request({
-                  method:'post',
-                  url:'/appointment/add',
-                  data:this.qsParam(this.apt),
-                  headers:{
-                      'Content-Type': 'application/x-www-form-urlencoded'
-                  },
-              }).then(res => {
-                  console.log(res);
-                  this.$message.success("发表成功");
-              }).catch(err => {
-                  console.log(err);
-                  this.$message.error("发表失败");
 
-              });
+            console.log("图片上传成功");
+
+            //发送发表约拍的请求
+            this.send();
+
+        },
+
+
+        //发送发表约拍的请求
+        send:function(){
+            console.log("发送发表约拍的请求");
+
+            request({
+                method:'post',
+                url:'/appointment/add',
+                data:this.qsParam(this.apt),
+                headers:{
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+            }).then(res => {
+                console.log(res);
+                this.$message.success("发表成功");
+            }).catch(err => {
+                console.log(err);
+                this.$message.error("发表失败");
+
+            });
 
 
             alert('发布成功!');
             console.log(this.apt);
+        },
+
+        //提交表单
+        submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+
+            //验证表单是否有效
+          if (valid) {
+              //开始上传图片
+            this.startUpload();
+
+
           } else {
             console.log('error submit!!');
             return false;
@@ -191,6 +233,8 @@
       resetForm(formName) {
         this.$refs[formName].resetFields();
       },
+
+
     }
   }
 </script>

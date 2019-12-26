@@ -6,13 +6,13 @@
 		<el-row>
 			<el-col :span="4"><pre> </pre></el-col>
 			<el-col :span="16">
-				<div class="box-shadow-radius-bgwhite-p20-m20">
-					<div class="box-bg-fcfcfc p-20px m-20px">
-						<span class="d-inline-block">标题</span>
+				<div class="al-box-shadow-radius al-p-20px al-m-20px">
+					<div class="al-box-bg-fcfcfc al-p-20px m-20px">
+						<span class="al-d-il-blk">标题</span>
 						<el-input v-model="sendData.title"></el-input>
 					</div>
 
-					<div class="box-bg-fcfcfc p-20px m-20px">
+					<div class="al-box-bg-fcfcfc al-p-20px al-m-20px">
 						说明
 						<el-input v-model="sendData.content"></el-input>
 					</div>

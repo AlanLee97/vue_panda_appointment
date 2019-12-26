@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-//let ip = "localhost";
+// let ip = "localhost";
  let ip = "47.103.204.62";
 let port = "8083";
 let prefix = "http://" + ip + ':' + port;

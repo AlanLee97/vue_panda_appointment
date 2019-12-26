@@ -94,6 +94,7 @@
 </script>
 
 <style>
+    @import "assets/css/al-css.css";
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -113,71 +114,6 @@
         background-color: #fcfcfc;
     }
 
-    .show-border{
-        border: solid 1px red;
-    }
 
-    .box-shadow-radius-bgwhite-p20-m20{
-        border-radius: 20px;
-        box-shadow: 3px 5px 16px #e4e4e4;
-        background-color: #ffffff;
-        padding: 20px;
-        margin: 20px;
-    }
-    .box-radius{
-        border-radius: 20px;
-    }
-
-    .box-shadow{
-        box-shadow: 3px 5px 16px #e4e4e4;
-    }
-
-    .box-bg-white{
-        background-color: #ffffff;
-    }
-
-    .box-bg-fcfcfc{
-        background-color: #fcfcfc;
-    }
-
-    .p-10px{
-        padding: 10px;
-    }
-
-    .m-10px{
-        margin: 10px;
-    }
-
-    .m-top-60px{
-        margin-top: 60px;
-    }
-
-    .p-20px{
-        padding: 20px;
-    }
-
-    .m-20px{
-        margin: 20px;
-    }
-
-    .width-50{
-        width: 50%;
-    }
-
-    .width-60{
-        width: 60%;
-    }
-
-    .width-80{
-        width: 80%;
-    }
-
-    .d-inline-block{
-        display: inline-block;
-    }
-
-    .float-left{
-        float: left;
-    }
 
 </style>

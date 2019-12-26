@@ -12,6 +12,7 @@ import appointissue from '../pages/user/AppointIssue'
 import DynamicPage from '../pages/user/DynamicPage'
 import message from '../pages/user/Message'
 import addWorks from '../pages/works/AddWorks'
+import testUI from '../pages/test/TestUI'
 
 
 //1.使用插件
@@ -62,6 +63,10 @@ const routes = [
     {
         path:'/works/add',
         component:addWorks
+    },
+    {
+        path:'/test/ui',
+        component:testUI
     }
 ];
 const router = new VueRouter({

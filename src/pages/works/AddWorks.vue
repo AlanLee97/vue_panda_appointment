@@ -18,7 +18,7 @@
                     </div>
                 </el-col>
                 <el-col :span="16" v-loading="showLoading">
-                    <div class="box-shadow box-bg-white box-radius m-20px p-20px">
+                    <div class="al-box-shadow-radius al-bg-color-white al-m-20px al-p-20px">
                         <h3>发布作品</h3>
 
                         <div class="m-20px">
@@ -32,7 +32,7 @@
 	                        </el-input>
                         </div>
 
-                        <div class="box-bg-fcfcfc m-20px p-20px box-radius">
+                        <div class="al-bg-color-light-white al-m-20px al-p-20px al-box-shadow-radius">
                             <el-upload
                                     ref="upload2"
                                     :action="url"
