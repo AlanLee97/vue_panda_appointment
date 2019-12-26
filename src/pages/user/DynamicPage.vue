@@ -14,7 +14,9 @@
                             <div class="item_info_top">
                                 <div class="item_info_user">
                                         {{item.tuser.nickname}}
-                                    <div class="item_info_user_type">{{item.aptTypeId}} | 费用:{{item.fee}}</div>
+                                    <div class="item_info_user_type">
+                                        <!--{{item.aptTypeId}} | -->
+                                        费用:{{item.fee}}</div>
                                 </div>
                                 <div class="item_info_city">
                                     <p>约拍地点:</p>
@@ -34,7 +36,7 @@
                             </a>
                             <div class="item_info_bottom">
                                 <div class="item_info_time"><p>{{item.date | getTimeFormat}}</p></div>
-                                <div class="item_view_count">阅读 10086</div>
+                                <!--<div class="item_view_count">阅读 10086</div>-->
                             </div>
                         </div>
                     </div>
@@ -66,8 +68,10 @@
     },
     created() {
       this.getData()
+      this.getType()
     },
     methods:{
+      //获取所有用户动态
       getData() {
         request({
           method: 'get',
@@ -77,6 +81,20 @@
           console.log(res);
           this.result = res.data.data;
           console.log(this.result)
+        }).catch(err => {
+          console.log(err);
+        })
+      },
+      //获取约拍类型
+      getType(){
+        request({
+          method: 'get',
+          url: '/apt-type/get-one?id=' + this.result.aptTypeId,
+        }).then(res => {
+          this.aptType = res;
+          console.log(res);
+          this.aptType = res.data.data;
+          console.log(this.aptType)
         }).catch(err => {
           console.log(err);
         })
@@ -230,7 +248,8 @@
         width: 746px;
         height: 154px;
         display: block;
-        background-color: #fcfcfc;
+        background-color: #ffffff;
+        text-align: left;
     }
     item_info_img{
         width: 174px;

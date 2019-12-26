@@ -196,14 +196,11 @@
             }).then(res => {
                 console.log(res);
                 this.$message.success("发表成功");
+              this.goPage('/DynamicPage');
             }).catch(err => {
                 console.log(err);
                 this.$message.error("发表失败");
-
             });
-
-
-            alert('发布成功!');
             console.log(this.apt);
         },
 
