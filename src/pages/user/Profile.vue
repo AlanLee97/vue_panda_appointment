@@ -106,24 +106,38 @@
             <el-col :span="16">
                 <el-tabs stretch v-model="activeName" @tab-click="handleClick">
 
-                    <el-tab-pane label="动态" name="first" >
+                    <el-tab-pane label="我的约拍" name="first" >
                         <div class="lists">
                             <div class="item al-box-shadow-radius" v-for="item in result">
                                 <div class="item_info">
                                     <div class="item_info_top">
-                                    <p class="item_info_content" target="_blank" href="#">
-                                        {{item.introduction}}
-                                    </p>
-                                    <div class="item_info_imgs" target="_blank" href="#">
-                                        <img :src="item.images" class="img">
+                                        <div class="item_info_user">
+                                            <div class="item_info_user_type">
+                                                <!--{{item.aptTypeId}} | -->
+                                                费用:{{item.fee}}</div>
+                                        </div>
+                                        <div class="item_info_city">
+                                            <p>约拍地点:</p>
+                                            <img :src="cityLogin">
+                                            <a>{{item.address}}</a>
+                                        </div>
                                     </div>
+                                    <div class="item_info_title" target="_blank" href="#">
+                                        <div class="item_info_title1">要求:{{item.ask}}</div>
+                                        <div class="item_info_title1">时间:{{item.startDatetime}}</div>
+                                    </div>
+                                    <p class="item_info_content" target="_blank" href="#">
+                                        {{item.title}}
+                                    </p>
+                                    <a class="item_info_imgs" target="_blank" href="#">
+                                        <img :src="item.image" class="img">
+                                    </a>
                                     <div class="item_info_bottom">
-                                        <div class="item_info_time"><p>{{item.datetime | getTimeFormat}}</p></div>
-                                        <div class="item_view_count">删除</div>
+                                        <div class="item_info_time"><p>{{item.date | getTimeFormat}}</p></div>
+                                        <!--<div class="item_view_count">阅读 10086</div>-->
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
                     </el-tab-pane>
 
@@ -132,7 +146,7 @@
                             <el-row>
                                 <el-col :span="8" v-for="image in result">
                                     <el-card :body-style="{ padding: '0px' }">
-                                        <img :src="image.images" class="image">
+                                        <img :src="image.image" class="image">
                                     </el-card>
                                 </el-col>
                             </el-row>
@@ -141,20 +155,25 @@
 
                     <el-tab-pane label="作品" name="third">
                         <div>
-                            <el-row>
-                                <el-col :span="8" v-for="(o, index) in 20" :key="o" :offset="index > 0 ? 2 : 0">
-                                    <el-card :body-style="{ padding: '0px' }">
-                                        <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-                                        <div style="padding: 14px;">
-                                            <span>好吃的汉堡</span>
-                                            <div class="bottom clearfix">
-                                                <time class="time">{{ currentDate }}</time>
-                                                <el-button type="text" class="button">操作按钮</el-button>
+                            <div class="lists">
+                                <div class="item al-box-shadow-radius" v-for="item in work">
+                                    <div class="item_info">
+                                        <div class="item_info_top">
+                                            <p class="item_info_content" target="_blank" href="#">
+                                                {{item.introduction}}
+                                            </p>
+                                            <div class="item_info_imgs" target="_blank" href="#">
+                                                <img :src="item.images" class="img">
+                                            </div>
+                                            <div class="item_info_bottom">
+                                                <div class="item_info_time"><p>{{item.datetime | getTimeFormat}}</p>
+                                                    <a>删除</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </el-card>
-                                </el-col>
-                            </el-row>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </el-tab-pane>
 
@@ -203,6 +222,7 @@
                 direction: 'rtl',
                 activeName: 'second',
                 fit:'cover',
+                cityLogin: 'https://www.mdyuepai.com/public/static/index/img/common/city.png',
                 user_face:'https://hbimg.huabanimg.com/666a1a1f72c5eae973ca0f0977adca58b89a119f236a1-3vh1WC_fw658',
                 image_url:'https://cdn-isux.qq.com/upload/detail/f57Y2wEryDwjWmTr2BypYaCA6CgSKjknAJtGRIR4FcR.jpeg',
                 currentDate: new Date(),
@@ -217,9 +237,13 @@
                 ],
                 userinfo: [],
               result: [],
+              work: [],
             };
         },
-        methods:{
+      created() {
+        this.getWork()
+      },
+      methods:{
             goPage:function(path){
                 this.gotoPage(path);
             },
@@ -237,11 +261,11 @@
                         })
                         .catch(_ => {});
             },
-          //根据当前用户id请求发布的动态
+          //根据当前用户id请求发布的约拍
           getData() {
             request({
               method: 'get',
-              url: '/works/get/uid?uid=' + this.userinfo.id,
+              url: '/appointment/get/uid?uid=' + this.userinfo.id,
             }).then(res => {
               this.result = res;
               console.log(res);
@@ -251,13 +275,26 @@
               console.log(err);
             })
           },
+          getWork() {
+            request({
+              method: 'get',
+              url: '/works/get/uid?uid=' + this.userinfo.id,
+            }).then(res => {
+              this.work = res;
+              console.log(res);
+              this.work = res.data.data;
+              console.log(this.work)
+            }).catch(err => {
+              console.log(err);
+            })
+          },
         },
         mounted:function () {
             this.userinfo = JSON.parse(sessionStorage.getItem("userinfo"));
             this.user_face = this.userinfo.headPortraitImg;
             console.log(this.userinfo);
-
             this.getData();
+          this.getWork();
         },
       filters: {
         //时间戳显示格式为几天前、几分钟前、几秒前
@@ -322,6 +359,7 @@
 
     .image {
         width: 100%;
+        height: 90%;
         /*height: 500px;*/
         display: block;
     }
@@ -362,7 +400,38 @@
         margin: 0px 0px 0px 0px;
         padding: 0px 0px 0px 0px;
     }
-
+    .item_info_user{
+        text-align: left;
+        width: 450px;
+        display: inline-block;
+    }
+    .item_info_user_type{
+        height: 20px;
+        font-size: 14px;
+        line-height: 20px;
+        color: #928082;
+        margin-top: 5px;
+    }
+    .item_info_city{
+        min-width: 150px;
+        height: 50px;
+        display: inline-block;
+        float: right;
+        text-align: right;
+        padding-right: 18px;
+    }
+    .item_info_title{
+        text-align: left;
+        display: block;
+        font-size: 14px;
+        color: #928082;
+        height: 50px;
+        line-height: 25px;
+        margin-top: 16px;
+    }
+    .item_info_title1{
+        margin-top: 0px;
+    }
     .item_info_content{
         text-align: left;
         font-size: 16px;
@@ -394,15 +463,6 @@
     }
     .item_info_time{
         text-align: left;
-        display: inline-block;
-        margin-right: 20px;
-        font-size: 12px;
-        color: #928082;
-    }
-    .item_view_count{
-        float: right;
-        text-align: right;
-        padding-right: 18px;
         display: inline-block;
         margin-right: 20px;
         font-size: 12px;
