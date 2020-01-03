@@ -296,6 +296,36 @@
     text-align: right;
 }
 
+.al-right-0{
+    right: 0;
+}
+
+.al-right-10{
+    right: 10px;
+}
+
+.al-right-20{
+    right: 20px;
+}
+
+.al-right-30{
+    right: 30px;
+}
+
+.al-right-40{
+    right: 40px;
+}
+
+.al-right-50{
+    right: 50px;
+}
+
+.al-right-60{
+    right: 60px;
+}
+
+
+
 
 /*----------- 显示效果 ----------*/
 /* 显示圆角，有阴影10px */
@@ -316,6 +346,10 @@
     background-color: #FFFFFF;
     box-shadow: 3px 3px 8px #DBDBDB;
 
+}
+
+.al-box-radius-50{
+    border-radius: 50%;
 }
 
 /*================END 显示================*/

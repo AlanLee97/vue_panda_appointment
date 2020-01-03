@@ -37,6 +37,7 @@
                     </el-form-item>
 
                     <el-form-item label="上传图片" prop="apt_image">
+
                         <div class="al-box-bg-fcfcfc al-m-20px al-p-20px al-box-radius">
                             <el-upload
                                     ref="uploadImg"
@@ -81,6 +82,7 @@
                             </el-dialog>
 
                         </div>
+
                     </el-form-item>
 
 
@@ -111,8 +113,7 @@
               uid:1
           },
           uploadImgUrl:this.createUrl('/upload/return-url'),  //图片上传的地址
-          flag:false,
-        imgId:'',
+
         dialogImageUrl: '',
         dialogVisible: false,
         apt: {
@@ -171,7 +172,6 @@
         uploadSuccess:function(res, file, fileList){
             console.log(res);
             this.apt.apt_image = res;
-            this.flag = true;
 
 
             console.log("图片上传成功");
@@ -239,11 +239,6 @@
 <style>
     .main_content{
         width: 1140px;
-        margin: 0 auto;
-        margin-top: 0px;
-        margin-right: auto;
-        margin-bottom: 0px;
-        margin-left: auto;
         padding: 120px 0 30px;
         padding-top: 120px;
         padding-right: 0px;

@@ -94,6 +94,8 @@ import {
     Message,
     Notification
 } from 'element-ui';
+
+
 import VueRouter from "vue-router";
 
 Vue.use(Pagination);
@@ -207,8 +209,8 @@ Vue.prototype.gotoPage = function(pagePath){
 axios.defaults.baseURL = 'http://' + domain + ':' + port;
 
 //axios的get请求
-Vue.prototype.requestGet = function(url){
-    axios.get(url).then(res => {
+Vue.prototype.requestGet = function(url, data){
+    axios.get(url,data).then(res => {
         return res;
     })
 }

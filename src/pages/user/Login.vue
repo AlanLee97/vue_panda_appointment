@@ -147,6 +147,7 @@
                             if (res.code == 200){
                                 this.$message('登录成功');
                                 sessionStorage.setItem("userinfo", JSON.stringify(res.data));
+                                sessionStorage.setItem("isLogin", "true");
                                 console.log('userinfo');
                                 this.goPage('/profile');
                             }else {

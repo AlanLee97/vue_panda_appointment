@@ -86,10 +86,9 @@
                     <div style="padding: 14px;">
                         <div @click="drawer = true" class="block"><el-avatar :size="50" :src="user_face" ></el-avatar></div>
                         <span>{{userinfo.nickname}}</span>
-                        <div class="bottom clearfix">
-                            <time class="time">{{ currentDate }}</time>
-                            <el-button type="text" class="button">操作按钮</el-button>
-                        </div>
+<!--                        <div class="bottom clearfix">-->
+<!--                            <time class="time">{{ currentDate }}</time>-->
+<!--                        </div>-->
                     </div>
                 </el-card>
             </el-col>
@@ -314,7 +313,7 @@
               h = h < 10 ? ('0' + h) : h
               let minute = date.getMinutes()
               let second = date.getSeconds()
-              console.log(second)
+              // console.log(second)
               minute = minute < 10 ? ('1' + minute) : minute
               second = second < 10 ? ('0' + second) : second
               return m + '-' + d + ' ' + h + ':' + minute

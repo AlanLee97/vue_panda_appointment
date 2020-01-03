@@ -4,7 +4,7 @@
             <el-col :span="3"><pre> </pre></el-col>
             <el-col :span="14">
                 <div class="lists">
-                    <div class="item al-box-shadow-radius" v-for="item in result">
+                    <div class="item al-box-shadow-radius" v-for="item in result" >
                         <div class="item_avatar">
                             <a class="item_info_user_name" target="_blank" href="#">
                                 <img width="40" height="40" :src="item.tuser.headPortraitImg">
