@@ -9,7 +9,8 @@ import register from '../pages/user/Register'
 import profile from '../pages/user/Profile'
 import userinfo from '../pages/user/UserInfo'
 import addAppointment from '../pages/appointment/AddAppointment'
-import allWorks from '../pages/works/allWorks'
+import allAppointment from '../pages/appointment/AllAppointment'
+import allWorks from '../pages/works/AllWorks'
 import message from '../pages/user/Message'
 import addWorks from '../pages/works/AddWorks'
 import testUI from '../pages/test/TestUI'
@@ -53,8 +54,12 @@ const routes = [
         component:message
     },
     {
-        path:'/addAppointment',
+        path:'/appointment/add',
         component:addAppointment
+    },
+    {
+        path:'/appointment/all',
+        component:allAppointment
     },
     {
         path:'/works/all',

@@ -1,10 +1,11 @@
 <template>
     <div>
+        <header-top />
         <el-row class="top">
             <el-col :span="3"><pre> </pre></el-col>
             <el-col :span="14">
                 <div class="lists">
-                    <div class="item al-box-shadow-radius" v-for="item in result" >
+                    <div class="item al-box-shadow-radius" v-for="item in allWorks" >
                         <div class="item_avatar">
                             <a class="item_info_user_name" target="_blank" href="#">
                                 <img width="40" height="40" :src="item.tuser.headPortraitImg">
@@ -13,31 +14,25 @@
                         <div class="item_info">
                             <div class="item_info_top">
                                 <div class="item_info_user">
-                                        {{item.tuser.nickname}}
-                                    <div class="item_info_user_type">
-                                        <!--{{item.aptTypeId}} | -->
-                                        费用:{{item.fee}}</div>
+                                    {{item.tuser.nickname}}
                                 </div>
-                                <div class="item_info_city">
-                                    <p>约拍地点:</p>
-                                    <img :src="cityLogin">
-                                    <a>{{item.address}}</a>
-                                </div>
+
                             </div>
-                            <div class="item_info_title" target="_blank" href="#">
-                                <div class="item_info_title1">要求:{{item.ask}}</div>
-                                <div class="item_info_title1">时间:{{item.startDatetime}}</div>
-                            </div>
-                            <p class="item_info_content" target="_blank" href="#">
-                                {{item.title}}
-                            </p>
-                            <a class="item_info_imgs" target="_blank" href="#">
-                                <img :src="item.image" class="img">
-                            </a>
+
+
                             <div class="item_info_bottom">
-                                <div class="item_info_time"><p>{{item.date | getTimeFormat}}</p></div>
+                                <div class="item_info_time"><p>{{item.datetime | getTimeFormat}}</p></div>
                                 <!--<div class="item_view_count">阅读 10086</div>-->
                             </div>
+
+                            <div>
+                                {{item.introduction}}
+                            </div>
+
+                            <div class="al-p-20px al-m-20px al-width-50">
+                                <el-image v-for="(img, index_img) in item.images" :src="img" :key="index_img" />
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -49,6 +44,7 @@
 
 <script>
   import {request} from "../../util/network/request";
+  import HeaderTop from "@/components/public/HeaderTop";
 
   export default {
     data() {
@@ -59,88 +55,35 @@
         photograph4: 'http://img.mdyuepai.com/liMENRwp6u_dUvArS1vJaFI5VFMx-psmallimg',
         user_face:'https://hbimg.huabanimg.com/666a1a1f72c5eae973ca0f0977adca58b89a119f236a1-3vh1WC_fw658',
         cityLogin: 'https://www.mdyuepai.com/public/static/index/img/common/city.png',
-        result: [],
+        allWorks: null,
         currentDate: new Date(),
       }
     },
     mounted:function() {
-        this.getData()
+
     },
     created() {
-      this.getData()
-      this.getType()
+        this.getAllWorks();
     },
+      components:{
+        HeaderTop
+      },
     methods:{
       //获取所有用户动态
-      getData() {
+      getAllWorks() {
         request({
           method: 'get',
-          url: '/appointment/get/apt-user',
+          url: '/works/get/all-user',
         }).then(res => {
-          this.result = res;
-          console.log(res);
-          this.result = res.data.data;
-          console.log(this.result)
+          this.allWorks = res.data.data;
+          console.log(this.allWorks)
         }).catch(err => {
           console.log(err);
         })
       },
-      //获取约拍类型
-      getType(){
-        request({
-          method: 'get',
-          url: '/apt-type/get-one?id=' + this.result.aptTypeId,
-        }).then(res => {
-          this.aptType = res;
-          console.log(res);
-          this.aptType = res.data.data;
-          console.log(this.aptType)
-        }).catch(err => {
-          console.log(err);
-        })
-      },
+
     },
-    filters: {
-      //时间戳显示格式为几天前、几分钟前、几秒前
-      getTimeFormat (valueTime) {
-        if (valueTime) {
-          // let newData = Date.parse(new Date() + '')
-          // let diffTime = Math.abs(newData - valueTime)
-          let diffTime = Math.abs(new Date().getTime() - new Date(valueTime).getTime())
-          if (diffTime > 7 * 24 * 3600 * 1000) {
-            let date = new Date(valueTime)
-            // let y = date.getFullYear()
-            let m = date.getMonth() + 1
-            m = m < 10 ? ('0' + m) : m
-            let d = date.getDate()
-            d = d < 10 ? ('0' + d) : d
-            let h = date.getHours()
-            h = h < 10 ? ('0' + h) : h
-            let minute = date.getMinutes()
-            let second = date.getSeconds()
-            console.log(second)
-            minute = minute < 10 ? ('1' + minute) : minute
-            second = second < 10 ? ('0' + second) : second
-            return m + '-' + d + ' ' + h + ':' + minute
-          } else if (diffTime < 7 * 24 * 3600 * 1000 && diffTime > 24 * 3600 * 1000) {
-            // //注释("一周之内");
-            // var time = newData - diffTime;
-            let dayNum = Math.floor(diffTime / (24 * 60 * 60 * 1000))
-            return dayNum + '天前'
-          } else if (diffTime < 24 * 3600 * 1000 && diffTime > 3600 * 1000) {
-            // //注释("一天之内");
-            // var time = newData - diffTime;
-            let dayNum = Math.floor(diffTime / (60 * 60 * 1000))
-            return dayNum + '小时前'
-          } else if (diffTime < 3600 * 1000 && diffTime > 0) {
-            // //注释("一小时之内");
-            // var time = newData - diffTime;
-            let dayNum = Math.floor(diffTime / (60 * 1000))
-            return dayNum + '分钟前'
-          }
-        }
-      }
-    },
+
   }
 </script>
 

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <header-top></header-top>
 
     <!--内容（上） content_top 开始-->
     <el-row class="content_top">
@@ -327,8 +328,12 @@
 
 <script>
     import {request} from "@/util/network/request";
+    import HeaderTop from "@/components/public/HeaderTop";
 
     export default {
+        components:{
+          HeaderTop
+        },
         data() {
             return {
                 carousel_image: {},

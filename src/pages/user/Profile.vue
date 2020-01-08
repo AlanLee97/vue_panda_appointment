@@ -77,6 +77,7 @@
         <el-row>
             <el-col :span="24" >
                 <el-card :body-style="{ padding: '0px' }">
+
                     <el-image
                             class="image"
                             :src="image_url"
@@ -90,6 +91,8 @@
 <!--                            <time class="time">{{ currentDate }}</time>-->
 <!--                        </div>-->
                     </div>
+
+                    <el-button @click="goPage('/index')">返回主页</el-button>
                 </el-card>
             </el-col>
         </el-row>
