@@ -8,7 +8,7 @@
         <div class="grid-content">
           <!------------------ 顶部轮播图 开始------------------>
           <el-carousel :interval="4000" height="600px">
-            <el-carousel-item v-for="item in carousel_image" :key="item">
+            <el-carousel-item v-for="item in carouselImage" :key="item">
               <h3 class="medium">
                 <el-image :fit="fit" :src="item.imgUrl" style="width:100%; height: 600px">
 
@@ -22,14 +22,89 @@
     </el-row>
     <!--内容（上） content_top 结束-->
 
+    <el-row>
+      <el-row>
+        <el-col :span="2"><pre> </pre></el-col>
+        <el-col :span="20">
+          <!--最新约拍-->
+          <div>
+            <TitleNode title-text="最新约拍"/>
+
+            <div>
+              <el-row :gutter="20" type="flex" justify="space-around" class="al-flex-wrap">
+                <el-col v-for="(item, index) in newestAppointment" :key="index" :span="8" class="al-m-top-10px">
+                  <div class="al-d-blk">
+                    <el-card :body-style="{ padding: '0px' }" class=" ">
+                      <el-image :src="item.image" style="height: 200px" fit="cover" />
+                      <div style="padding: 14px;">
+                        <span>{{item.title}}</span>
+                      </div>
+                    </el-card>
+                  </div>
+                </el-col>
+              </el-row>
+            </div>
+          </div>
+
+
+          <!--打卡点推荐-->
+          <div class="">
+            <TitleNode title-text="打卡点推荐"/>
+
+            <el-row type="flex" justify="space-around" class="al-flex-wrap">
+              <el-col v-for="(item, index) in spot" :key="index" :span="5.5" class="al-m-top-10px">
+                <div class="al-d-blk">
+                  <el-card :body-style="{ padding: '0px' }" class=" ">
+                    <img :src="item.img_src" class="image">
+                    <div style="padding: 14px;">
+                      <span>{{item.title}}</span>
+                    </div>
+                  </el-card>
+                </div>
+              </el-col>
+            </el-row>
+
+          </div>
+
+
+          <!-- 模特推荐 -->
+          <div class="">
+            <TitleNode title-text="模特推荐"/>
+
+<!--            {{modelRecommend}}-->
+
+            <el-row type="flex" justify="space-around" >
+              <el-col v-for="(item, index) in modelRecommend" :key="index" :span="5.5" class="al-m-top-10px">
+                <div class="al-d-blk">
+                  <el-card :body-style="{ padding: '0px' }" class=" ">
+                    <el-image :src="item.headPortraitImg" style="width: 300px" />
+                    <div style="padding: 14px;">
+                      <span>{{item.nickname}}</span>
+                    </div>
+                  </el-card>
+                </div>
+              </el-col>
+            </el-row>
+
+          </div>
+
+        </el-col>
+        <el-col :span="2"><pre> </pre></el-col>
+
+      </el-row>
+
+
+
+    </el-row>
+
     <!--内容（上） content_top1 开始-->
     <el-row class="content_top1">
       <el-col :span="24">
         <div class="grid-content">
           <h2 align="center">推荐文章</h2>
         </div>
-        <div class="grid-content">
-          <p style="color: #999999">熊猫约拍，用艺术记录生活的点点滴滴 ！</p>
+        <div class="al-flex-container-center-h">
+          <p style="color: #999999" class="">熊猫约拍，用艺术记录生活的点点滴滴 ！</p>
         </div>
       </el-col>
     </el-row>
@@ -150,132 +225,7 @@
     </el-row>
     <!--内容（中上） content_center_top 结束-->
 
-    <!--内容（中间） content_center_center 开始-->
-    <el-row class="content_center_center">
-      <!-- 留白 -->
-      <el-col :span="2">
-        <div class="grid-content"></div>
-      </el-col>
-      <!-- 内容1 -->
-      <el-col :span="15" class="content_center_center1" style="padding-right: 20px">
-        <div class="grid-content div_auto">
-          <el-row>
-            <el-col :span="11" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 1 : 1">
-              <el-card :body-style="{ padding: '0px' }">
-                <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1552461314,2954021860&fm=26&gp=0.jpg"
-                     class="image">
-                <div style="padding: 0px;">
-                  <span>陈冠希</span>
-                  <div class="bottom">
-                    <time class="time">{{ currentDate }}</time>
-                    <el-button type="text" class="button">操作按钮</el-button>
-                  </div>
-                </div>
-              </el-card>
-            </el-col>
-          </el-row>
-        </div>
-        <div class="grid-content div_auto">
-          <el-row>
-            <el-col :span="11" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 1 : 1">
-              <el-card :body-style="{ padding: '0px' }">
-                <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3127480362,694358568&fm=26&gp=0.jpg"
-                     class="image">
-                <div style="padding: 0px;">
-                  <span>林允儿</span>
-                  <div class="bottom">
-                    <time class="time">{{ currentDate }}</time>
-                    <el-button type="text" class="button">操作按钮</el-button>
-                  </div>
-                </div>
-              </el-card>
-            </el-col>
-          </el-row>
-        </div>
-      </el-col>
-      <!-- 内容2 -->
-      <el-col :span="5" class="content_center_center2">
-        <div class="grid-content content_center_center23">
-          <table cellspacing="10px">
-            <th>
-              <center><font size="4px" color="black">最新精品</font></center>
-            </th>
-            <tr>
-              <table cellspacing="10px">
-                <tr>
-                  <td rowspan="2">
-                    <img class="img2"
-                         src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3565992163,971880450&fm=26&gp=0.jpg">
-                  </td>
-                  <td><strong>寻找广州拍摄旅游景点</strong></td>
-                </tr>
-                <tr>
-                  <td>
-                    <font>发布日期:</font> <br>
-                    <font size="1px">{{currentDate}}</font>
-                  </td>
-                </tr>
-              </table>
-            </tr>
-            <tr>
-              <table cellspacing="10px">
-                <tr>
-                  <td rowspan="2">
-                    <img class="img2"
-                         src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3565992163,971880450&fm=26&gp=0.jpg">
-                  </td>
-                  <td><strong>寻找广州拍摄旅游景点</strong></td>
-                </tr>
-                <tr>
-                  <td>
-                    <font>发布日期:</font> <br>
-                    <font size="1px">{{currentDate}}</font>
-                  </td>
-                </tr>
-              </table>
-            </tr>
-            <tr>
-              <table cellspacing="10px">
-                <tr>
-                  <td rowspan="2">
-                    <img class="img2"
-                         src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3565992163,971880450&fm=26&gp=0.jpg">
-                  </td>
-                  <td><strong>寻找广州拍摄旅游景点</strong></td>
-                </tr>
-                <tr>
-                  <td>
-                    <font>发布日期:</font> <br>
-                    <font size="1px">{{currentDate}}</font>
-                  </td>
-                </tr>
-              </table>
-            </tr>
-            <tr>
-              <table cellspacing="10px">
-                <tr>
-                  <td rowspan="2">
-                    <img class="img2"
-                         src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3565992163,971880450&fm=26&gp=0.jpg">
-                  </td>
-                  <td><strong>寻找广州拍摄旅游景点</strong></td>
-                </tr>
-                <tr>
-                  <td>
-                    <font>发布日期:</font> <br>
-                    <font size="1px">{{currentDate}}</font>
-                  </td>
-                </tr>
-              </table>
-            </tr>
-          </table>
-        </div>
-      </el-col>
-      <!-- 留白 -->
-      <el-col :span="2">
-        <div class="grid-content"></div>
-      </el-col>
-    </el-row>
+
     <!--内容（中间） content_center_center 结束-->
 
     <!--内容（下） content_bottom 开始-->
@@ -329,40 +279,96 @@
 <script>
     import {request} from "@/util/network/request";
     import HeaderTop from "@/components/public/HeaderTop";
+    import TitleNode from "@/components/public/TitleNode";
+    import {USER_GET_ALL_MODEL} from "@/util/network/APIPATH";
 
     export default {
-        components:{
-          HeaderTop
+        components: {
+            TitleNode,
+            HeaderTop
         },
         data() {
             return {
-                carousel_image: {},
+                carouselImage: {},
                 fit: 'cover',
                 currentDate: new Date(),
+                spot: {},
+                newestAppointment:{},
+                modelRecommend:{}
             }
         },
 
-        mounted(){
+        mounted() {
             this.getCarousel();
+            this.getNewestAppointment();
+            this.getSpot();
+            this.getModelRecommend();
         },
 
-        methods:{
-            getCarousel:function () {
+        methods: {
+            getCarousel: function () {
                 request({
-                    url:'/carousel/get/all'
+                    url: '/carousel/get/all'
                 }).then(res => {
                     console.log(res);
-                    this.carousel_image = res.data.data;
+                    this.carouselImage = res.data.data;
                 }).catch(err => {
                     console.log(err);
                 });
+            },
+
+            getNewestAppointment(){
+                request({
+                    url: 'appointment/get/newest'
+                }).then(res => {
+                    console.log(res);
+                    this.newestAppointment = res.data.data;
+                }).catch(err => {
+                    console.log(err)
+                });
+            },
+
+            getSpot() {
+                request({
+                    url: 'http://localhost:8081/data/mafengwo.json'
+                }).then(res => {
+                    console.log(res);
+                    this.spot = res.data.data;
+                }).catch(err => {
+                    console.log(err)
+                });
+            },
+
+            getModelRecommend(){
+                let headers = {
+                    // 'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                };
+                let data = {
+                    identity: 2
+                };
+
+                request({
+                    url: USER_GET_ALL_MODEL,
+                    method: 'post',
+                    data: this.qsParam(data),
+                    headers
+                }).then(res => {
+                    console.log(res);
+                    this.modelRecommend = res.data.data;
+                }).catch(err => {
+                    console.log(err)
+                });
             }
+
+
+
         }
 
     }
 </script>
 
-<style>
+<style >
   .el-row {
     margin-bottom: 20px;
 

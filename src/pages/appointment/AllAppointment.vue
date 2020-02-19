@@ -1,15 +1,48 @@
 <template>
     <div>
         <header-top/>
-        <div class="al-box-shadow-radius al-p-20px al-m-20px"
-            v-for="appointment in allAppointment"
+
+        <div style="width: auto" class="al-box-shadow-radius al-m-20px"
+             v-for="appointment in allAppointment"
         >
-            <span>{{appointment.title}}</span><br>
-            <span>{{appointment.ask}}</span><br>
-            <span>{{appointment.fee}}</span><br>
-            <span>{{appointment.startDatetime}}</span><br>
-            <span>{{appointment.date}}</span><br>
-            <div class="al-width-50 al-p-20px al-m-20px">
+            <AvatarNickname
+                    :avatar="appointment.tuser.headPortraitImg"
+                    :nickname="appointment.tuser.username"
+                    :desc="appointment.tuser.identity"/>
+
+            <div class="al-p-left-20px ">
+
+                <h2>{{appointment.title}}</h2><br>
+
+                <span class="
+                    al-text-color-light-black
+                    al-p-right-10px
+                    al-line-height-10px
+                ">
+                    描述
+                </span>
+                <span>{{appointment.ask}}</span><br>
+
+                <span class="
+                    al-text-color-light-black
+                    al-p-right-10px
+                ">费用</span>
+                <span>{{appointment.fee}}</span><br>
+
+                <span class="
+                    al-text-color-light-black
+                    al-p-right-10px
+                ">开始时间</span>
+                <span>{{appointment.startDatetime}}</span><br>
+
+                <span class="
+                    al-text-color-light-black
+                    al-p-right-10px
+                ">发布时间</span>
+                <span>{{appointment.date}}</span><br>
+            </div>
+
+            <div class="al-width-30 al-p-20px ">
                 <el-image
                         :src="appointment.image"
                         :fit="imageFit"/>
@@ -23,25 +56,27 @@
 <script>
     import {request} from "@/util/network/request";
     import HeaderTop from "@/components/public/HeaderTop";
+    import AvatarNickname from "@/components/public/AvatarNickname";
 
     export default {
         name: "AllAppointment",
-        created(){
+        created() {
             this.getAllAppointment();
         },
-        data(){
+        data() {
             return {
-                allAppointment:null,
-                imageFit:'cover'
+                allAppointment: null,
+                imageFit: 'cover'
             }
         },
-        components:{
+        components: {
+            AvatarNickname,
             HeaderTop
         },
-        methods:{
-            getAllAppointment:function () {
+        methods: {
+            getAllAppointment: function () {
                 request({
-                    url:'/appointment/get/apt-user'
+                    url: '/appointment/get/apt-user'
                 }).then(res => {
                     console.log(res);
                     this.allAppointment = res.data.data;

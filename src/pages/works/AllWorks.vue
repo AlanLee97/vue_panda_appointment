@@ -6,25 +6,12 @@
             <el-col :span="14">
                 <div class="lists">
                     <div class="item al-box-shadow-radius" v-for="item in allWorks" >
-                        <div class="item_avatar">
-                            <a class="item_info_user_name" target="_blank" href="#">
-                                <img width="40" height="40" :src="item.tuser.headPortraitImg">
-                            </a>
-                        </div>
+                        <AvatarNickname
+                                :avatar="item.tuser.headPortraitImg"
+                                :nickname="item.tuser.nickname"
+                                :desc="item.datetime"
+                        />
                         <div class="item_info">
-                            <div class="item_info_top">
-                                <div class="item_info_user">
-                                    {{item.tuser.nickname}}
-                                </div>
-
-                            </div>
-
-
-                            <div class="item_info_bottom">
-                                <div class="item_info_time"><p>{{item.datetime | getTimeFormat}}</p></div>
-                                <!--<div class="item_view_count">阅读 10086</div>-->
-                            </div>
-
                             <div>
                                 {{item.introduction}}
                             </div>
@@ -45,6 +32,7 @@
 <script>
   import {request} from "../../util/network/request";
   import HeaderTop from "@/components/public/HeaderTop";
+  import AvatarNickname from "@/components/public/AvatarNickname";
 
   export default {
     data() {
@@ -66,6 +54,7 @@
         this.getAllWorks();
     },
       components:{
+          AvatarNickname,
         HeaderTop
       },
     methods:{

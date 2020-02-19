@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        <header-top></header-top>
 
         <el-drawer
                 title="个人信息"
@@ -77,22 +77,27 @@
         <el-row>
             <el-col :span="24" >
                 <el-card :body-style="{ padding: '0px' }">
-
                     <el-image
                             class="image"
                             :src="image_url"
                             :fit="fit">
 
                     </el-image>
-                    <div style="padding: 14px;">
-                        <div @click="drawer = true" class="block"><el-avatar :size="50" :src="user_face" ></el-avatar></div>
-                        <span>{{userinfo.nickname}}</span>
-<!--                        <div class="bottom clearfix">-->
-<!--                            <time class="time">{{ currentDate }}</time>-->
-<!--                        </div>-->
+                    <div class="al-flex-container-center-vh al-flex-direction-col" >
+
+                        <div style="padding: 14px;">
+                            <div @click="drawer = true" class="block">
+                                <el-avatar :size="100" :src="user_face" ></el-avatar>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="al-font-weight-100 al-fontsize-50px">{{userinfo.nickname}}</span>
+                        </div>
+
+                        <!--<el-button @click="goPage('/index')">返回主页</el-button>-->
                     </div>
 
-                    <el-button @click="goPage('/index')">返回主页</el-button>
                 </el-card>
             </el-col>
         </el-row>
@@ -102,38 +107,40 @@
         <!-- 下半部分-->
 
         <el-row>
-            <el-col :span="4">
+            <el-col :span="3">
                 <pre> </pre>
             </el-col>
-            <el-col :span="16">
+            <el-col :span="18">
                 <el-tabs stretch v-model="activeName" @tab-click="handleClick">
 
                     <el-tab-pane label="我的约拍" name="first" >
                         <div class="lists">
                             <div class="item al-box-shadow-radius" v-for="item in result">
                                 <div class="item_info">
-                                    <div class="item_info_top">
-                                        <div class="item_info_user">
-                                            <div class="item_info_user_type">
-                                                <!--{{item.aptTypeId}} | -->
-                                                费用:{{item.fee}}</div>
-                                        </div>
-                                        <div class="item_info_city">
-                                            <p>约拍地点:</p>
-                                            <img :src="cityLogin">
-                                            <a>{{item.address}}</a>
-                                        </div>
-                                    </div>
-                                    <div class="item_info_title" target="_blank" href="#">
-                                        <div class="item_info_title1">要求:{{item.ask}}</div>
-                                        <div class="item_info_title1">时间:{{item.startDatetime}}</div>
-                                    </div>
-                                    <p class="item_info_content" target="_blank" href="#">
+                                    <div class="al-title-h1">
                                         {{item.title}}
-                                    </p>
-                                    <a class="item_info_imgs" target="_blank" href="#">
+                                    </div>
+
+                                    <div>
+                                        费用:{{item.fee}}
+                                    </div>
+
+                                    <div class="">
+                                        <span>约拍地点:</span>
+                                        <img :src="cityLogin">
+                                        <span>{{item.address}}</span>
+                                    </div>
+
+                                    <div class="item_info_title1">
+                                        要求:{{item.ask}}
+                                    </div>
+                                    <div class="item_info_title1">
+                                        时间:{{item.startDatetime}}
+                                    </div>
+
+                                    <div class="item_info_imgs" target="_blank" >
                                         <img :src="item.image" class="img">
-                                    </a>
+                                    </div>
                                     <div class="item_info_bottom">
                                         <div class="item_info_time"><p>{{item.date | getTimeFormat}}</p></div>
                                         <!--<div class="item_view_count">阅读 10086</div>-->
@@ -200,7 +207,7 @@
 
                 </el-tabs>
             </el-col>
-            <el-col :span="4">
+            <el-col :span="3">
                 <pre> </pre>
             </el-col>
         </el-row>
@@ -215,8 +222,10 @@
     // let var_userinfo = sessionStorage.getItem("userinfo");
 
     import {request} from "../../util/network/request";
+    import HeaderTop from "@/components/public/HeaderTop";
 
     export default {
+        components:{HeaderTop},
         data() {
             return {
                 isDisabled:true,

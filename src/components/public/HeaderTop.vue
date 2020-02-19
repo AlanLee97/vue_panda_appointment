@@ -1,13 +1,15 @@
 <template>
-    <div>
+    <div class="al-bg-color-white">
         <el-menu :default-active="activeIndex"
                  class="el-menu-demo "
                  mode="horizontal"
                  @select="handleSelect">
-            <el-menu-item index="1" @click="goPage('/index')">主页</el-menu-item>
-            <el-menu-item index="2" @click="goPage('/appointment/all')">约拍</el-menu-item>
-            <el-menu-item index="3" @click="goPage('/works/all')">动态</el-menu-item>
-
+            <el-menu-item index="1" @click="goPage('/index')">
+                <img src="../../assets/pandalogo.png" alt="">
+            </el-menu-item>
+            <el-menu-item index="2" @click="goPage('/index')">主页</el-menu-item>
+            <el-menu-item index="3" @click="goPage('/appointment/all')">约拍</el-menu-item>
+            <el-menu-item index="4" @click="goPage('/works/all')">动态</el-menu-item>
 
             <div class="al-position-abs  al-right-0 ">
                 <el-menu-item >
@@ -56,8 +58,6 @@
                 activeIndex: '1',
                 activeIndex2: '1',
                 isLogin:false,
-
-
             }
         },
         created(){

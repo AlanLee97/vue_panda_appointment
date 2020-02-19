@@ -5,203 +5,11 @@
             <br>
             <br>
         </center>
-            <el-button type="primary" @click="sendGet('/works/get/all-user')">发送get请求</el-button>
 
-            <div class="">
-                <el-row>
-                    <el-col :span="4"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
-                    <el-col :span="16">
-                        <div class="box-shadow box-bg-white box-radius m-20px p-20px">
-                            <h3>返回数据</h3>
+        <AvatarNickname />
 
-                            <div class="box-bg-fcfcfc m-20px p-20px box-radius">
-                                {{result}}
-                            </div>
-                        </div>
-                    </el-col>
-                    <el-col :span="4"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
-                </el-row>
+        <TitleNode title-text="约拍22"/>
 
-            </div>
-
-
-
-        <div class="">
-            <el-row>
-                <el-col :span="4"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
-                <el-col :span="16">
-                    <div class="box-shadow box-bg-white box-radius m-20px p-20px">
-                        <h3>测试文件上传</h3>
-
-                        <div class="box-bg-fcfcfc m-20px p-20px box-radius">
-                            <el-upload
-                                    class="avatar-uploader"
-                                    action="http://localhost:8083/testoss/upload-one"
-                                    name="file"
-                                    :show-file-list="false"
-
-                                    :on-success="handleAvatarSuccess"
-                                    :before-upload="beforeAvatarUpload">
-                                <img v-if="imageUrl" :src="imageUrl" class="avatar">
-                                <i v-else class="el-icon-plus el-upload avatar-uploader-icon"></i>
-
-                            </el-upload>
-
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="4"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
-            </el-row>
-
-
-            <el-row>
-                <el-col :span="4"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
-                <el-col :span="16">
-                    <div class="box-shadow box-bg-white box-radius m-20px p-20px">
-                        <h3>测试文件上传2</h3>
-
-                        <div class="box-bg-fcfcfc m-20px p-20px box-radius">
-                            <el-upload
-                                    action="#"
-                                    list-type="picture-card"
-                                    multiple
-                                    :auto-upload="false">
-                                <i slot="default" class="el-icon-plus"></i>
-                                <div slot="file" slot-scope="{file}">
-                                    <img
-                                            class="el-upload-list__item-thumbnail"
-                                            :src="file.url" alt=""
-                                    >
-                                    <span class="el-upload-list__item-actions">
-                                    <span
-                                            class="el-upload-list__item-preview"
-                                            @click="handlePictureCardPreview(file)"
-                                    >
-                                      <i class="el-icon-zoom-in"></i>
-                                    </span>
-                                    <span
-                                            v-if="!disabled"
-                                            class="el-upload-list__item-delete"
-                                            @click="handleDownload(file)"
-                                    >
-                                      <i class="el-icon-download"></i>
-                                    </span>
-                                    <span
-                                            v-if="!disabled"
-                                            class="el-upload-list__item-delete"
-                                            @click="handleRemove(file)"
-                                    >
-                                      <i class="el-icon-delete"></i>
-                                    </span>
-                                  </span>
-                                </div>
-                            </el-upload>
-                            <el-dialog :visible.sync="dialogVisible">
-                                <img width="100%" :src="dialogImageUrl" alt="">
-                            </el-dialog>
-
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="4"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
-            </el-row>
-
-        </div>
-
-
-        <div class="">
-            <el-row>
-                <el-col :span="4"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
-                <el-col :span="16">
-                    <div class="box-shadow box-bg-white box-radius m-20px p-20px">
-                        <h3>多文件上传</h3>
-
-                        <div class="box-bg-fcfcfc m-20px p-20px box-radius">
-                            <el-upload
-                                    :action="url"
-                                    list-type="picture-card"
-                                    multiple
-                                    :on-success="handleAvatarSuccess"
-                                    :on-preview="handlePictureCardPreview"
-                                    :on-remove="handleRemove">
-                                <i class="el-icon-plus"></i>
-                            </el-upload>
-                            <el-dialog :visible.sync="dialogVisible">
-                                <img width="100%" :src="dialogImageUrl" alt="">
-                            </el-dialog>
-
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="4"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
-            </el-row>
-
-        </div>
-
-
-        <div>
-
-            <el-row>
-                <el-col :span="4"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
-                <el-col :span="16">
-                    <div class="box-shadow box-bg-white box-radius m-20px p-20px">
-                        <h3>测试文件手动上传</h3>
-
-                        <div class="box-bg-fcfcfc m-20px p-20px box-radius">
-                            <el-upload
-                                    ref="upload2"
-                                    :action="url"
-                                    list-type="picture-card"
-                                    multiple
-                                    :on-success="uploadSuccess"
-                                    :auto-upload="false">
-                                <i slot="default" class="el-icon-plus"></i>
-                                <div slot="file" slot-scope="{file}">
-                                    <img
-                                            class="el-upload-list__item-thumbnail"
-                                            :src="file.url" alt=""
-                                    >
-                                    <span class="el-upload-list__item-actions">
-                                    <span
-                                            class="el-upload-list__item-preview"
-                                            @click="handlePictureCardPreview(file)"
-                                    >
-                                      <i class="el-icon-zoom-in"></i>
-                                    </span>
-                                    <span
-                                            v-if="!disabled"
-                                            class="el-upload-list__item-delete"
-                                            @click="handleDownload(file)"
-                                    >
-                                      <i class="el-icon-download"></i>
-                                    </span>
-                                    <span
-                                            v-if="!disabled"
-                                            class="el-upload-list__item-delete"
-                                            @click="handleRemove(file)"
-                                    >
-                                      <i class="el-icon-delete"></i>
-                                    </span>
-                                  </span>
-                                </div>
-                            </el-upload>
-                            <el-dialog :visible.sync="dialogVisible">
-                                <img width="100%" :src="dialogImageUrl" alt="">
-                            </el-dialog>
-
-                            <br><br>
-
-                            <el-button type="primary" @click="startUpload()">上传</el-button>
-
-                        </div>
-                    </div>
-
-
-                </el-col>
-                <el-col :span="4"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
-            </el-row>
-
-        </div>
 
 
 
@@ -214,9 +22,12 @@
 <script>
 
     import {request} from '../../util/network/request';
+    import AvatarNickname from "@/components/public/AvatarNickname";
+    import TitleNode from "@/components/public/TitleNode";
 
     export default {
         name: "Test",
+        components: {TitleNode, AvatarNickname},
         data:function(){
             return {
                 dialogImageUrl: '',

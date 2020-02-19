@@ -1,63 +1,55 @@
 <template class="">
     <div class="login">
+        <div style="width: 400px"
+             class="al-bg-color-white
+             al-m-top-50px
+             al-p-20px
+             al-box-shadow-radius
+             al-flex-container-center-v
+             al-flex-container-center-h
+             al-flex-direction-col
+             al-ma-center">
+            <div>
+                <img src="../../assets/pandalogo.png">
 
-        <el-row>
-            <el-col :span="8"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
-            <el-col :span="8">
-                <div class="al-box-shadow-radius al-bg-color-white  al-m-20px al-p-20px">
-                    <div class="grid-content bg-purple-light">
+            </div>
 
-                        <center>
-                            <div>
-                                <img src="../../assets/pandalogo.png">
-                                <h1>登录</h1>
-                            </div>
+            <div>
+                <h1 class="al-font-weight-200">登录</h1>
+            </div>
+            <br>
+            <el-form
+                    :model="ruleForm"
+                    status-icon
+                    :rules="rules"
+                    ref="ruleForm"
+                    label-width="140px"
+                    class="demo-ruleForm al-m-top-60px">
+                <el-form-item label="帐号" class="">
+                    <el-input class="al-float-left al-width-60" v-model="ruleForm.username" placeholder="请输入账号">
 
-                            <br>
+                    </el-input>
+                </el-form-item>
 
+                <el-form-item  label="密码" prop="pass">
+                    <el-input class="al-float-left al-width-60" type="password"
+                              v-model="ruleForm.password" autocomplete="off" placeholder="请输入密码">
+                    </el-input>
+                </el-form-item>
 
-                            <el-form
-                                    :model="ruleForm"
-                                    status-icon
-                                    :rules="rules"
-                                    ref="ruleForm"
-                                    label-width="140px"
-                                    class="demo-ruleForm al-m-top-60px">
-                                <el-form-item label="帐号" class="">
-                                    <el-input class="al-float-left al-width-60" v-model="ruleForm.username" placeholder="请输入账号">
+                <!--            <el-form-item label="确认密码" prop="checkPass">-->
+                <!--                <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>-->
+                <!--            </el-form-item>-->
 
-                                    </el-input>
-                                </el-form-item>
-
-                                <el-form-item label="密码" prop="pass">
-                                    <el-input class="al-float-left al-width-60" type="password"
-                                              v-model="ruleForm.password" autocomplete="off" placeholder="请输入密码">
-                                    </el-input>
-                                </el-form-item>
-
-                                <!--            <el-form-item label="确认密码" prop="checkPass">-->
-                                <!--                <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>-->
-                                <!--            </el-form-item>-->
-
-                                <div class="">
-                                    <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-                                    <el-button @click="resetForm('ruleForm')">重置</el-button>
-                                </div>
-
-                            </el-form>
-
-
-
-                        </center>
+                <div class="al-flex-container-center-h">
+                    <div class="al-d-il-blk al-ma-center">
+                        <el-button class="" type="primary" @click="submitForm('ruleForm')">登录</el-button>
+                        <el-button @click="resetForm('ruleForm')">重置</el-button>
                     </div>
-
-
                 </div>
-            </el-col>
-            <el-col :span="8"><div class="grid-content bg-purple"><pre> </pre></div></el-col>
-        </el-row>
 
-
+            </el-form>
+        </div>
 
     </div>
 </template>

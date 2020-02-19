@@ -224,6 +224,59 @@
 
 
 /*================BEGIN 显示================*/
+
+/*----------- 弹性布局 ----------*/
+.al-flex-container{
+    display: flex;
+}
+
+
+/*flex垂直居中*/
+.al-flex-container-center-v{
+    display: flex;
+    align-items: center;
+}
+
+/*flex水平居中*/
+.al-flex-container-center-h{
+    display: flex;
+    justify-content: center;
+}
+
+/*flex水平垂直居中*/
+.al-flex-container-center-vh{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*flex方向*/
+.al-flex-direction-col{
+    display: flex;
+    flex-direction: column;
+}
+
+/*flex-warp*/
+.al-flex-wrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/*----------- 弹性布局 ----------*/
+
+
+
+
+.al-ma-center{
+    margin: 0 auto;
+}
+
+
+
+/* 显示为行内元素,让元素不会独占一行 */
+.al-display-inline{
+    display: inline;
+}
+
 /* 显示为块状,让元素不会独占一行 */
 .al-d-il-blk{
     display: inline-block;
@@ -252,6 +305,10 @@
 /* 显示背景颜色-红色：查看元素位置时使用 */
 .al-show-bg-red{
     background-color: #E54D42;
+}
+
+.al-show-bg-light-red{
+    background-color: rgba(229, 77, 66, 0.48);
 }
 
 /* 显示背景颜色-绿色：查看元素位置时使用 */
@@ -325,6 +382,30 @@
 }
 
 
+/*左边框颜色 - 轻黑色*/
+.al-border-left-color-light-black{
+    border-top: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+    border-left: 5px solid rgba(28, 28, 28, 0.97);
+}
+
+/*左边框颜色 - 轻绿色*/
+.al-border-left-color-light-green{
+    border-top: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+    border-left: 5px solid rgba(0, 199, 136, 0.97);
+}
+
+/*左边框颜色 - 轻蓝色*/
+.al-border-left-color-light-blue{
+
+    border-left:5px solid rgba(133, 204, 255, 0.97);
+    border-top: 0px;
+    border-right: 0px;
+    border-bottom: 0px;
+}
 
 
 /*----------- 显示效果 ----------*/
@@ -358,7 +439,10 @@
 
 
 /*================BEGIN 宽度================*/
-/* 元素宽度为50% */
+/* 元素宽度 */
+.al-width-auto{
+    width: auto;
+}
 .al-width-10{
     width: 10%;
 }
@@ -430,7 +514,7 @@
 .al-height-70{
     height: 70%;
 }
-.al-heght-80{
+.al-height-80{
     height: 80%;
 }
 .al-height-90{
@@ -447,15 +531,29 @@
 
 /*================BEGIN 边距================*/
 /*---------- 外边距 ----------*/
+/* 距离左边10px */
+.al-m-left-10px{
+    margin-left: 10px;
+}
+
 /* 距离左边20px */
 .al-m-left-20px{
     margin-left: 20px;
 }
 
-/* 距离顶部20px */
-.al-mt-20px{
-    margin-top: 20px;
+.al-m-left-30px{
+    margin-left: 20px;
 }
+
+.al-m-left-40px{
+    margin-left: 20px;
+}
+
+.al-m-left-50px{
+    margin-left: 20px;
+}
+
+/* 距离顶部 */
 .al-m-top--30px{
     margin-top: 10px;
 }
@@ -548,6 +646,11 @@
 
 
 /*---------- 外边距 ----------*/
+/* 内边距5px */
+.al-p-5px{
+    padding: 5px;
+}
+
 /* 内边距10px */
 .al-p-10px{
     padding: 10px;
@@ -664,6 +767,10 @@
     margin-top: 16px;
     margin-left: 16px;
     margin-right: 16px;
+}
+
+.al-line-height-10px{
+    line-height: 10px;
 }
 
 /*================END 边距================*/
@@ -857,3 +964,21 @@
 /*================END 图片================*/
 
 
+/*================BEGIN 标题================*/
+.al-title-h1{
+    font-size: 40px;
+    font-weight: 300;
+}
+
+.al-title-h2{
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.al-title-h3{
+    font-size: 20px;
+    font-weight: 200;
+}
+
+
+/*================END 标题================*/

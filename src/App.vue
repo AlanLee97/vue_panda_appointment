@@ -10,6 +10,8 @@
 <script>
     // import Index from './components/Index.vue'
 
+    import {request} from "@/util/network/request";
+
     export default {
         name: 'app',
         data(){
@@ -22,6 +24,7 @@
         },
         mounted(){
             this.getSessionUserInfo();
+
         },
         methods: {
             getSessionUserInfo:function () {
@@ -43,6 +46,7 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #2c3e50;
+        line-height: 1.8em;
         /*margin-top: 60px;*/
         /*background-color: #fcfcfc;*/
     }
