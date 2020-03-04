@@ -102,25 +102,20 @@ import {
 import VueRouter from "vue-router";
 
 
-
-
-
-
-
 Vue.config.productionTip = false;
 
-let domain = '47.103.204.62';
-// let domain = 'localhost';
+// let domain = '47.103.204.62';
+let domain = 'localhost';
 let port = '8083';
 
 // 生成url的函数
 Vue.prototype.createUrl = function (url) {
     return 'http://' + domain + ':' + port + url;
-}
+};
 
 Vue.prototype.gotoPage = function(pagePath){
     this.$router.push(pagePath);
-}
+};
 
 axios.defaults.baseURL = 'http://' + domain + ':' + port;
 
@@ -129,7 +124,7 @@ Vue.prototype.requestGet = function(url, data){
     axios.get(url,data).then(res => {
         return res;
     })
-}
+};
 
 //axios的get请求
 Vue.prototype.requestPost = function(url, data){
@@ -137,11 +132,11 @@ Vue.prototype.requestPost = function(url, data){
     axios.post(url, data).then(res => {
         return res;
     })
-}
+};
 
 Vue.prototype.qsParam = function(data){
     return Qs.stringify(data);
-}
+};
 
 
 
@@ -176,7 +171,6 @@ new Vue({
     store:store,
 
     render: h => h(App),
-
 
 
 }).$mount('#app')

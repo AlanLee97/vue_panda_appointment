@@ -58,7 +58,8 @@
 
                         <div class="box-shadow-radius-bgwhite-p20-m20">
                             <span>认证</span>
-                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.isAuthenticated"></el-input>
+                            <el-input class="width-50" :disabled="isDisabled"
+                                      :value="userinfo.isAuthenticated"></el-input>
 
                         </div>
                     </div>
@@ -75,7 +76,7 @@
 
         <!--上半部分-->
         <el-row>
-            <el-col :span="24" >
+            <el-col :span="24">
                 <el-card :body-style="{ padding: '0px' }">
                     <el-image
                             class="image"
@@ -83,11 +84,11 @@
                             :fit="fit">
 
                     </el-image>
-                    <div class="al-flex-container-center-vh al-flex-direction-col" >
+                    <div class="al-flex-container-center-vh al-flex-direction-col">
 
                         <div style="padding: 14px;">
                             <div @click="drawer = true" class="block">
-                                <el-avatar :size="100" :src="user_face" ></el-avatar>
+                                <el-avatar :size="100" :src="user_face"></el-avatar>
                             </div>
                         </div>
 
@@ -103,7 +104,6 @@
         </el-row>
 
 
-
         <!-- 下半部分-->
 
         <el-row>
@@ -113,7 +113,7 @@
             <el-col :span="18">
                 <el-tabs stretch v-model="activeName" @tab-click="handleClick">
 
-                    <el-tab-pane label="我的约拍" name="first" >
+                    <el-tab-pane label="我的约拍" name="first">
                         <div class="lists">
                             <div class="item al-box-shadow-radius" v-for="item in result">
                                 <div class="item_info">
@@ -138,7 +138,7 @@
                                         时间:{{item.startDatetime}}
                                     </div>
 
-                                    <div class="item_info_imgs" target="_blank" >
+                                    <div class="item_info_imgs" target="_blank">
                                         <img :src="item.image" class="img">
                                     </div>
                                     <div class="item_info_bottom">
@@ -191,7 +191,8 @@
                             <el-row>
                                 <el-col :span="24" v-for="(o, index) in 20" :key="o" :offset="index > 0 ? 2 : 0">
                                     <el-card :body-style="{ padding: '0px' }">
-                                        <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="article-image">
+                                        <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
+                                             class="article-image">
                                         <div style="padding: 14px;">
                                             <span>好吃的汉堡</span>
                                             <div class="bottom clearfix">
@@ -217,25 +218,23 @@
 </template>
 
 
-
 <script>
-    // let var_userinfo = sessionStorage.getItem("userinfo");
 
     import {request} from "../../util/network/request";
     import HeaderTop from "@/components/public/HeaderTop";
 
     export default {
-        components:{HeaderTop},
+        components: {HeaderTop},
         data() {
             return {
-                isDisabled:true,
+                isDisabled: true,
                 drawer: false,
                 direction: 'rtl',
                 activeName: 'second',
-                fit:'cover',
+                fit: 'cover',
                 cityLogin: 'https://www.mdyuepai.com/public/static/index/img/common/city.png',
-                user_face:'https://hbimg.huabanimg.com/666a1a1f72c5eae973ca0f0977adca58b89a119f236a1-3vh1WC_fw658',
-                image_url:'https://cdn-isux.qq.com/upload/detail/f57Y2wEryDwjWmTr2BypYaCA6CgSKjknAJtGRIR4FcR.jpeg',
+                user_face: 'https://hbimg.huabanimg.com/666a1a1f72c5eae973ca0f0977adca58b89a119f236a1-3vh1WC_fw658',
+                image_url: 'https://cdn-isux.qq.com/upload/detail/f57Y2wEryDwjWmTr2BypYaCA6CgSKjknAJtGRIR4FcR.jpeg',
                 currentDate: new Date(),
                 album: [
                     'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
@@ -247,19 +246,26 @@
                     'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
                 ],
                 userinfo: [],
-              result: [],
-              work: [],
+                result: [],
+                work: [],
             };
         },
-      created() {
-        this.getWork()
-      },
-      methods:{
-            goPage:function(path){
+        created() {
+            this.getWork()
+        },
+        mounted() {
+            this.userinfo = JSON.parse(localStorage.getItem("userinfo"));
+            this.user_face = this.userinfo.headPortraitImg;
+            console.log(this.userinfo);
+            this.getData();
+            this.getWork();
+        },
+        methods: {
+            goPage: function (path) {
                 this.gotoPage(path);
             },
-            getUserInfo:function(){
-                 //this.userinfo = var_userinfo;
+            getUserInfo: function () {
+                //this.userinfo = var_userinfo;
             },
             handleClick(tab, event) {
                 console.log(tab, event);
@@ -267,87 +273,82 @@
 
             handleClose(done) {
                 this.$confirm('确认关闭？')
-                        .then(_ => {
-                            done();
-                        })
-                        .catch(_ => {});
+                    .then(_ => {
+                        done();
+                    })
+                    .catch(_ => {
+                    });
             },
-          //根据当前用户id请求发布的约拍
-          getData() {
-            request({
-              method: 'get',
-              url: '/appointment/get/uid?uid=' + this.userinfo.id,
-            }).then(res => {
-              this.result = res;
-              console.log(res);
-              this.result = res.data.data;
-              console.log(this.result)
-            }).catch(err => {
-              console.log(err);
-            })
-          },
-          getWork() {
-            request({
-              method: 'get',
-              url: '/works/get/uid?uid=' + this.userinfo.id,
-            }).then(res => {
-              this.work = res;
-              console.log(res);
-              this.work = res.data.data;
-              console.log(this.work)
-            }).catch(err => {
-              console.log(err);
-            })
-          },
+            //根据当前用户id请求发布的约拍
+            getData() {
+                request({
+                    method: 'get',
+                    url: '/appointment/get/uid?uid=' + this.userinfo.id,
+                }).then(res => {
+                    this.result = res;
+                    console.log(res);
+                    this.result = res.data.data;
+                    console.log(this.result)
+                }).catch(err => {
+                    console.log(err);
+                })
+            },
+            getWork() {
+                request({
+                    method: 'get',
+                    url: '/works/get/uid?uid=' + this.userinfo.id,
+                }).then(res => {
+                    this.work = res;
+                    console.log(res);
+                    this.work = res.data.data;
+                    console.log(this.work)
+                }).catch(err => {
+                    console.log(err);
+                })
+            },
         },
-        mounted:function () {
-            this.userinfo = JSON.parse(sessionStorage.getItem("userinfo"));
-            this.user_face = this.userinfo.headPortraitImg;
-            console.log(this.userinfo);
-            this.getData();
-          this.getWork();
-        },
-      filters: {
-        //时间戳显示格式为几天前、几分钟前、几秒前
-        getTimeFormat (valueTime) {
-          if (valueTime) {
-            // let newData = Date.parse(new Date() + '')
-            // let diffTime = Math.abs(newData - valueTime)
-            let diffTime = Math.abs(new Date().getTime() - new Date(valueTime).getTime())
-            if (diffTime > 7 * 24 * 3600 * 1000) {
-              let date = new Date(valueTime)
-              // let y = date.getFullYear()
-              let m = date.getMonth() + 1
-              m = m < 10 ? ('0' + m) : m
-              let d = date.getDate()
-              d = d < 10 ? ('0' + d) : d
-              let h = date.getHours()
-              h = h < 10 ? ('0' + h) : h
-              let minute = date.getMinutes()
-              let second = date.getSeconds()
-              // console.log(second)
-              minute = minute < 10 ? ('1' + minute) : minute
-              second = second < 10 ? ('0' + second) : second
-              return m + '-' + d + ' ' + h + ':' + minute
-            } else if (diffTime < 7 * 24 * 3600 * 1000 && diffTime > 24 * 3600 * 1000) {
-              // //注释("一周之内");
-              // var time = newData - diffTime;
-              let dayNum = Math.floor(diffTime / (24 * 60 * 60 * 1000))
-              return dayNum + '天前'
-            } else if (diffTime < 24 * 3600 * 1000 && diffTime > 3600 * 1000) {
-              // //注释("一天之内");
-              // var time = newData - diffTime;
-              let dayNum = Math.floor(diffTime / (60 * 60 * 1000))
-              return dayNum + '小时前'
-            } else if (diffTime < 3600 * 1000 && diffTime > 0) {
-              // //注释("一小时之内");
-              // var time = newData - diffTime;
-              let dayNum = Math.floor(diffTime / (60 * 1000))
-              return dayNum + '分钟前'
+
+        filters: {
+            //时间戳显示格式为几天前、几分钟前、几秒前
+            getTimeFormat(valueTime) {
+                if (valueTime) {
+                    // let newData = Date.parse(new Date() + '')
+                    // let diffTime = Math.abs(newData - valueTime)
+                    let diffTime = Math.abs(new Date().getTime() - new Date(valueTime).getTime())
+                    if (diffTime > 7 * 24 * 3600 * 1000) {
+                        let date = new Date(valueTime)
+                        // let y = date.getFullYear()
+                        let m = date.getMonth() + 1
+                        m = m < 10 ? ('0' + m) : m
+                        let d = date.getDate()
+                        d = d < 10 ? ('0' + d) : d
+                        let h = date.getHours()
+                        h = h < 10 ? ('0' + h) : h
+                        let minute = date.getMinutes()
+                        let second = date.getSeconds()
+                        // console.log(second)
+                        minute = minute < 10 ? ('1' + minute) : minute
+                        second = second < 10 ? ('0' + second) : second
+                        return m + '-' + d + ' ' + h + ':' + minute
+                    } else if (diffTime < 7 * 24 * 3600 * 1000 && diffTime > 24 * 3600 * 1000) {
+                        // //注释("一周之内");
+                        // var time = newData - diffTime;
+                        let dayNum = Math.floor(diffTime / (24 * 60 * 60 * 1000))
+                        return dayNum + '天前'
+                    } else if (diffTime < 24 * 3600 * 1000 && diffTime > 3600 * 1000) {
+                        // //注释("一天之内");
+                        // var time = newData - diffTime;
+                        let dayNum = Math.floor(diffTime / (60 * 60 * 1000))
+                        return dayNum + '小时前'
+                    } else if (diffTime < 3600 * 1000 && diffTime > 0) {
+                        // //注释("一小时之内");
+                        // var time = newData - diffTime;
+                        let dayNum = Math.floor(diffTime / (60 * 1000))
+                        return dayNum + '分钟前'
+                    }
+                }
             }
-          }
-        }
-      },
+        },
     }
 </script>
 
@@ -385,14 +386,15 @@
         clear: both
     }
 
-    .width-100{
+    .width-100 {
         width: 100%;
     }
 
-    .article-image{
+    .article-image {
         height: 400px;
     }
-    .item{
+
+    .item {
         width: 850px;
         margin-top: 10px;
         background-color: #ffffff;
@@ -400,30 +402,35 @@
         box-shadow: 0px 1px 3px 0px;
         cursor: pointer;
     }
-    .item_info{
+
+    .item_info {
         width: 796px;
         height: 100%;
         display: inline-block;
         padding-left: 10px;
     }
-    .item_info_top{
+
+    .item_info_top {
         text-align: left;
         margin: 0px 0px 0px 0px;
         padding: 0px 0px 0px 0px;
     }
-    .item_info_user{
+
+    .item_info_user {
         text-align: left;
         width: 450px;
         display: inline-block;
     }
-    .item_info_user_type{
+
+    .item_info_user_type {
         height: 20px;
         font-size: 14px;
         line-height: 20px;
         color: #928082;
         margin-top: 5px;
     }
-    .item_info_city{
+
+    .item_info_city {
         min-width: 150px;
         height: 50px;
         display: inline-block;
@@ -431,7 +438,8 @@
         text-align: right;
         padding-right: 18px;
     }
-    .item_info_title{
+
+    .item_info_title {
         text-align: left;
         display: block;
         font-size: 14px;
@@ -440,10 +448,12 @@
         line-height: 25px;
         margin-top: 16px;
     }
-    .item_info_title1{
+
+    .item_info_title1 {
         margin-top: 0px;
     }
-    .item_info_content{
+
+    .item_info_content {
         text-align: left;
         font-size: 16px;
         line-height: 22px;
@@ -451,14 +461,16 @@
         margin-top: 6px;
         display: block;
     }
-    .item_info_imgs{
+
+    .item_info_imgs {
         width: 746px;
         height: 154px;
         display: block;
         background-color: #ffffff;
         text-align: left;
     }
-    item_info_img{
+
+    item_info_img {
         width: 174px;
         height: 120px;
         background-color: #ffffff;
@@ -467,12 +479,14 @@
         margin-right: 12px;
         margin-bottom: 16px;
     }
-    .item_info_bottom{
+
+    .item_info_bottom {
         text-align: left;
         height: 30px;
         line-height: 30px;
     }
-    .item_info_time{
+
+    .item_info_time {
         text-align: left;
         display: inline-block;
         margin-right: 20px;

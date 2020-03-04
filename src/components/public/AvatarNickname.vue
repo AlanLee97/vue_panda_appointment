@@ -25,7 +25,7 @@
         props:{
             avatar:String,
             nickname: String,
-            desc:String
+            desc:String | Number
 
         },
         data () {

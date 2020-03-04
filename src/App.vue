@@ -29,8 +29,8 @@
         methods: {
             getSessionUserInfo:function () {
 
-                this.sessionUserInfo = JSON.parse(sessionStorage.getItem("userinfo"));
-                this.isLogin = JSON.parse(sessionStorage.getItem("isLogin"));
+                this.sessionUserInfo = JSON.parse(localStorage.getItem("userinfo"));
+                this.isLogin = JSON.parse(localStorage.getItem("isLogin"));
                 console.log(this.sessionUserInfo);
                 console.log(this.isLogin);
             },

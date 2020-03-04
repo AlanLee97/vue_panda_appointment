@@ -1,6 +1,6 @@
 <template>
     <div>
-        <header-top />
+        <HeaderTop :enable-shadow="true"/>
         <el-row class="top">
             <el-col :span="3"><pre> </pre></el-col>
             <el-col :span="14">

@@ -10,6 +10,7 @@ import profile from '../pages/user/Profile'
 import userinfo from '../pages/user/UserInfo'
 import addAppointment from '../pages/appointment/AddAppointment'
 import allAppointment from '../pages/appointment/AllAppointment'
+import appointmentDetail from '../pages/appointment/AppointmentDetail'
 import allWorks from '../pages/works/AllWorks'
 import message from '../pages/user/Message'
 import addWorks from '../pages/works/AddWorks'
@@ -60,6 +61,11 @@ const routes = [
     {
         path:'/appointment/all',
         component:allAppointment
+    },
+    {
+        path:'/appointment/detail/:aptid',
+        component:appointmentDetail,
+        props: true
     },
     {
         path:'/works/all',

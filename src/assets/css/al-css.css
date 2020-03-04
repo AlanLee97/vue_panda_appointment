@@ -261,6 +261,11 @@
     flex-wrap: wrap;
 }
 
+.al-flex-container-height-sub-el-match-parent{
+    display: flex;
+    align-items: stretch;
+}
+
 /*----------- 弹性布局 ----------*/
 
 
@@ -335,6 +340,37 @@
 .al-position-rela{
     position: relative;
 }
+
+/*固定位置*/
+.al-position-fixed{
+    position: fixed;
+}
+
+/*sticky位置*/
+.al-position-sticky{
+    position: sticky;
+}
+
+/*static位置*/
+.al-position-static{
+    position: static;
+}
+
+/*z-index*/
+.al-z-index-9{
+    z-index: 9;
+}
+.al-z-index-99{
+    z-index: 99;
+}
+.al-z-index-999{
+    z-index: 999;
+}
+.al-z-index-9999{
+    z-index: 9999;
+}
+
+
 /*靠左*/
 .al-float-left{
     float: left;
@@ -501,11 +537,9 @@
 .al-height-30{
     height: 30%;
 }
-.al-height-100{
-    height: 100%;
-}.al-height-40{
+.al-height-40{
      height: 40%;
- }
+}
 .al-height-50{
     height: 50%;
 }.al-height-60{
@@ -523,6 +557,7 @@
 .al-height-100{
     height: 100%;
 }
+
 
 
 /*================END 宽度================*/
