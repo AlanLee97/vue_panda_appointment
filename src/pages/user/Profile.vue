@@ -84,7 +84,7 @@
                             :fit="fit">
 
                     </el-image>
-                    <div class="al-flex-container-center-vh al-flex-direction-col">
+                    <div class="al-flex-container-center-vh al-flex-direction-col al-m-bottom-20px">
 
                         <div style="padding: 14px;">
                             <div @click="drawer = true" class="block">
@@ -114,75 +114,22 @@
                 <el-tabs stretch v-model="activeName" @tab-click="handleClick">
 
                     <el-tab-pane label="我的约拍" name="first">
-                        <div class="lists">
-                            <div class="item al-box-shadow-radius" v-for="item in result">
-                                <div class="item_info">
-                                    <div class="al-title-h1">
-                                        {{item.title}}
-                                    </div>
-
-                                    <div>
-                                        费用:{{item.fee}}
-                                    </div>
-
-                                    <div class="">
-                                        <span>约拍地点:</span>
-                                        <img :src="cityLogin">
-                                        <span>{{item.address}}</span>
-                                    </div>
-
-                                    <div class="item_info_title1">
-                                        要求:{{item.ask}}
-                                    </div>
-                                    <div class="item_info_title1">
-                                        时间:{{item.startDatetime}}
-                                    </div>
-
-                                    <div class="item_info_imgs" target="_blank">
-                                        <img :src="item.image" class="img">
-                                    </div>
-                                    <div class="item_info_bottom">
-                                        <div class="item_info_time"><p>{{item.date | getTimeFormat}}</p></div>
-                                        <!--<div class="item_view_count">阅读 10086</div>-->
-                                    </div>
-                                </div>
-                            </div>
+<!--                        {{this.appointment}}-->
+                        <div v-for="item in this.appointment" class="al-box-shadow-radius al-p-10px al-m-top-20px">
+                            <DescText :plain-text="item"/>
+                            <el-image :src="item.image"
+                                      class="al-width-50 al-m-20px" ></el-image>
                         </div>
                     </el-tab-pane>
 
                     <el-tab-pane label="相册" name="second">
-                        <div class="images">
-                            <el-row>
-                                <el-col :span="8" v-for="image in result">
-                                    <el-card :body-style="{ padding: '0px' }">
-                                        <img :src="image.image" class="image">
-                                    </el-card>
-                                </el-col>
-                            </el-row>
-                        </div>
+<!--                        {{album}}-->
+
                     </el-tab-pane>
 
                     <el-tab-pane label="作品" name="third">
                         <div>
-                            <div class="lists">
-                                <div class="item al-box-shadow-radius" v-for="item in work">
-                                    <div class="item_info">
-                                        <div class="item_info_top">
-                                            <p class="item_info_content" target="_blank" href="#">
-                                                {{item.introduction}}
-                                            </p>
-                                            <div class="item_info_imgs" target="_blank" href="#">
-                                                <img :src="item.images" class="img">
-                                            </div>
-                                            <div class="item_info_bottom">
-                                                <div class="item_info_time"><p>{{item.datetime | getTimeFormat}}</p>
-                                                    <a>删除</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </el-tab-pane>
 
@@ -222,43 +169,42 @@
 
     import {request} from "../../util/network/request";
     import HeaderTop from "@/components/public/HeaderTop";
+    import AvatarNickname from "@/components/public/AvatarNickname";
+    import DescText from "@/pages/appointment/component/DescText";
+    import {APPOINTMENT_GET_BY_USER_ID} from "@/util/network/api/appointment/api-appointment";
+    import {WORKS_GET_BY_USER_ID} from "@/util/network/api/works/api-works";
+    import {USER_GET_ALBUM} from "@/util/network/api/user/api-user";
+
 
     export default {
-        components: {HeaderTop},
+        components: {DescText, AvatarNickname, HeaderTop},
         data() {
             return {
                 isDisabled: true,
                 drawer: false,
                 direction: 'rtl',
-                activeName: 'second',
+                activeName: 'first',
                 fit: 'cover',
                 cityLogin: 'https://www.mdyuepai.com/public/static/index/img/common/city.png',
                 user_face: 'https://hbimg.huabanimg.com/666a1a1f72c5eae973ca0f0977adca58b89a119f236a1-3vh1WC_fw658',
                 image_url: 'https://cdn-isux.qq.com/upload/detail/f57Y2wEryDwjWmTr2BypYaCA6CgSKjknAJtGRIR4FcR.jpeg',
                 currentDate: new Date(),
-                album: [
-                    'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
-                    'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
-                    'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
-                    'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
-                    'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
-                    'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
-                    'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
-                ],
                 userinfo: [],
-                result: [],
-                work: [],
+                works: [],
+                appointment: [],
+                album: []
             };
         },
         created() {
-            this.getWork()
+
         },
         mounted() {
             this.userinfo = JSON.parse(localStorage.getItem("userinfo"));
             this.user_face = this.userinfo.headPortraitImg;
-            console.log(this.userinfo);
-            this.getData();
-            this.getWork();
+            // console.log(this.userinfo);
+            this.getWorks();
+            this.getAppointmentByUserId(this.userinfo.id);
+            this.getAlbum(this.userinfo.id);
         },
         methods: {
             goPage: function (path) {
@@ -279,33 +225,44 @@
                     .catch(_ => {
                     });
             },
-            //根据当前用户id请求发布的约拍
-            getData() {
+            getWorks() {
                 request({
                     method: 'get',
-                    url: '/appointment/get/uid?uid=' + this.userinfo.id,
+                    url: WORKS_GET_BY_USER_ID + this.userinfo.id,
                 }).then(res => {
-                    this.result = res;
-                    console.log(res);
-                    this.result = res.data.data;
-                    console.log(this.result)
+                    // console.log(res);
+                    this.works = res.data.data;
+                    // console.log(this.works)
                 }).catch(err => {
                     console.log(err);
                 })
             },
-            getWork() {
+
+            getAppointmentByUserId(uid){
                 request({
-                    method: 'get',
-                    url: '/works/get/uid?uid=' + this.userinfo.id,
+                    url:APPOINTMENT_GET_BY_USER_ID + uid,
+                    method:'get',
+                    headers:{}
                 }).then(res => {
-                    this.work = res;
-                    console.log(res);
-                    this.work = res.data.data;
-                    console.log(this.work)
+                    // console.log(res);
+                    this.appointment = res.data.data;
                 }).catch(err => {
-                    console.log(err);
+                    console.log(err)
                 })
             },
+
+            getAlbum(uid){
+                request({
+                    url: USER_GET_ALBUM + uid,
+                    method:'get',
+                }).then(res => {
+                    console.log(res);
+                    this.album = res.data.data;
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
+
         },
 
         filters: {

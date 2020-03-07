@@ -282,9 +282,23 @@
     flex-wrap: wrap;
 }
 
-.al-flex-container-height-sub-el-match-parent{
+.al-flex-container-align-item-stretch{
     display: flex;
     align-items: stretch;
+}
+
+.al-width-match-parent{
+    display: flex;
+    align-items: stretch;
+}
+
+.al-flex-container-align-item-normal{
+    display: flex;
+    align-items: normal;
+}
+
+.al-flex-item-grow-1{
+    flex-grow: 1;
 }
 
 /*----------- 弹性布局 ----------*/
@@ -406,6 +420,15 @@
 .al-float-right{
     float: right;
 }
+
+/*靠右*/
+.al-float-right-10px{
+    float: right;
+}
+
+
+
+
 /*文字靠左*/
 .al-text-left{
     text-align: left;
@@ -479,7 +502,7 @@
 }
 
 /* 显示圆角，无阴影10px */
-.al-box-raduis{
+.al-box-radius{
     background-color: #FFFFFF;
     border-radius: 10px;
 }
@@ -558,6 +581,10 @@
     width: 100%;
 }
 
+.al-width-auto{
+    width: auto;
+}
+
 /* ----- 高度 -----*/
 .al-height-10{
     height: 10%;
@@ -589,7 +616,9 @@
     height: 100%;
 }
 
-
+.al-height-auto{
+    height: auto;
+}
 
 /*================END 宽度================*/
 
@@ -608,15 +637,36 @@
 }
 
 .al-m-left-30px{
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .al-m-left-40px{
-    margin-left: 20px;
+    margin-left: 40px;
 }
 
 .al-m-left-50px{
-    margin-left: 20px;
+    margin-left: 50px;
+}
+
+/* 距离右边边10px */
+.al-m-right-10px{
+    margin-right: 10px;
+}
+
+.al-m-right-20px{
+    margin-right: 20px;
+}
+
+.al-m-right-30px{
+    margin-right: 30px;
+}
+
+.al-m-right-40px{
+    margin-right: 40px;
+}
+
+.al-m-right-50px{
+    margin-right: 50px;
 }
 
 /* 距离顶部 */
@@ -909,6 +959,25 @@
     font-weight: 400;
 }
 
+.al-font-weight-500{
+    font-weight: 500;
+}
+
+.al-font-weight-600{
+    font-weight: 600;
+}
+
+.al-font-weight-700{
+    font-weight: 700;
+}
+
+.al-font-weight-800{
+    font-weight: 800;
+}
+
+.al-font-weight-bold{
+    font-weight: bold;
+}
 
 /* ---------- 字体颜色 ----------*/
 /* 字体灰色 */
@@ -1050,6 +1119,21 @@
     font-weight: 200;
 }
 
+.al-title-h1-bold{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.al-title-h2-bold{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.al-title-h3-bold{
+    font-size: 20px;
+    font-weight: bold;
+}
+
 
 /*================END 标题================*/
 
@@ -1068,3 +1152,23 @@
     transition-duration: 1.0s;
 }
 /*================END 图片================*/
+
+
+
+/*================BEGIN 鼠标指示器================*/
+.al-cursor-pointer{
+    cursor: pointer;
+}
+/*================END 鼠标指示器================*/
+
+
+
+/*================BEGIN 盒子================*/
+.al-box-pretty{
+    box-shadow: 2px 2px 8px #EFEFEF;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    padding: 10px;
+    margin: 10px;
+}
+/*================END 盒子================*/

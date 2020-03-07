@@ -48,7 +48,7 @@
                 request({
                     url: APPOINTMENT_TYPE_GET_ALL,
                 }).then(res => {
-                    console.log(res);
+                    // console.log(res);
                     this.appointmentType = res.data.data;
                     this.appointmentType.map((item, index) => {
                         item.cover_url = this.cover_url[index]
@@ -74,12 +74,12 @@
                     headers
                 }).then(res => {
                     if (identity === 1){
-                        console.log("==============摄影师用户信息");
-                        console.log(res);
+                        // console.log("==============摄影师用户信息");
+                        // console.log(res);
                         this.photographerRecommend = res.data.data;
                     }else if(identity === 2){
-                        console.log("==============模特用户信息");
-                        console.log(res);
+                        // console.log("==============模特用户信息");
+                        // console.log(res);
                         this.modelRecommend = res.data.data;
                     }
                 }).catch(err => {

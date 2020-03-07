@@ -37,8 +37,8 @@
         },
 
         mounted(){
-            console.log("DisplayGridImage===========");
-            console.log(this.dataSource);
+            // console.log("DisplayGridImage===========");
+            // console.log(this.dataSource);
         }
     }
 </script>

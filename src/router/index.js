@@ -17,6 +17,7 @@ import message from '../pages/user/Message'
 import testUI from '../pages/test/TestUI'
 import store from "@/store";
 import TestStyle from "@/pages/test/TestStyle";
+import WorksDetail from "@/pages/works/WorksDetail";
 
 
 //1.使用插件
@@ -68,7 +69,7 @@ const routes = [
         component:allAppointment
     },
     {
-        path:'/appointment/detail/:aptid',
+        path:'/appointment/detail/:aptId',
         component:appointmentDetail,
         props: true
     },
@@ -79,6 +80,11 @@ const routes = [
     {
         path:'/works/add',
         component:addWorks
+    },
+    {
+        path:'/works/detail/:worksId',
+        component:WorksDetail,
+        props: true
     },
     {
         path:'/test/ui',
@@ -96,10 +102,10 @@ const router = new VueRouter({
 
 
 router.beforeEach((to, from, next) => {
-    console.log("=============== beforeEach ==============");
+    // console.log("=============== beforeEach ==============");
     if (to.matched.some(record => {return record.meta.requireAuth})){
-        console.log("========== 判断前：登录状态" + store.state.storeIsLogin);
-        if (!store.state.storeIsLogin){
+        // console.log("========== 判断前：登录状态" + store.state.storeIsLogin);
+        if ("no" === localStorage.getItem("isLogin")){
             next({
                 path: '/login',
                 query: {

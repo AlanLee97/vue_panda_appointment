@@ -4,7 +4,7 @@
             al-z-index-9999"
          :class="getShadow" >
 
-        <el-row class="al-flex-container-height-sub-el-match-parent" >
+        <el-row class="al-flex-container-align-item-stretch" >
             <el-col :span="5" class="al-flex-container-center-vh">
                 <div class="">
                     <img src="../../assets/pandalogo.png" alt="">

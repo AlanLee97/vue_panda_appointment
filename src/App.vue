@@ -17,7 +17,7 @@
         name: 'app',
         data(){
             return {
-                sessionUserInfo:{},
+                localUserInfo:{},
                 isLogin:false,
             }
         },
@@ -32,18 +32,18 @@
 
             console.log("打印store state的登录状态：" + this.$store.state.storeIsLogin);
 
-            this.getSessionUserInfo();
+            this.getLocalUserInfo();
 
 
         },
         methods: {
-            getSessionUserInfo:function () {
+            getLocalUserInfo:function () {
 
-                this.sessionUserInfo = JSON.parse(localStorage.getItem("userinfo"));
+                this.localUserInfo = JSON.parse(localStorage.getItem("userinfo"));
                 this.isLogin = JSON.parse(localStorage.getItem("isLogin"));
-                console.log(this.sessionUserInfo);
-                console.log("===========App.vue isLogin");
-                console.log(this.isLogin);
+                // console.log(this.sessionUserInfo);
+                // console.log("===========App.vue isLogin");
+                // console.log(this.isLogin);
             },
         }
 

@@ -63,7 +63,7 @@
         name: "AppointmentDetail",
         components: {TitleNode, AvatarNickname, DescText, HeaderTop},
         props:{
-            aptid: String | Number
+            aptId: String | Number
         },
         data(){
             return{
@@ -74,7 +74,7 @@
         },
 
         mounted(){
-            this.getAppointment(this.aptid);
+            this.getAppointment(this.aptId);
 
             this.getNewestAppointment();
         },
@@ -84,9 +84,9 @@
                 this.gotoPage(path);
             },
 
-            getAppointment(aptid){
+            getAppointment(aptId){
                 request({
-                    url: APPOINTMENT_GET_BY_APTID + '/' + aptid,
+                    url: APPOINTMENT_GET_BY_APTID + '/' + aptId,
                 }).then(res => {
                     console.log(res);
                     this.appointment = res.data.data;
@@ -94,7 +94,7 @@
                     request({
                         url:USER_GET_BY_ID + "/" + res.data.data.userId,
                     }).then(res => {
-                        console.log(res);
+                        // console.log(res);
                         this.userinfo = res.data.data;
                     }).catch(err => {
                         console.log(err)
@@ -110,16 +110,13 @@
                 request({
                     url: APPOINTMENT_GET_NEWEST
                 }).then(res => {
-                    console.log(res);
+                    // console.log(res);
                     this.newestAppointment = res.data.data;
                 }).catch(err => {
                     console.log(err)
                 });
             },
 
-            test(){
-                alert('2222222222222')
-            }
         }
     }
 </script>

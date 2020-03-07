@@ -33,8 +33,9 @@
                         <div>
                             <el-row :gutter="20" type="flex" justify="space-around" class="al-flex-wrap">
                                 <el-col v-for="(item, index) in newestAppointment"  :span="8" class="al-m-top-10px">
-                                    <div class="al-d-blk" @click="goPage('/appointment/detail/' + item.id)">
-                                        <el-card :body-style="{ padding: '0px' }">
+                                    <div class="al-d-blk al-cursor-pointer"
+                                         @click="goPage('/appointment/detail/' + item.id)">
+                                        <el-card :body-style="{ padding: '0px' }" >
                                             <el-image :src="item.image" style="height: 200px" fit="cover" ></el-image>
                                             <div style="padding: 14px;">
                                                 <span>{{item.title}}</span>
@@ -54,8 +55,8 @@
                         <el-row type="flex" justify="space-around" class="al-flex-wrap">
                             <el-col v-for="(item, index) in spot"  :span="5.5" class="al-m-top-10px">
                                 <div class="al-d-blk">
-                                    <el-card :body-style="{ padding: '0px' }" class=" ">
-                                        <img :src="item.img_src" class="image"/>
+                                    <el-card :body-style="{ padding: '0px' }" class="al-overflow-hide">
+                                        <img :src="item.img_src" class="al-hover-img"/>
                                         <div style="padding: 14px;">
                                             <span>{{item.title}}</span>
                                         </div>
@@ -165,8 +166,8 @@
                 request({
                     url: CAROUSEL_GET_ALL
                 }).then(res => {
-                    console.log("========轮播图json数据");
-                    console.log(res);
+                    // console.log("========轮播图json数据");
+                    // console.log(res);
                     this.carouselImage = res.data.data;
                 }).catch(err => {
                     console.log(err);
@@ -177,7 +178,7 @@
                 request({
                     url: APPOINTMENT_GET_NEWEST
                 }).then(res => {
-                    console.log(res);
+                    // console.log(res);
                     this.newestAppointment = res.data.data;
                 }).catch(err => {
                     console.log(err)
@@ -188,7 +189,7 @@
                 request({
                     url: 'http://localhost:8081/data/mafengwo.json'
                 }).then(res => {
-                    console.log(res);
+                    // console.log(res);
                     this.spot = res.data.data;
                 }).catch(err => {
                     console.log(err)
@@ -212,22 +213,18 @@
                     headers
                 }).then(res => {
                     if (identity === 1){
-                        console.log("==============摄影师用户信息");
-                        console.log(res);
+                        // console.log("==============摄影师用户信息");
+                        // console.log(res);
                         this.photographerRecommend = res.data.data;
                     }else if(identity === 2){
-                        console.log("==============模特用户信息");
-                        console.log(res);
+                        // console.log("==============模特用户信息");
+                        // console.log(res);
                         this.modelRecommend = res.data.data;
                     }
                 }).catch(err => {
                     console.log(err)
                 });
             },
-
-            setNavActiveIndex(){
-
-            }
 
 
 
@@ -236,6 +233,8 @@
     }
 </script>
 
-<style >
-
+<style scoped>
+    .cursor-pointer{
+        cursor: pointer;
+    }
 </style>

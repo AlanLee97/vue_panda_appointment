@@ -1,53 +1,45 @@
 <template>
-
     <div>
+        <el-row>
+            <el-col :span="24" v-loading="showLoading">
+                <div class="al-box-shadow-radius al-p-20px">
+                    <div >
+                        <span class="al-title-h3">发布我的作品</span>
+                        <el-button
+                                class="al-float-right"
+                                type="primary"
+                                   @click="sendRequest()">发布</el-button>
 
-        <br>
-        <br>
-        <br>
-        <br>
-        <div>发布作品页面</div>
-
-
-
-        <div>
-            <el-row>
-                <el-col :span="4">
-                    <div class="grid-content bg-purple">
-                        <pre> </pre>
                     </div>
-                </el-col>
-                <el-col :span="16" v-loading="showLoading">
-                    <div class="al-box-shadow-radius al-bg-color-white al-m-20px al-p-20px">
-                        <h3>发布作品</h3>
 
-                        <div class="m-20px">
-	                        <el-input
-			                        type="textarea"
-			                        placeholder="请输入内容"
-			                        v-model="sendData.content"
-			                        maxlength="30"
-			                        show-word-limit
-	                        >
-	                        </el-input>
-                        </div>
+                    <div class="al-m-top-20px">
+                        <el-input
+                                type="textarea"
+                                placeholder="请输入内容"
+                                v-model="sendData.content"
+                                maxlength="300"
+                                show-word-limit
+                                :autosize="{ minRows: 3}"
+                        >
+                        </el-input>
+                    </div>
 
-                        <div class="al-bg-color-light-white al-m-20px al-p-20px al-box-shadow-radius">
-                            <el-upload
-                                    ref="upload2"
-                                    :action="url"
-                                    list-type="picture-card"
-                                    multiple
-                                    name="file"
-                                    :on-success="uploadSuccess"
-                                    :auto-upload="false">
-                                <i slot="default" class="el-icon-plus"></i>
-                                <div slot="file" slot-scope="{file}">
-                                    <img
-                                            class="el-upload-list__item-thumbnail"
-                                            :src="file.url" alt=""
-                                    >
-                                    <span class="el-upload-list__item-actions">
+                    <div class="al-m-top-20px">
+                        <el-upload
+                                ref="upload2"
+                                :action="url"
+                                list-type="picture-card"
+                                multiple
+                                name="file"
+                                :on-success="uploadSuccess"
+                                :auto-upload="false">
+                            <i slot="default" class="el-icon-plus"></i>
+                            <div slot="file" slot-scope="{file}">
+                                <img
+                                        class="el-upload-list__item-thumbnail"
+                                        :src="file.url" alt=""
+                                >
+                                <span class="el-upload-list__item-actions">
                                     <span
                                             class="el-upload-list__item-preview"
                                             @click="handlePictureCardPreview(file)"
@@ -69,30 +61,20 @@
                                       <i class="el-icon-delete"></i>
                                     </span>
                                   </span>
-                                </div>
-                            </el-upload>
-                            <el-dialog :visible.sync="dialogVisible">
-                                <img width="100%" :src="dialogImageUrl" alt="">
-                            </el-dialog>
+                            </div>
+                        </el-upload>
 
-                            <br><br>
+                        <el-dialog :visible.sync="dialogVisible">
+                            <img width="100%" :src="dialogImageUrl" alt="">
+                        </el-dialog>
 
-
-                        </div>
                     </div>
+                </div>
 
-                    <el-button type="primary" @click="sendRequest()">发表</el-button>
 
 
-                </el-col>
-                <el-col :span="4">
-                    <div class="grid-content bg-purple">
-                        <pre> </pre>
-                    </div>
-                </el-col>
-            </el-row>
-
-        </div>
+            </el-col>
+        </el-row>
 
 
     </div>

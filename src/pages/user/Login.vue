@@ -146,15 +146,15 @@
                             console.log(res);
                             if (res.code == 200){
 
-                                console.log("登录页面：");
-                                console.log(res.data);
+                                // console.log("登录页面：");
+                                // console.log(res.data);
 
                                 this.$message('登录成功');
-                                localStorage.setItem("userinfo", JSON.stringify(res.data));
+                                localStorage.setItem("userinfo", JSON.stringify(res.data.rs));
                                 localStorage.setItem("isLogin", "yes");
 
                                 this.$store.commit("setLoginState", true);
-                                console.log('userinfo');
+                                // console.log('userinfo');
                                 this.goPage('/profile');
                             }else {
                                 this.$message('登录失败');

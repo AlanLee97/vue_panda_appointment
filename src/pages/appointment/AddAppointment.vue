@@ -237,50 +237,5 @@
 </script>
 
 <style>
-    .main_content{
-        width: 1140px;
-        padding: 120px 0 30px;
-        padding-top: 120px;
-        padding-right: 0px;
-        padding-bottom: 30px;
-        padding-left: 0px;
-}
-    .page{
-        width: 900px;
-        background: #ffffff;
-        background-color: rgb(255, 255, 255);
-        background-position-x: 0%;
-        background-position-y: 0%;
-        background-repeat: repeat;
-        background-attachment: scroll;
-        background-image: none;
-        background-size: auto;
-        background-origin: padding-box;
-        background-clip: border-box;
-        margin: 0 auto;
-        margin-top: 0px;
-        margin-right: auto;
-        margin-bottom: 0px;
-        margin-left: auto;
-        padding: 30px 50px;
-        padding-top: 30px;
-        padding-right: 50px;
-        padding-bottom: 30px;
-        padding-left: 50px;
-    }
-    .page_navigation{
-        height: 33px;
-        font-size: 20px;
-        font-weight: 400;
-        color: rgba(51,51,51,1);
-        line-height: 33px;
-    }
-    .page_title{
-        height: 22px;
-        font-size: 16px;
-        font-weight: 400;
-        color: rgba(51,51,51,1);
-        line-height: 22px;
-        align-items: center;
-    }
+
 </style>
