@@ -11,19 +11,29 @@
     // import Index from './components/Index.vue'
 
     import {request} from "@/util/network/request";
+    import store from "@/store";
 
     export default {
         name: 'app',
         data(){
             return {
-                activeIndex: '1',
-                activeIndex2: '1',
                 sessionUserInfo:{},
                 isLogin:false,
             }
         },
-        mounted(){
+        created() {
+            console.log(localStorage.getItem("isLogin"));
+
+
+            if ("yes" === localStorage.getItem("isLogin")){
+                this.isLogin = true;
+                this.$store.commit("setLoginState", true);
+            }
+
+            console.log("打印store state的登录状态：" + this.$store.state.storeIsLogin);
+
             this.getSessionUserInfo();
+
 
         },
         methods: {
@@ -32,6 +42,7 @@
                 this.sessionUserInfo = JSON.parse(localStorage.getItem("userinfo"));
                 this.isLogin = JSON.parse(localStorage.getItem("isLogin"));
                 console.log(this.sessionUserInfo);
+                console.log("===========App.vue isLogin");
                 console.log(this.isLogin);
             },
         }
@@ -56,9 +67,11 @@
         padding: 0;
     }
 
-    html{
+    html, body{
         background-color: #fcfcfc;
+        height: 100%;
     }
+
 
     .test{
         right: 0;

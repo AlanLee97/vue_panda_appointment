@@ -2,12 +2,11 @@
     <div class="al-m-top-20px">
 <!--        {{appointmentType}}-->
         <div v-for="(item, index) in this.appointmentType"
-             class="al-m-bottom-10px"
-             :key="item">
+             class="al-m-bottom-10px">
             <el-card :body-style="{padding: '0px'}">
                 <el-image :src="item.cover_url"
                           fit="cover"
-                          style="height:150px; width:100%"/>
+                          style="height:150px; width:100%"></el-image>
                 <div class="al-flex-container-center-h">{{item.type}}</div>
             </el-card>
 
@@ -17,7 +16,8 @@
 
 <script>
     import {request} from "@/util/network/request";
-    import {APPOINTMENT_TYPE_GET_ALL} from "@/util/network/APIPATH";
+    import {USER_GET_ALL_COMMON} from "@/util/network/api/user/api-user";
+    import {APPOINTMENT_TYPE_GET_ALL} from "@/util/network/api/appointment/api-appointment";
 
     export default {
         name: "AppointmentType",
@@ -37,6 +37,9 @@
         mounted(){
             this.getAppointmentType();
 
+            this.getUserRecommend(1);
+            this.getUserRecommend(2);
+
 
         },
 
@@ -53,6 +56,35 @@
                 }).catch(err => {
                     console.log(err);
                 })
+            },
+
+            getUserRecommend(identity){
+                let headers = {
+                    // 'Content-Type': 'application/json'
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                };
+                let data = {
+                    identity: identity
+                };
+
+                request({
+                    url: USER_GET_ALL_COMMON + "/" + identity,
+                    method: 'post',
+                    data: this.qsParam(data),
+                    headers
+                }).then(res => {
+                    if (identity === 1){
+                        console.log("==============摄影师用户信息");
+                        console.log(res);
+                        this.photographerRecommend = res.data.data;
+                    }else if(identity === 2){
+                        console.log("==============模特用户信息");
+                        console.log(res);
+                        this.modelRecommend = res.data.data;
+                    }
+                }).catch(err => {
+                    console.log(err)
+                });
             }
         }
     }

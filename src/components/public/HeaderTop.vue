@@ -13,21 +13,29 @@
 
             <el-col :span="15" class="al-flex-container-center-v">
                 <div class=" ">
-                    <el-menu :default-active="activeIndex"
+                    <el-menu
                              class="el-menu"
                              mode="horizontal"
+                             active-text-color="#000000"
+                             :default-active="activeNav"
                              @select="handleSelect">
-                        <el-menu-item index="1" @click="goPage('/index')">
+                        <el-menu-item
+                                index="1"
+                                @click="goPage('/index')">
                             <span class="al-title-h2">
                                 主页
                             </span>
                         </el-menu-item>
-                        <el-menu-item index="2" @click="goPage('/appointment/all')">
+                        <el-menu-item
+                                index="2"
+                                @click="goPage('/appointment/all')">
                             <span class="al-title-h2">
                                 约拍
                             </span>
                         </el-menu-item>
-                        <el-menu-item index="3" @click="goPage('/works/all')">
+                        <el-menu-item
+                                index="3"
+                                @click="goPage('/works/all')">
                             <span class="al-title-h2">
                                 动态
                             </span>
@@ -82,6 +90,8 @@
 </template>
 
 <script>
+    import store from "@/store";
+
     export default {
         name: "HeaderTop",
         props:{
@@ -91,12 +101,12 @@
 
         data(){
             return {
-                activeIndex: '1',
-                activeIndex2: '1',
                 isLogin:false,
+                activeNav: '',
             }
         },
-        created(){
+        mounted(){
+            this.activeNav = sessionStorage.getItem("activeNav");
             this.getSessionUserInfo();
         },
         computed:{
@@ -114,22 +124,29 @@
             handleSelect(key, keyPath) {
                 console.log('handleSelect==============');
                 console.log(key, keyPath);
+                this.activeNav = keyPath[0];
+                sessionStorage.setItem("activeNav",keyPath[0]);
+
             },
             getSessionUserInfo:function () {
 
                 this.sessionUserInfo = JSON.parse(localStorage.getItem("userinfo"));
-                // this.isLogin = JSON.parse(sessionStorage.getItem("isLogin"));
-                this.isLogin = this.$store.state.isLogin;
+                //this.isLogin = JSON.parse(sessionStorage.getItem("isLogin"));
+                console.log("=========HeaderTop：登录状态" + store.state.storeIsLogin);
+                this.isLogin = store.state.storeIsLogin;
                 console.log(this.sessionUserInfo);
                 console.log(this.isLogin);
             },
             logout:function () {
 
-                localStorage.clear();
+                localStorage.setItem("isLogin", "no");
+                localStorage.removeItem("userinfo");
                 this.sessionUserInfo = {};
 
                 this.isLogin = false;
                 this.$store.commit("setLoginState", false);
+
+                this.goPage('/index')
             },
             getLogo(url='../../assets/pandalogo.png') {
                 console.log(url);
@@ -147,6 +164,10 @@
     }
 
     .el-menu{
+        border-bottom: 0;
+    }
+
+    li.el-menu-item.is-active{
         border-bottom: 0;
     }
 </style>

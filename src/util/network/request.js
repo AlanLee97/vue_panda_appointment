@@ -1,9 +1,10 @@
 import axios from 'axios';
 
-let ip = "localhost";
- // let ip = "47.103.204.62";
-let port = "8083";
-let prefix = "http://" + ip + ':' + port;
+// let ip = "localhost";
+ let ip = "47.103.204.62";
+let port = "8764";
+let apiVersion = "/api/v1";
+let prefix = "http://" + ip + ':' + port + apiVersion;
 
 export function request(config) {
     const instance = axios.create({

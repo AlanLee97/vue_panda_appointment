@@ -3,7 +3,6 @@
         <div class="
         al-flex-container-center-v
         al-bg-color-white
-        al-p-20px
         al-flex-container">
             <el-avatar :size="60"
                        :src="avatar"
@@ -12,8 +11,8 @@
             </el-avatar>
 
             <div class="al-d-il-blk al-m-left-20px">
-                <div class="al-p-5px">{{nickname}}</div>
-                <div class="al-p-5px">{{desc}}</div>
+                <div class="">{{nickname}}</div>
+                <div class="">{{desc}}</div>
             </div>
         </div>
     </div>

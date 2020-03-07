@@ -104,9 +104,9 @@ import VueRouter from "vue-router";
 
 Vue.config.productionTip = false;
 
-// let domain = '47.103.204.62';
-let domain = 'localhost';
-let port = '8083';
+let domain = '47.103.204.62';
+// let domain = 'localhost';
+let port = '8764';
 
 // 生成url的函数
 Vue.prototype.createUrl = function (url) {

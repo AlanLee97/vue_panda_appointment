@@ -8,18 +8,36 @@
                 <div style="width: auto" class="al-box-shadow-radius al-m-20px"
                      v-for="appointment in allAppointment.list"
                 >
-                    <AvatarNickname
-                            :avatar="appointment.tuser.headPortraitImg"
-                            :nickname="appointment.tuser.username"
-                            :desc="appointment.tuser.identity"/>
+                    <el-card :body-style="{padding: '0px'}">
+                        <div class="al-flex-container-center-vh al-overflow-hide">
+                            <el-image
+                                    style="height: 400px"
+                                    class="apt-img al-z-index-999"
+                                    :src="appointment.image"
+                                    :fit="imageFit"></el-image>
+                        </div>
+                        <el-row class="al-height-100">
+                            <el-col :span="8">
+                                <AvatarNickname
+                                        class="al-p-10px"
+                                        :avatar="appointment.tuser.headPortraitImg"
+                                        :nickname="appointment.tuser.username"
+                                        :desc="appointment.tuser.identity"/>
+                            </el-col>
 
-                    <DescText :plain-text="appointment"/>
+                            <el-col :span="8" class="al-height-100">
+                                <div class="al-height-100  al-show-border">
+                                    标题
+                                </div>
+                            </el-col>
+                            <el-col :span="8">时间</el-col>
+                        </el-row>
+                    </el-card>
 
-                    <div class="al-width-30 al-p-20px ">
-                        <el-image
-                                :src="appointment.image"
-                                :fit="imageFit"/>
-                    </div>
+
+<!--                    <DescText :plain-text="appointment"/>-->
+
+
                 </div>
 
             </el-col>
@@ -34,7 +52,7 @@
             <el-col :span="16">
                 <el-pagination
                         background
-                        page-size="3"
+                        :page-size="allAppointment.pageSize"
                         @next-click="getAllAppointment(allAppointment.nextPage)"
                         @prev-click="getAllAppointment(allAppointment.prePage)"
                         layout="prev, pager, next"
@@ -51,8 +69,8 @@
     import {request} from "@/util/network/request";
     import HeaderTop from "@/components/public/HeaderTop";
     import AvatarNickname from "@/components/public/AvatarNickname";
-    import DescText from "@/components/appointment/DescText";
-    import AppointmentType from "@/components/appointment/AppointmentType";
+    import DescText from "@/pages/appointment/component/DescText";
+    import AppointmentType from "@/pages/appointment/component/AppointmentType";
 
     export default {
         name: "AllAppointment",
@@ -61,7 +79,7 @@
         },
         data() {
             return {
-                allAppointment: null,
+                allAppointment: {},
                 imageFit: 'cover'
             }
         },
@@ -74,7 +92,7 @@
         methods: {
             getAllAppointment: function (pageNum=1, pageSize=3) {
                 request({
-                    url: `http://localhost:8083/test/appointment/page?pageNum=${pageNum}&pageSize=${pageSize}`
+                    url: `/appointment/get/page/${pageNum}/${pageSize}`
                 }).then(res => {
                     console.log(res);
                     this.allAppointment = res.data.data;
@@ -89,5 +107,11 @@
 </script>
 
 <style scoped>
+
+    .apt-img:hover{
+        cursor: pointer;
+        transform: scale(1.1);
+        transition-duration: 1.0s;
+    }
 
 </style>

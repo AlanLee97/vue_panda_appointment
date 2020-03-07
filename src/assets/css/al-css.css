@@ -35,6 +35,16 @@
     width: 50px;
     height: 50px;
 }
+
+.al-box-size-100px{
+    width: 100px;
+    height: 100px;
+}
+
+.al-box-size-200px{
+    width: 200px;
+    height: 200px;
+}
 /*================END 盒子大小================*/
 
 
@@ -130,6 +140,16 @@
 
 
 /*================BEGIN 背景颜色================*/
+/* 白色背景 */
+.al-bg-opacity-0{
+    opacity: 0;
+}
+
+/* 白色背景 */
+.al-bgcolor-transparent{
+    background-color: #00000000;
+}
+
 /* 白色背景 */
 .al-bgcolor-white-ffffff{
     background-color: #FFFFFF;
@@ -242,6 +262,7 @@
     display: flex;
     justify-content: center;
 }
+
 
 /*flex水平垂直居中*/
 .al-flex-container-center-vh{
@@ -357,6 +378,11 @@
 }
 
 /*z-index*/
+.al-z-index--1{
+    z-index: -1;
+}
+
+/*z-index*/
 .al-z-index-9{
     z-index: 9;
 }
@@ -469,6 +495,11 @@
     border-radius: 50%;
 }
 
+
+/*溢出隐藏*/
+.al-overflow-hide{
+    overflow: hidden;
+}
 /*================END 显示================*/
 
 
@@ -658,6 +689,10 @@
     margin-bottom: 100px;
 }
 
+/* 外边距10px */
+.al-m-5px{
+    margin: 5px;
+}
 
 /* 外边距10px */
 .al-m-10px{
@@ -974,7 +1009,7 @@
 
 
 
-/*================BEGIN 图片================*/
+/*================BEGIN icon大小================*/
 
 .al-icon-size-50px{
     width: 50px;
@@ -996,7 +1031,7 @@
     height: 200px;
 }
 
-/*================END 图片================*/
+/*================END icon大小================*/
 
 
 /*================BEGIN 标题================*/
@@ -1017,3 +1052,19 @@
 
 
 /*================END 标题================*/
+
+
+
+/*================BEGIN 图片================*/
+/*圆形图片*/
+.al-img-circle{
+    border-radius: 50%;
+}
+
+/*鼠标悬停在图片上，图片放大*/
+.al-hover-img:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition-duration: 1.0s;
+}
+/*================END 图片================*/

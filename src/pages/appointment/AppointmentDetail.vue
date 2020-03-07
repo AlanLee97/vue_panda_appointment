@@ -9,14 +9,17 @@
             <el-row >
                 <el-col :span="2"><pre> </pre></el-col>
                 <el-col :span="14">
-                    <div class="al-box-shadow-radius">
+                    <div class="al-box-shadow-radius al-p-10px al-m-top-20px">
                         <AvatarNickname
                                 :desc="userinfo.identity"
                                 :avatar="this.userinfo.headPortraitImg"
                                 :nickname="this.userinfo.nickname"/>
+
+                        <el-divider class="al-m-top--20px"></el-divider>
+
                         <DescText :plain-text="this.appointment"/>
                         <el-image :src="this.appointment.image"
-                                  class="al-width-50 al-m-20px" />
+                                  class="al-width-50 al-m-20px" ></el-image>
                     </div>
                 </el-col>
 
@@ -31,7 +34,7 @@
                                      class="al-m-top-10px">
                                 <el-image :src="item.image"
                                           style="height: 150px"
-                                          fit="cover"/>
+                                          fit="cover"></el-image>
                                 <div @click="goPage('/appointment/detail/' + item.id)"
                                         class="al-flex-container-center-h">
                                     {{item.title}}
@@ -49,11 +52,12 @@
 
 <script>
     import {request} from "@/util/network/request";
-    import {APPOINTMENT_GET_NEWEST, APPOINTMENT_TYPE_GET_BY_APTID, USER_GET_BY_ID} from "@/util/network/APIPATH";
     import HeaderTop from "@/components/public/HeaderTop";
-    import DescText from "@/components/appointment/DescText";
+    import DescText from "@/pages/appointment/component/DescText";
     import AvatarNickname from "@/components/public/AvatarNickname";
     import TitleNode from "@/components/public/TitleNode";
+    import {APPOINTMENT_GET_BY_APTID, APPOINTMENT_GET_NEWEST} from "@/util/network/api/appointment/api-appointment";
+    import {USER_GET_BY_ID} from "@/util/network/api/user/api-user";
 
     export default {
         name: "AppointmentDetail",
@@ -82,13 +86,13 @@
 
             getAppointment(aptid){
                 request({
-                    url: APPOINTMENT_TYPE_GET_BY_APTID + '?appointmentId=' + aptid,
+                    url: APPOINTMENT_GET_BY_APTID + '/' + aptid,
                 }).then(res => {
                     console.log(res);
                     this.appointment = res.data.data;
 
                     request({
-                        url:USER_GET_BY_ID + res.data.data.userId,
+                        url:USER_GET_BY_ID + "/" + res.data.data.userId,
                     }).then(res => {
                         console.log(res);
                         this.userinfo = res.data.data;

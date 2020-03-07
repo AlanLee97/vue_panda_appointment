@@ -1,62 +1,69 @@
 <template class="">
-    <div class="login">
-        <div style="width: 400px"
-             class="al-bg-color-white
-             al-m-top-50px
+    <el-container class="al-width-100 page-login" direction="vertical">
+
+
+        <el-row class="" style="margin: 10% 0 10% 0">
+            <el-col :span="14" class="">
+                <pre> </pre>
+            </el-col>
+            <el-col :span="8" class="-border-blue">
+                <div style="width:360px" class="
+             al-z-index-99
              al-p-20px
              al-box-shadow-radius
-             al-flex-container-center-v
-             al-flex-container-center-h
-             al-flex-direction-col
              al-ma-center">
-            <div>
-                <img src="../../assets/pandalogo.png">
+                    <div class="al-flex-container-center-h">
+                        <img src="../../assets/pandalogo.png">
 
-            </div>
-
-            <div>
-                <h1 class="al-font-weight-200">登录</h1>
-            </div>
-            <br>
-            <el-form
-                    :model="ruleForm"
-                    status-icon
-                    :rules="rules"
-                    ref="ruleForm"
-                    label-width="140px"
-                    class="demo-ruleForm al-m-top-60px">
-                <el-form-item label="帐号" class="">
-                    <el-input class="al-float-left al-width-60" v-model="ruleForm.username" placeholder="请输入账号">
-
-                    </el-input>
-                </el-form-item>
-
-                <el-form-item  label="密码" prop="pass">
-                    <el-input class="al-float-left al-width-60" type="password"
-                              v-model="ruleForm.password" autocomplete="off" placeholder="请输入密码">
-                    </el-input>
-                </el-form-item>
-
-                <!--            <el-form-item label="确认密码" prop="checkPass">-->
-                <!--                <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>-->
-                <!--            </el-form-item>-->
-
-                <div class="al-flex-container-center-h">
-                    <div class="al-d-il-blk al-ma-center">
-                        <el-button class="" type="primary" @click="submitForm('ruleForm')">登录</el-button>
-                        <el-button @click="resetForm('ruleForm')">重置</el-button>
                     </div>
+
+                    <div>
+                        <div class="al-title-h1  al-flex-container-center-h">熊猫约拍</div>
+                    </div>
+                    <br>
+                    <el-form
+                            :model="ruleForm"
+                            status-icon
+                            :rules="rules"
+                            ref="ruleForm"
+                            label-width="140px"
+                            class="demo-ruleForm al-m-top-60px">
+                        <el-form-item label="帐号" class="">
+                            <el-input class="al-float-left al-width-60" v-model="ruleForm.username" placeholder="请输入账号">
+
+                            </el-input>
+                        </el-form-item>
+
+                        <el-form-item  label="密码" prop="pass">
+                            <el-input class="al-float-left al-width-60" type="password"
+                                      v-model="ruleForm.password" autocomplete="off" placeholder="请输入密码">
+                            </el-input>
+                        </el-form-item>
+
+                        <!--            <el-form-item label="确认密码" prop="checkPass">-->
+                        <!--                <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>-->
+                        <!--            </el-form-item>-->
+
+                        <div class="al-flex-container-center-h">
+                            <div class="al-d-il-blk al-ma-center">
+                                <el-button class="" type="primary" @click="submitForm('ruleForm')">登录</el-button>
+                                <el-button @click="resetForm('ruleForm')">重置</el-button>
+                            </div>
+                        </div>
+
+                    </el-form>
                 </div>
+            </el-col>
+            <el-col :span="2" class=""><div></div></el-col>
+        </el-row>
 
-            </el-form>
-        </div>
-
-    </div>
+    </el-container>
 </template>
 
 
 <script>
     import {request} from "@/util/network/request";
+    import {USER_LOGIN} from "@/util/network/api/user/api-user";
 
     export default {
 
@@ -75,6 +82,7 @@
             };
 
             return {
+                bg: 'https://alanlee-panda-appointment.oss-cn-shenzhen.aliyuncs.com/images/isux/20171122191603_896cd9.jpg',
 
                 ruleForm: {
                     username:'',
@@ -127,7 +135,7 @@
 
                         request({
                             method:'post',
-                            url: '/user/login',
+                            url: USER_LOGIN,
                             data: this.qsParam(data),
                             headers:{
                                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -137,9 +145,13 @@
                             res = res.data;
                             console.log(res);
                             if (res.code == 200){
+
+                                console.log("登录页面：");
+                                console.log(res.data);
+
                                 this.$message('登录成功');
                                 localStorage.setItem("userinfo", JSON.stringify(res.data));
-                                // sessionStorage.setItem("isLogin", "true");
+                                localStorage.setItem("isLogin", "yes");
 
                                 this.$store.commit("setLoginState", true);
                                 console.log('userinfo');
@@ -164,9 +176,20 @@
     }
 </script>
 
-<style>
-    .page{
-        background-color: #000000;
+<style scoped>
+    .page-login{
+        /*background-color: #000000;*/
+        background-image: url("https://alanlee-panda-appointment.oss-cn-shenzhen.aliyuncs.com/images/isux/VVCmQ2CrXWhP8QyGND5lps2nD6BSLXBcNXhUA3HANRt.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 100%;
+        background-attachment: fixed;
     }
+
+
+
+
+
+
 
 </style>
