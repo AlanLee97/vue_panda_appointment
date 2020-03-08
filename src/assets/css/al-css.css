@@ -176,6 +176,11 @@
     background-color: #FCFCFC;
 }
 
+/*背景颜色-淡白色*/
+.al-bg-color-light-white2{
+    background-color: #F6F6F6;
+}
+
 /*背景颜色-黑色*/
 .al-bg-color-black{
     background-color: #000000;
@@ -523,6 +528,17 @@
 .al-overflow-hide{
     overflow: hidden;
 }
+
+
+/*溢出滚动*/
+.al-overflow-scroll{
+    overflow: scroll;
+}
+
+/*溢出滚动*/
+.al-overflow-scroll-hide-bar{
+    overflow: scroll -moz-scrollbars-none;
+}
 /*================END 显示================*/
 
 
@@ -646,6 +662,14 @@
 
 .al-m-left-50px{
     margin-left: 50px;
+}
+
+.al-m-left--50px{
+    margin-left: -50px;
+}
+
+.al-m-left--100px{
+    margin-left: -100px;
 }
 
 /* 距离右边边10px */

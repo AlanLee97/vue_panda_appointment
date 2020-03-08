@@ -4,6 +4,7 @@
         <router-view>
 
         </router-view>
+
     </div>
 </template>
 
@@ -12,9 +13,15 @@
 
     import {request} from "@/util/network/request";
     import store from "@/store";
+    import vueWaterfall from 'vue-waterfall-easy';
+    import {USER_GET_ALBUM} from "@/util/network/api/user/api-user";
 
     export default {
         name: 'app',
+        component: {
+            vueWaterfall
+        },
+
         data(){
             return {
                 localUserInfo:{},
@@ -45,6 +52,7 @@
                 // console.log("===========App.vue isLogin");
                 // console.log(this.isLogin);
             },
+
         }
 
     }

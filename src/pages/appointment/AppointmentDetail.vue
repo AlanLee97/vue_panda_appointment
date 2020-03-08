@@ -18,8 +18,8 @@
                         <el-divider class="al-m-top--20px"></el-divider>
 
                         <DescText :plain-text="this.appointment"/>
-                        <el-image :src="this.appointment.image"
-                                  class="al-width-50 al-m-20px" ></el-image>
+                        <ALImage :src="this.appointment.image"
+                                  class="al-width-50 al-m-20px" ></ALImage>
                     </div>
                 </el-col>
 
@@ -32,9 +32,9 @@
 
                                     :body-style="{padding: '0px'}"
                                      class="al-m-top-10px">
-                                <el-image :src="item.image"
+                                <ALImage :src="item.image"
                                           style="height: 150px"
-                                          fit="cover"></el-image>
+                                          fit="cover"></ALImage>
                                 <div @click="goPage('/appointment/detail/' + item.id)"
                                         class="al-flex-container-center-h">
                                     {{item.title}}
@@ -58,10 +58,11 @@
     import TitleNode from "@/components/public/TitleNode";
     import {APPOINTMENT_GET_BY_APTID, APPOINTMENT_GET_NEWEST} from "@/util/network/api/appointment/api-appointment";
     import {USER_GET_BY_ID} from "@/util/network/api/user/api-user";
+    import ALImage from "@/components/public/ALImage";
 
     export default {
         name: "AppointmentDetail",
-        components: {TitleNode, AvatarNickname, DescText, HeaderTop},
+        components: {ALImage, TitleNode, AvatarNickname, DescText, HeaderTop},
         props:{
             aptId: String | Number
         },

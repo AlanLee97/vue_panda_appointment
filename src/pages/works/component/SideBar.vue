@@ -5,8 +5,8 @@
                  class="al-m-bottom-10px">
                 <el-card :body-style="{padding: '0px'}">
                     <div>
-                        <el-image class="al-img-circle al-width-60 al-height-60 al-flex-container-center-h"
-                                  :src="item.headPortraitImg"  ></el-image>
+                        <ALImage class="al-img-circle al-width-60 al-height-60 al-flex-container-center-h"
+                                  :src="item.headPortraitImg"  ></ALImage>
                     </div>
                     <div style="padding: 14px;">
                         <span class="al-flex-container-center-h">{{item.nickname}}</span>
@@ -20,8 +20,8 @@
                  class="al-m-bottom-10px">
                 <el-card :body-style="{padding: '0px'}">
                     <div class="">
-                        <el-image class="al-img-circle al-width-60 al-height-60"
-                                  :src="item.headPortraitImg" ></el-image>
+                        <ALImage class="al-img-circle al-width-60 al-height-60"
+                                  :src="item.headPortraitImg" ></ALImage>
                     </div>
                     <div style="padding: 14px;">
                         <span class="al-flex-container-center-h">{{item.nickname}}</span>
@@ -34,8 +34,10 @@
 
 <script>
 
+    import ALImage from "@/components/public/ALImage";
     export default {
         name: "SideBar",
+        components: {ALImage},
         props:{
             dataSource1: Array | Object,
             dataSource2: Array | Object,

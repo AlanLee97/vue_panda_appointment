@@ -10,10 +10,10 @@
                               class="al-hover-img" ></el-image>
                 </div>
                 <div v-else>
-                    <el-image :fit="displayMode"
+                    <ALImage :fit="displayMode"
                               :src="item"
                               :preview-src-list="dataSource"
-                              class="al-hover-img al-box-size-200px al-m-5px" ></el-image>
+                              class="al-hover-img al-box-size-200px al-m-5px" ></ALImage>
                 </div>
             </div>
 
@@ -23,9 +23,10 @@
 </template>
 
 <script>
+    import ALImage from "@/components/public/ALImage";
     export default {
         name: "DisplayGridImage",
-
+        components: {ALImage},
         props:{
             dataSource: Array | Object
         },

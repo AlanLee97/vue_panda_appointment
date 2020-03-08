@@ -10,9 +10,11 @@
                     <el-carousel :interval="4000" height="600px">
                         <el-carousel-item v-for="item in carouselImage" >
                             <h3 class="medium">
-                                <el-image :fit="fit" :src="item.imgUrl" style="width:100%; height: 600px">
+                                <ALImage :fit="fit"
+                                         :src="item.imgUrl"
+                                         style="width:100%; height: 600px">
 
-                                </el-image>
+                                </ALImage>
                             </h3>
                         </el-carousel-item>
                     </el-carousel>
@@ -36,7 +38,7 @@
                                     <div class="al-d-blk al-cursor-pointer"
                                          @click="goPage('/appointment/detail/' + item.id)">
                                         <el-card :body-style="{ padding: '0px' }" >
-                                            <el-image :src="item.image" style="height: 200px" fit="cover" ></el-image>
+                                            <ALImage :src="item.image" style="height: 200px" fit="cover" ></ALImage>
                                             <div style="padding: 14px;">
                                                 <span>{{item.title}}</span>
                                             </div>
@@ -56,7 +58,9 @@
                             <el-col v-for="(item, index) in spot"  :span="5.5" class="al-m-top-10px">
                                 <div class="al-d-blk">
                                     <el-card :body-style="{ padding: '0px' }" class="al-overflow-hide">
-                                        <img :src="item.img_src" class="al-hover-img"/>
+                                        <ALImage
+                                                :src="item.img_src"
+                                                class="al-hover-img"/>
                                         <div style="padding: 14px;">
                                             <span>{{item.title}}</span>
                                         </div>
@@ -75,7 +79,7 @@
                             <el-col v-for="(item, index) in modelRecommend"  :span="5.5" class="al-m-top-10px">
                                 <div class="al-d-blk">
                                     <el-card :body-style="{ padding: '0px' }" class=" ">
-                                        <el-image :src="item.headPortraitImg" style="width: 300px" ></el-image>
+                                        <ALImage :src="item.headPortraitImg" style="width: 300px" ></ALImage>
                                         <div style="padding: 14px;">
                                             <span>{{item.nickname}}</span>
                                         </div>
@@ -93,7 +97,7 @@
                             <el-col v-for="(item, index) in photographerRecommend"  :span="5.5" class="al-m-top-10px">
                                 <div class="al-d-blk">
                                     <el-card :body-style="{ padding: '0px' }" class=" ">
-                                        <el-image :src="item.headPortraitImg" style="width: 300px" />
+                                        <ALImage :src="item.headPortraitImg" style="width: 300px" />
                                         <div style="padding: 14px;">
                                             <span>{{item.nickname}}</span>
                                         </div>
@@ -129,10 +133,12 @@
     import {CAROUSEL_GET_ALL} from "@/util/network/api/carousel/api-carousel";
     import {USER_GET_ALL_COMMON} from "@/util/network/api/user/api-user";
     import {APPOINTMENT_GET_NEWEST} from "@/util/network/api/appointment/api-appointment";
+    import ALImage from "@/components/public/ALImage";
 
 
     export default {
         components: {
+            ALImage,
             TitleNode,
             HeaderTop
         },

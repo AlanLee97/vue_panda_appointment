@@ -14,11 +14,13 @@
                         <el-card
                                 :body-style="{padding: '0px'}">
                             <div class="al-flex-container-center-vh al-overflow-hide">
-                                <el-image
+                                <ALImage
+                                        @click="goPage('/appointment/detail/' + appointment.id)"
                                         style="height: 400px"
-                                        class="apt-img al-z-index-999"
+                                        class="al-hover-img al-z-index-999 al-width-100 "
                                         :src="appointment.image"
-                                        :fit="imageFit"></el-image>
+                                        fit="cover"
+                                        />
                             </div>
                             <el-row class="al-height-100">
                                 <el-col :span="8">
@@ -57,6 +59,17 @@
 
             </el-col>
             <el-col :span="6">
+                <div @click="goPage('/appointment/add')" class="al-cursor-pointer">
+                    <el-card class="al-m-top-20px">
+                        <ALImage
+                                class="al-width-100 al-height-100"
+                                src="https://alanlee-panda-appointment.oss-cn-shenzhen.aliyuncs.com/images/assert/%E6%8B%8D%E7%85%A7.png" />
+
+                        <div class="al-flex-container-center-h">
+                            发布我的约拍
+                        </div>
+                    </el-card>
+                </div>
                 <AppointmentType />
             </el-col>
             <el-col :span="2"><pre> </pre></el-col>
@@ -86,6 +99,7 @@
     import AvatarNickname from "@/components/public/AvatarNickname";
     import DescText from "@/pages/appointment/component/DescText";
     import AppointmentType from "@/pages/appointment/component/AppointmentType";
+    import ALImage from "@/components/public/ALImage";
 
     export default {
         name: "AllAppointment",
@@ -99,6 +113,7 @@
             }
         },
         components: {
+            ALImage,
             AppointmentType,
             DescText,
             AvatarNickname,
@@ -126,10 +141,5 @@
 
 <style scoped>
 
-    .apt-img:hover{
-        cursor: pointer;
-        transform: scale(1.1);
-        transition-duration: 1.0s;
-    }
 
 </style>

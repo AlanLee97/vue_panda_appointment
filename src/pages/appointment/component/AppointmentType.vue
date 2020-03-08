@@ -4,9 +4,9 @@
         <div v-for="(item, index) in this.appointmentType"
              class="al-m-bottom-10px">
             <el-card :body-style="{padding: '0px'}">
-                <el-image :src="item.cover_url"
+                <ALImage :src="item.cover_url"
                           fit="cover"
-                          style="height:150px; width:100%"></el-image>
+                          style="height:150px; width:100%"></ALImage>
                 <div class="al-flex-container-center-h">{{item.type}}</div>
             </el-card>
 
@@ -18,9 +18,11 @@
     import {request} from "@/util/network/request";
     import {USER_GET_ALL_COMMON} from "@/util/network/api/user/api-user";
     import {APPOINTMENT_TYPE_GET_ALL} from "@/util/network/api/appointment/api-appointment";
+    import ALImage from "@/components/public/ALImage";
 
     export default {
         name: "AppointmentType",
+        components: {ALImage},
         data(){
             return {
                 appointmentType:[],

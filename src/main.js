@@ -102,6 +102,9 @@ import {
 import VueRouter from "vue-router";
 
 
+import vueWaterfallEasy from "vue-waterfall-easy";
+Vue.use(vueWaterfallEasy);
+
 
 Vue.config.productionTip = false;
 

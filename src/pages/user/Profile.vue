@@ -78,12 +78,12 @@
         <el-row>
             <el-col :span="24">
                 <el-card :body-style="{ padding: '0px' }">
-                    <el-image
+                    <ALImage
                             class="image"
                             :src="image_url"
                             :fit="fit">
 
-                    </el-image>
+                    </ALImage>
                     <div class="al-flex-container-center-vh al-flex-direction-col al-m-bottom-20px">
 
                         <div style="padding: 14px;">
@@ -105,6 +105,7 @@
 
 
         <!-- 下半部分-->
+<!--
 
         <el-row>
             <el-col :span="3">
@@ -114,16 +115,23 @@
                 <el-tabs stretch v-model="activeName" @tab-click="handleClick">
 
                     <el-tab-pane label="我的约拍" name="first">
-<!--                        {{this.appointment}}-->
+                        &lt;!&ndash;                        {{this.appointment}}&ndash;&gt;
                         <div v-for="item in this.appointment" class="al-box-shadow-radius al-p-10px al-m-top-20px">
                             <DescText :plain-text="item"/>
-                            <el-image :src="item.image"
-                                      class="al-width-50 al-m-20px" ></el-image>
+                            <ALImage :src="item.image"
+                                      class="al-width-50 al-m-20px"></ALImage>
                         </div>
                     </el-tab-pane>
 
                     <el-tab-pane label="相册" name="second">
-<!--                        {{album}}-->
+
+&lt;!&ndash;                        <div v-for="item in album" >&ndash;&gt;
+&lt;!&ndash;                            <div class="al-flex-wrap">&ndash;&gt;
+&lt;!&ndash;                                <ALImage :src="item" class="al-box-size-200px"/>&ndash;&gt;
+&lt;!&ndash;                            </div>&ndash;&gt;
+&lt;!&ndash;                        </div>&ndash;&gt;
+
+
 
                     </el-tab-pane>
 
@@ -159,6 +167,128 @@
                 <pre> </pre>
             </el-col>
         </el-row>
+-->
+
+
+
+        <div>
+            <el-row class="al-overflow-scroll-hide-bar" style="height: 600px;">
+                <el-col :span="4">
+                    <el-menu
+                            default-active="1"
+                            class=""
+                            style="height: 600px"
+                            @select="handleSelect"
+                            @open="handleOpen"
+                            @close="handleCloseNav">
+                        <el-menu-item index="1">
+                            <i class="el-icon-camera"></i>
+                            <span slot="title">我的约拍</span>
+                        </el-menu-item>
+                        <el-menu-item index="2">
+                            <i class="el-icon-document"></i>
+                            <span slot="title">我的作品</span>
+                        </el-menu-item>
+                        <el-menu-item index="3">
+                            <i class="el-icon-picture-outline-round"></i>
+                            <span slot="title">我的相册</span>
+                        </el-menu-item>
+<!--                        <el-menu-item index="4">-->
+<!--                            <i class="el-icon-setting"></i>-->
+<!--                            <span slot="title">导航四</span>-->
+<!--                        </el-menu-item>-->
+                    </el-menu>
+                </el-col>
+
+                <el-col :span="20" class="">
+                    <div v-if="this.menuSelect == 1" class=""
+                         style="height: 600px; overflow: scroll">
+                        <el-row>
+                            <el-col :span="24">
+                                <div class="al-flex-wrap"
+                                     style="height: 100%; width: 100%;">
+                                    <div v-for="item in this.appointment"
+                                         class="">
+                                        <div class="al-box-pretty "
+                                             style="width: 300px; height: 400px">
+                                            <DescText :plain-text="item"/>
+                                            <ALImage :src="item.image"
+                                                      fit="cover"
+                                                      class="al-width-100 al-height-50 "></ALImage>
+                                        </div>
+                                    </div>
+                                </div>
+                            </el-col>
+                        </el-row>
+                    </div>
+
+
+                    <!-- 我的作品 -->
+                    <div v-if="this.menuSelect == 2" class=""
+                         style="height: 600px; overflow: scroll">
+                        <el-row>
+                            <el-col :span="24">
+                                <div class="al-flex-wrap"
+                                     style="height: 100%; width: 100%;">
+                                    <div class="al-box-pretty al-m-top-20px "
+                                         style="width: 470px"
+                                         v-for="item in works.list">
+                                        <!--显示作品信息-->
+                                        <div class="al-cursor-pointer"
+                                             @click="goPage('/works/detail/' + item.id)">
+                                            <div class="">
+                                                <div class="al-bg-color-light-white2 al-p-10px">
+                                                    {{item.introduction}}
+                                                </div>
+
+                                                <div class=" al-m-top-20px">
+                                                    <DisplayGridImage :data-source="item.images" />
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </el-col>
+                        </el-row>
+
+                        <!--分页-->
+                        <div class="al-width-100" style="bottom: 0;">
+                            <el-row class="al-m-top-20px">
+                                <el-col :span="4"><pre> </pre></el-col>
+                                <el-col :span="16">
+                                    <div class="al-flex-container-center-vh">
+                                        <el-pagination
+                                                background
+                                                :page-size="works.pageSize"
+                                                @next-click="getWorks(works.nextPage)"
+                                                @prev-click="getWorks(works.prePage)"
+                                                @current-change="handleCurrentChange"
+                                                layout="prev, pager, next"
+                                                :total="works.total">
+                                        </el-pagination>
+                                    </div>
+                                </el-col>
+                                <el-col :span="4"><pre> </pre></el-col>
+                            </el-row>
+                        </div>
+                    </div>
+
+                    <div v-else-if="this.menuSelect == 3" class="al-m-left--100px">
+                        <ImageWaterfall :data-source="album" />
+
+                    </div>
+
+<!--                    <div v-else-if="this.menuSelect == 4">-->
+<!--                        其他页面-->
+<!--                    </div>-->
+                </el-col>
+
+            </el-row>
+        </div>
 
 
     </div>
@@ -174,10 +304,13 @@
     import {APPOINTMENT_GET_BY_USER_ID} from "@/util/network/api/appointment/api-appointment";
     import {WORKS_GET_BY_USER_ID} from "@/util/network/api/works/api-works";
     import {USER_GET_ALBUM} from "@/util/network/api/user/api-user";
+    import ImageWaterfall from "@/components/public/ImageWaterfall";
+    import DisplayGridImage from "@/components/public/DisplayGridImage";
+    import ALImage from "@/components/public/ALImage";
 
 
     export default {
-        components: {DescText, AvatarNickname, HeaderTop},
+        components: {ImageWaterfall, DescText, AvatarNickname, HeaderTop, DisplayGridImage, ALImage},
         data() {
             return {
                 isDisabled: true,
@@ -192,7 +325,23 @@
                 userinfo: [],
                 works: [],
                 appointment: [],
-                album: []
+                album: [],
+                imgsArr: [
+                    {
+                        src: "https://alanlee-panda-appointment.oss-cn-shenzhen.aliyuncs.com/images/isux/QlOpWqTDznuWIOABg5djTreijHQs6WzUzsVu0rBHghN.jpg",
+                        href: "index",
+                    },
+                    {
+                        src: "https://alanlee-panda-appointment.oss-cn-shenzhen.aliyuncs.com/images/isux/QlOpWqTDznuWIOABg5djTreijHQs6WzUzsVu0rBHghN.jpg",
+                        href: "index",
+                    },
+                    {
+                        src: "https://alanlee-panda-appointment.oss-cn-shenzhen.aliyuncs.com/images/isux/QlOpWqTDznuWIOABg5djTreijHQs6WzUzsVu0rBHghN.jpg",
+                        href: "index",
+                    },
+                ],
+
+                menuSelect: 1,
             };
         },
         created() {
@@ -202,7 +351,7 @@
             this.userinfo = JSON.parse(localStorage.getItem("userinfo"));
             this.user_face = this.userinfo.headPortraitImg;
             // console.log(this.userinfo);
-            this.getWorks();
+            this.getWorks(1);
             this.getAppointmentByUserId(this.userinfo.id);
             this.getAlbum(this.userinfo.id);
         },
@@ -225,10 +374,10 @@
                     .catch(_ => {
                     });
             },
-            getWorks() {
+            getWorks(pageNo = 1) {
                 request({
                     method: 'get',
-                    url: WORKS_GET_BY_USER_ID + this.userinfo.id,
+                    url: WORKS_GET_BY_USER_ID + this.userinfo.id + `?pageNum=${pageNo}&pageSize=2`,
                 }).then(res => {
                     // console.log(res);
                     this.works = res.data.data;
@@ -238,11 +387,11 @@
                 })
             },
 
-            getAppointmentByUserId(uid){
+            getAppointmentByUserId(uid) {
                 request({
-                    url:APPOINTMENT_GET_BY_USER_ID + uid,
-                    method:'get',
-                    headers:{}
+                    url: APPOINTMENT_GET_BY_USER_ID + uid,
+                    method: 'get',
+                    headers: {}
                 }).then(res => {
                     // console.log(res);
                     this.appointment = res.data.data;
@@ -251,17 +400,36 @@
                 })
             },
 
-            getAlbum(uid){
+            getAlbum(uid) {
                 request({
                     url: USER_GET_ALBUM + uid,
-                    method:'get',
+                    method: 'get',
                 }).then(res => {
-                    console.log(res);
-                    this.album = res.data.data;
+                    // console.log(res);
+                    res.data.data.map(item => {
+                        let temp = {};
+                        temp.src = item;
+                        temp.href = "";
+                        this.album.push(temp);
+
+                    });
+                    console.log("新相册数组");
+                    console.log(this.album);
                 }).catch(err => {
                     console.log(err)
                 })
-            }
+            },
+
+            handleOpen(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleCloseNav(key, keyPath) {
+                console.log(key, keyPath);
+            },
+            handleSelect(index, indexPath) {
+                console.log(index, indexPath);
+                this.menuSelect = index;
+            },
 
         },
 

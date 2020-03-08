@@ -1,26 +1,20 @@
 <template>
     <div>
-        <ALImage
-                style="width: 500px; height: 500px"
-                src="http://img.mdyuepai.com/FolW90ZR1hs8PqkQ3iN0NpzUKxDx-bigimg"
-                 alt="图片"
-                 fit="contain" />
-
-
+        <div id="content">
+            <vue-waterfall-easy :imgsArr="dataSource" ></vue-waterfall-easy>
+        </div>
     </div>
 </template>
 
 <script>
+    // import TestStyle from "@/pages/test/TestStyle";
     import vueWaterfallEasy from "vue-waterfall-easy";
-    import ImageWaterfall from "@/components/public/ImageWaterfall";
-    import ALImage from "@/components/public/ALImage";
 
     export default {
-        name: "TestStyle",
-        components: {
-            ALImage,
-            ImageWaterfall,
-            vueWaterfallEasy
+        name: "ImageWaterfall",
+        components: {vueWaterfallEasy},
+        props: {
+            dataSource: Array
         },
 
         data(){
@@ -47,7 +41,7 @@
 <style scoped>
     #content{
         position: absolute;    /*必须*/
-        top:32px;              /*top必须，大小可控制*/
+        top:10px;              /*top必须，大小可控制*/
         bottom:0;              /*bottom必须，一直延申到当前块底部*/
         width:100%;
     }

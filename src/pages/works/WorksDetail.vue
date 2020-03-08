@@ -13,9 +13,9 @@
                             direction="vertical"
                             :autoplay="true">
                             <el-carousel-item v-for="item in works.images" :key="item">
-                                <el-image :src="item" fit="cover">
+                                <ALImage :src="item" fit="cover">
 
-                                </el-image>
+                                </ALImage>
                             </el-carousel-item>
                         </el-carousel>
 
@@ -34,9 +34,9 @@
                         </div>
                         TA的作品集
                         <div v-for="item in userWorks.list" class="">
-                            <el-image :src="item.images[0]"
+                            <ALImage :src="item.images[0]"
                                       fit="cover"
-                                      style="width: 100%; height: 200px"></el-image>
+                                      style="width: 100%; height: 200px"></ALImage>
                         </div>
 
                         <div class="al-flex-container-center-h">
@@ -66,10 +66,11 @@
     import {WORKS_GET_BY_ID, WORKS_GET_BY_USER_ID} from "@/util/network/api/works/api-works";
     import HeaderTop from "@/components/public/HeaderTop";
     import AvatarNickname from "@/components/public/AvatarNickname";
+    import ALImage from "@/components/public/ALImage";
 
     export default {
         name: "WorksDetail",
-        components: {AvatarNickname, HeaderTop},
+        components: {ALImage, AvatarNickname, HeaderTop},
         props: {
             worksId: String | Number
         },

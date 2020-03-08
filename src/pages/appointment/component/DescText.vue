@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="al-p-left-20px " >
+        <div class="" >
 
             <h2>{{plainText.title}}</h2>
 

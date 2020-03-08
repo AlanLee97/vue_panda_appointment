@@ -18,6 +18,7 @@ import testUI from '../pages/test/TestUI'
 import store from "@/store";
 import TestStyle from "@/pages/test/TestStyle";
 import WorksDetail from "@/pages/works/WorksDetail";
+import ImageWaterfall from "@/components/public/ImageWaterfall";
 
 
 //1.使用插件
@@ -93,6 +94,10 @@ const routes = [
     {
         path:'/test/style',
         component: TestStyle
+    },
+    {
+        path:'/test/waterfall',
+        component: ImageWaterfall
     }
 ];
 const router = new VueRouter({

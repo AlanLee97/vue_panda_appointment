@@ -58,15 +58,17 @@
 
                     <div class="al-flex-container-center-vh" v-else>
                         <div class="">
-                            <a href="javascript:;" @click="goPage('/profile')">
-                                <el-image
-                                        class="al-box-radius-50 al-box-size-40px "
+                            <div @click="goPage('/profile')">
+                                <img
+                                        class="al-box-radius-50 al-box-size-40px al-cursor-pointer"
                                         :src="sessionUserInfo.headPortraitImg" />
-                            </a>
+                            </div>
                         </div>
 
                         <div>
-                            <span class="al-p-10px ">
+                            <span
+                                    @click="goPage('/profile')"
+                                    class="al-p-10px al-cursor-pointer">
                                 {{sessionUserInfo.username}}
                             </span>
                         </div>
@@ -76,7 +78,7 @@
                         </div>
 
                         <div class="">
-                            <a href="javascript:;" class="al-p-10px" @click="logout()">退出</a>
+                            <div class="al-p-10px al-cursor-pointer" @click="logout()">退出</div>
 
                         </div>
                     </div>
@@ -91,9 +93,11 @@
 
 <script>
     import store from "@/store";
+    import ALImage from "@/components/public/ALImage";
 
     export default {
         name: "HeaderTop",
+        components: {ALImage},
         props:{
             enableShadow: Boolean,
             logoUrl: String

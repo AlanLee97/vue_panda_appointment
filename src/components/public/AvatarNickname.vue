@@ -7,7 +7,7 @@
             <el-avatar :size="60"
                        :src="avatar"
                        @error="errorHandler">
-                <img src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
+                <ALImage src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
             </el-avatar>
 
             <div class="al-d-il-blk al-m-left-20px">
@@ -19,8 +19,10 @@
 </template>
 
 <script>
+    import ALImage from "@/components/public/ALImage";
     export default {
         name: "AvatarNickname",
+        components: {ALImage},
         props:{
             avatar:String,
             nickname: String,
