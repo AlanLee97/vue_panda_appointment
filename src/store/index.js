@@ -5,12 +5,17 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
     state:{
-        storeIsLogin:false
+        storeIsLogin:false,
+        storeUserInfo: {},
     },
     mutations:{
         setLoginState(state, loginState){
             state.storeIsLogin = loginState;
-            console.log("store: " + state.storeIsLogin);
+            console.log("storeIsLogin: " + state.storeIsLogin);
+        },
+
+        setStoreUserInfo(state, userInfo){
+            state.storeUserInfo = userInfo;
         }
     },
     actions:{

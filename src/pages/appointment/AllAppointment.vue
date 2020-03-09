@@ -4,6 +4,8 @@
 
         <el-row>
             <el-col :span="2"><pre> </pre></el-col>
+
+            <!--显示约拍信息-->
             <el-col :span="14">
                 <div style="width: auto"
                      class="al-box-shadow-radius al-m-20px"
@@ -58,11 +60,14 @@
                 </div>
 
             </el-col>
+
+
+            <!--侧边栏-->
             <el-col :span="6">
                 <div @click="goPage('/appointment/add')" class="al-cursor-pointer">
                     <el-card class="al-m-top-20px">
                         <ALImage
-                                class="al-width-100 al-height-100"
+                                class="al-width-100 al-height-100 al-hover-img"
                                 src="https://alanlee-panda-appointment.oss-cn-shenzhen.aliyuncs.com/images/assert/%E6%8B%8D%E7%85%A7.png" />
 
                         <div class="al-flex-container-center-h">

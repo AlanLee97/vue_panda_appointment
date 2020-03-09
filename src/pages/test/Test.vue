@@ -1,20 +1,30 @@
 <template>
     <div>
-        <center>
-            <h1>测试页面</h1>
-            <br>
-            <br>
-        </center>
 
-        <AvatarNickname />
+        <el-calendar >
+            <template
+                    slot="dateCell"
+                    slot-scope="{date, data}">
+                <div >
+                    {{ data.day.split('-').slice(1).join('-') }}
 
-        <TitleNode title-text="约拍22"/>
+                    <div v-for="item in calendarData.data.day">
 
+                        <span v-if="new Date() > new Date(item.split(' ')[0]) ? pastTime = true : pastTime = false"></span>
+                        <div v-if="item == data.day" :class="pastTime ? 'is-selected-past' : 'is-selected'">
+                            ✔ 已有预约
 
+                        </div>
+                    </div>
+                </div>
 
+            </template>
 
+        </el-calendar>
 
-
+<!--        <el-calendar>-->
+<!--            -->
+<!--        </el-calendar>-->
 
     </div>
 </template>
@@ -24,20 +34,22 @@
     import {request} from '../../util/network/request';
     import AvatarNickname from "@/components/public/AvatarNickname";
     import TitleNode from "@/components/public/TitleNode";
+    import {GMTToStr, strToGMT} from "@/util/time/TimeUtils";
 
     export default {
         name: "Test",
         components: {TitleNode, AvatarNickname},
         data:function(){
             return {
-                dialogImageUrl: '',
-                dialogVisible: false,
-                url:'http://localhost:8083/test/upload/return-id',
-                // url:'https://jsonplaceholder.typicode.com/posts/',
-                result:'',
-                imageUrl: '',
-                imgId:'',
-                disabled:true
+                calendarData:{
+                    date: new Date(),
+                    data: {
+                        type: "current-month",
+                        isSelected: true,
+                        day: [ "2020-03-08", "2020-01-03", "2020-01-02", "2019-11-27" ]
+                    }
+                },
+                pastTime: false,
             }
         },
         methods:{
@@ -98,10 +110,28 @@
                 console.log(file);
                 console.log(fileList);
             },
+
+
+            strToGMT(strTime){
+                return strToGMT(strTime);
+            },
+
+            /**
+             * @return {string}
+             */
+            GMTToStr(GMTTime){
+                return GMTToStr(GMTTime);
+            }
         }
     }
 </script>
 
 <style scoped>
+    .is-selected {
+        color: #00ffae;
+    }
 
+    .is-selected-past {
+        color: #C0C4CC;
+    }
 </style>

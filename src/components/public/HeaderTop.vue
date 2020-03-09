@@ -46,7 +46,7 @@
 
             <el-col :span="4" class="" >
                 <div class="al-flex-container-center-vh al-height-100">
-                    <div class="" v-if="isLogin !== true">
+                    <div class="" v-if="isLogin != true">
                         <a href="javascript:;"
                                 @click="goPage('/register')"
                                 class="al-p-10px">注册</a>
@@ -58,18 +58,18 @@
 
                     <div class="al-flex-container-center-vh" v-else>
                         <div class="">
-                            <div @click="goPage('/profile')">
+                            <div @click="goPage('/profile/' + localUserInfo.id)">
                                 <img
                                         class="al-box-radius-50 al-box-size-40px al-cursor-pointer"
-                                        :src="sessionUserInfo.headPortraitImg" />
+                                        :src="this.localUserInfo.headPortraitImg" />
                             </div>
                         </div>
 
                         <div>
                             <span
-                                    @click="goPage('/profile')"
+                                    @click="goPage('/profile/' + localUserInfo.id)"
                                     class="al-p-10px al-cursor-pointer">
-                                {{sessionUserInfo.username}}
+                                {{localUserInfo.username}}
                             </span>
                         </div>
 
@@ -107,20 +107,21 @@
             return {
                 isLogin:false,
                 activeNav: '',
+                localUserInfo: {},
             }
         },
         mounted(){
             this.activeNav = sessionStorage.getItem("activeNav");
-            this.getSessionUserInfo();
+            this.getLocalUserInfo();
         },
         computed:{
             getShadow: function () {
                 return this.enableShadow? 'al-box-shadow' : '';
             },
-
-
-
         },
+
+
+
         methods: {
             goPage:function (path) {
                 this.gotoPage(path);
@@ -132,30 +133,31 @@
                 sessionStorage.setItem("activeNav",keyPath[0]);
 
             },
-            getSessionUserInfo:function () {
 
-                this.sessionUserInfo = JSON.parse(localStorage.getItem("userinfo"));
-                //this.isLogin = JSON.parse(sessionStorage.getItem("isLogin"));
-                console.log("=========HeaderTop：登录状态" + store.state.storeIsLogin);
-                this.isLogin = store.state.storeIsLogin;
-                console.log(this.sessionUserInfo);
-                console.log(this.isLogin);
-            },
-            logout:function () {
+            logout() {
 
                 localStorage.setItem("isLogin", "no");
                 localStorage.removeItem("userinfo");
-                this.sessionUserInfo = {};
+                this.localUserInfo = {};
 
                 this.isLogin = false;
                 this.$store.commit("setLoginState", false);
 
                 this.goPage('/index')
             },
-            getLogo(url='../../assets/pandalogo.png') {
-                console.log(url);
-                return url;
-            }
+
+            getLocalUserInfo() {
+
+                this.localUserInfo = JSON.parse(localStorage.getItem("userinfo"));
+                //this.isLogin = JSON.parse(sessionStorage.getItem("isLogin"));
+                //console.log("=========HeaderTop：登录状态" + store.state.storeIsLogin);
+                this.isLogin = store.state.storeIsLogin;
+                // console.log(this.localUserInfo);
+                // console.log(this.isLogin);
+            },
+
+
+
         }
 
     }

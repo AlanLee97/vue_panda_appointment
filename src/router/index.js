@@ -47,8 +47,9 @@ const routes = [
         component:register
     },
     {
-        path:'/profile',
+        path:'/profile/:uid',
         component:profile,
+        props: true,
         meta: {
             requireAuth: true
         }

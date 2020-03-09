@@ -154,8 +154,9 @@
                                 localStorage.setItem("isLogin", "yes");
 
                                 this.$store.commit("setLoginState", true);
+                                this.$store.commit("setStoreUserInfo", res.data.rs);
                                 // console.log('userinfo');
-                                this.goPage('/profile');
+                                this.goPage('/profile/' + res.data.rs.id);
                             }else {
                                 this.$message('登录失败');
                             }

@@ -18,48 +18,48 @@
                     <div class="">
                         <div class="box-shadow-radius-bgwhite-p20-m20">
                             <span>头像</span>
-                            <el-avatar :src="userinfo.headPortraitImg"></el-avatar>
+                            <el-avatar :src="userInfo.headPortraitImg"></el-avatar>
                         </div>
 
                         <div class="box-shadow-radius-bgwhite-p20-m20">
                             <span>用户名</span>
-                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.username"></el-input>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userInfo.username"></el-input>
 
                         </div>
 
                         <div class="box-shadow-radius-bgwhite-p20-m20">
                             <span>昵称</span>
-                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.nickname"></el-input>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userInfo.nickname"></el-input>
 
                         </div>
 
                         <div class="box-shadow-radius-bgwhite-p20-m20">
                             <span>性别</span>
-                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.gender"></el-input>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userInfo.gender"></el-input>
 
                         </div>
 
                         <div class="box-shadow-radius-bgwhite-p20-m20">
                             <span>年龄</span>
-                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.age"></el-input>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userInfo.age"></el-input>
 
                         </div>
 
                         <div class="box-shadow-radius-bgwhite-p20-m20">
                             <span>手机号</span>
-                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.nickname"></el-input>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userInfo.nickname"></el-input>
 
                         </div>
 
                         <div class="box-shadow-radius-bgwhite-p20-m20">
                             <span>身份</span>
-                            <el-input class="width-50" :disabled="isDisabled" :value="userinfo.identity"></el-input>
+                            <el-input class="width-50" :disabled="isDisabled" :value="userInfo.identity"></el-input>
                         </div>
 
                         <div class="box-shadow-radius-bgwhite-p20-m20">
                             <span>认证</span>
                             <el-input class="width-50" :disabled="isDisabled"
-                                      :value="userinfo.isAuthenticated"></el-input>
+                                      :value="userInfo.isAuthenticated"></el-input>
 
                         </div>
                     </div>
@@ -88,12 +88,12 @@
 
                         <div style="padding: 14px;">
                             <div @click="drawer = true" class="block">
-                                <el-avatar :size="100" :src="user_face"></el-avatar>
+                                <el-avatar :size="100" :src="userInfo.headPortraitImg"></el-avatar>
                             </div>
                         </div>
 
                         <div>
-                            <span class="al-font-weight-100 al-fontsize-50px">{{userinfo.nickname}}</span>
+                            <span class="al-font-weight-100 al-fontsize-50px">{{userInfo.nickname}}</span>
                         </div>
 
                         <!--<el-button @click="goPage('/index')">返回主页</el-button>-->
@@ -105,112 +105,49 @@
 
 
         <!-- 下半部分-->
-<!--
-
-        <el-row>
-            <el-col :span="3">
-                <pre> </pre>
-            </el-col>
-            <el-col :span="18">
-                <el-tabs stretch v-model="activeName" @tab-click="handleClick">
-
-                    <el-tab-pane label="我的约拍" name="first">
-                        &lt;!&ndash;                        {{this.appointment}}&ndash;&gt;
-                        <div v-for="item in this.appointment" class="al-box-shadow-radius al-p-10px al-m-top-20px">
-                            <DescText :plain-text="item"/>
-                            <ALImage :src="item.image"
-                                      class="al-width-50 al-m-20px"></ALImage>
-                        </div>
-                    </el-tab-pane>
-
-                    <el-tab-pane label="相册" name="second">
-
-&lt;!&ndash;                        <div v-for="item in album" >&ndash;&gt;
-&lt;!&ndash;                            <div class="al-flex-wrap">&ndash;&gt;
-&lt;!&ndash;                                <ALImage :src="item" class="al-box-size-200px"/>&ndash;&gt;
-&lt;!&ndash;                            </div>&ndash;&gt;
-&lt;!&ndash;                        </div>&ndash;&gt;
-
-
-
-                    </el-tab-pane>
-
-                    <el-tab-pane label="作品" name="third">
-                        <div>
-
-                        </div>
-                    </el-tab-pane>
-
-                    <el-tab-pane label="文章" name="fourth">
-                        <div>
-                            <el-row>
-                                <el-col :span="24" v-for="(o, index) in 20" :key="o" :offset="index > 0 ? 2 : 0">
-                                    <el-card :body-style="{ padding: '0px' }">
-                                        <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                                             class="article-image">
-                                        <div style="padding: 14px;">
-                                            <span>好吃的汉堡</span>
-                                            <div class="bottom clearfix">
-                                                <time class="time">{{ currentDate }}</time>
-                                                <el-button type="text" class="button">操作按钮</el-button>
-                                            </div>
-                                        </div>
-                                    </el-card>
-                                </el-col>
-                            </el-row>
-                        </div>
-                    </el-tab-pane>
-
-                </el-tabs>
-            </el-col>
-            <el-col :span="3">
-                <pre> </pre>
-            </el-col>
-        </el-row>
--->
-
-
 
         <div>
-            <el-row class="al-overflow-scroll-hide-bar" style="height: 600px;">
+            <el-row class="al-overflow-scroll-hide-bar" style="height: 700px;">
                 <el-col :span="4">
                     <el-menu
                             default-active="1"
                             class=""
-                            style="height: 600px"
+                            style="height: 700px"
                             @select="handleSelect"
                             @open="handleOpen"
                             @close="handleCloseNav">
                         <el-menu-item index="1">
                             <i class="el-icon-camera"></i>
-                            <span slot="title">我的约拍</span>
+                            <span slot="title">约拍</span>
                         </el-menu-item>
                         <el-menu-item index="2">
                             <i class="el-icon-document"></i>
-                            <span slot="title">我的作品</span>
+                            <span slot="title">作品</span>
                         </el-menu-item>
                         <el-menu-item index="3">
                             <i class="el-icon-picture-outline-round"></i>
-                            <span slot="title">我的相册</span>
+                            <span slot="title">相册</span>
                         </el-menu-item>
-<!--                        <el-menu-item index="4">-->
-<!--                            <i class="el-icon-setting"></i>-->
-<!--                            <span slot="title">导航四</span>-->
-<!--                        </el-menu-item>-->
+                        <el-menu-item index="4">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">排期</span>
+                        </el-menu-item>
                     </el-menu>
                 </el-col>
 
                 <el-col :span="20" class="">
                     <div v-if="this.menuSelect == 1" class=""
-                         style="height: 600px; overflow: scroll">
+                         style="height: 700px; overflow: scroll">
                         <el-row>
                             <el-col :span="24">
                                 <div class="al-flex-wrap"
                                      style="height: 100%; width: 100%;">
                                     <div v-for="item in this.appointment"
                                          class="">
-                                        <div class="al-box-pretty "
-                                             style="width: 300px; height: 400px">
+                                        <div class="al-box-pretty al-cursor-pointer"
+                                             style="width: 300px; height: 400px"
+                                             @click="goPage('/appointment/detail/' + item.id)"
+                                        >
                                             <DescText :plain-text="item"/>
                                             <ALImage :src="item.image"
                                                       fit="cover"
@@ -225,7 +162,7 @@
 
                     <!-- 我的作品 -->
                     <div v-if="this.menuSelect == 2" class=""
-                         style="height: 600px; overflow: scroll">
+                         style="height: 700px; overflow: scroll">
                         <el-row>
                             <el-col :span="24">
                                 <div class="al-flex-wrap"
@@ -282,9 +219,31 @@
 
                     </div>
 
-<!--                    <div v-else-if="this.menuSelect == 4">-->
-<!--                        其他页面-->
-<!--                    </div>-->
+                    <div v-else-if="this.menuSelect == 4">
+
+                        <el-calendar >
+                            <template
+                                    slot="dateCell"
+                                    slot-scope="{date, data}">
+                                <div >
+                                    {{ data.day.split('-').slice(1).join('-') }}
+
+                                    <div v-for="item in calendarData.data.day">
+                                        <span v-if="new Date() > new Date(item) ? pastTime = true : pastTime = false"></span>
+                                        <div v-if="item == data.day" :class="pastTime ? 'is-selected-past' : 'is-selected'">
+                                            ✔ 已有预约
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </template>
+
+                        </el-calendar >
+
+
+
+                    </div>
                 </el-col>
 
             </el-row>
@@ -303,14 +262,20 @@
     import DescText from "@/pages/appointment/component/DescText";
     import {APPOINTMENT_GET_BY_USER_ID} from "@/util/network/api/appointment/api-appointment";
     import {WORKS_GET_BY_USER_ID} from "@/util/network/api/works/api-works";
-    import {USER_GET_ALBUM} from "@/util/network/api/user/api-user";
+    import {USER_GET_ALBUM, USER_GET_BY_ID} from "@/util/network/api/user/api-user";
     import ImageWaterfall from "@/components/public/ImageWaterfall";
     import DisplayGridImage from "@/components/public/DisplayGridImage";
     import ALImage from "@/components/public/ALImage";
+    import {ORDER_GRT_BY_USER_ID, SCHEDULING_GRT_BY_USER_ID} from "@/util/network/api/order/api-order";
 
 
     export default {
         components: {ImageWaterfall, DescText, AvatarNickname, HeaderTop, DisplayGridImage, ALImage},
+
+        props: {
+            uid: String | Array
+        },
+
         data() {
             return {
                 isDisabled: true,
@@ -319,48 +284,44 @@
                 activeName: 'first',
                 fit: 'cover',
                 cityLogin: 'https://www.mdyuepai.com/public/static/index/img/common/city.png',
-                user_face: 'https://hbimg.huabanimg.com/666a1a1f72c5eae973ca0f0977adca58b89a119f236a1-3vh1WC_fw658',
                 image_url: 'https://cdn-isux.qq.com/upload/detail/f57Y2wEryDwjWmTr2BypYaCA6CgSKjknAJtGRIR4FcR.jpeg',
                 currentDate: new Date(),
-                userinfo: [],
+                userInfo: {},
                 works: [],
                 appointment: [],
                 album: [],
-                imgsArr: [
-                    {
-                        src: "https://alanlee-panda-appointment.oss-cn-shenzhen.aliyuncs.com/images/isux/QlOpWqTDznuWIOABg5djTreijHQs6WzUzsVu0rBHghN.jpg",
-                        href: "index",
-                    },
-                    {
-                        src: "https://alanlee-panda-appointment.oss-cn-shenzhen.aliyuncs.com/images/isux/QlOpWqTDznuWIOABg5djTreijHQs6WzUzsVu0rBHghN.jpg",
-                        href: "index",
-                    },
-                    {
-                        src: "https://alanlee-panda-appointment.oss-cn-shenzhen.aliyuncs.com/images/isux/QlOpWqTDznuWIOABg5djTreijHQs6WzUzsVu0rBHghN.jpg",
-                        href: "index",
-                    },
-                ],
-
                 menuSelect: 1,
+                order:{},
+                appointmentScheduling: [],
+                calendarData:{
+                    date: new Date(),
+                    data: {
+                        type: "current-month",
+                        isSelected: true,
+                        day: []
+                    }
+                },
+                pastTime: false,
             };
         },
         created() {
 
         },
         mounted() {
-            this.userinfo = JSON.parse(localStorage.getItem("userinfo"));
-            this.user_face = this.userinfo.headPortraitImg;
-            // console.log(this.userinfo);
-            this.getWorks(1);
-            this.getAppointmentByUserId(this.userinfo.id);
-            this.getAlbum(this.userinfo.id);
+            this.userInfo = this.getUserInfo(this.uid);
+            // console.log(this.userInfo);
+            this.getWorks(this.uid, 1);
+            this.getAppointmentByUserId(this.uid);
+            this.getAlbum(this.uid);
+            this.getOrderByUserId(this.uid);
+            this.getSchedulingByUserId(this.uid);
         },
         methods: {
             goPage: function (path) {
                 this.gotoPage(path);
             },
             getUserInfo: function () {
-                //this.userinfo = var_userinfo;
+                //this.userInfo = var_userinfo;
             },
             handleClick(tab, event) {
                 console.log(tab, event);
@@ -374,10 +335,22 @@
                     .catch(_ => {
                     });
             },
-            getWorks(pageNo = 1) {
+
+            getUserInfo(uid){
+                request({
+                    url: USER_GET_BY_ID + uid
+                }).then(res => {
+                    console.log(res);
+                    this.userInfo = res.data.data;
+                }).catch(err => {
+                    console.log(err)
+                })
+            },
+
+            getWorks(uid, pageNo = 1) {
                 request({
                     method: 'get',
-                    url: WORKS_GET_BY_USER_ID + this.userinfo.id + `?pageNum=${pageNo}&pageSize=2`,
+                    url: WORKS_GET_BY_USER_ID + uid + `?pageNum=${pageNo}&pageSize=2`,
                 }).then(res => {
                     // console.log(res);
                     this.works = res.data.data;
@@ -419,6 +392,36 @@
                     console.log(err)
                 })
             },
+
+            getOrderByUserId(uid){
+                request({
+                    url: ORDER_GRT_BY_USER_ID + uid
+                }).then(res => {
+                    console.log(res);
+                    this.order = res.data.data;
+                }).catch(err => {
+                    console.log(err)
+                })
+            },
+
+            //获取排期
+            getSchedulingByUserId(uid){
+                request({
+                    url: SCHEDULING_GRT_BY_USER_ID + uid
+                }).then(res => {
+                    console.log(res);
+                    this.appointmentScheduling = res.data.data;
+
+                    for (let i = 0; i < this.appointmentScheduling.length; i++) {
+                        this.calendarData.data.day.push(
+                            this.appointmentScheduling[i].startDateTime.split(' ')[0]
+                        );
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
+            },
+
 
             handleOpen(key, keyPath) {
                 console.log(key, keyPath);
@@ -478,6 +481,12 @@
 </script>
 
 
-<style>
+<style scoped>
+    .is-selected {
+        color: #00ffae;
+    }
 
+    .is-selected-past {
+        color: #C0C4CC;
+    }
 </style>

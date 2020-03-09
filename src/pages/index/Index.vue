@@ -38,7 +38,7 @@
                                     <div class="al-d-blk al-cursor-pointer"
                                          @click="goPage('/appointment/detail/' + item.id)">
                                         <el-card :body-style="{ padding: '0px' }" >
-                                            <ALImage :src="item.image" style="height: 200px" fit="cover" ></ALImage>
+                                            <ALImage :src="item.image" style="height: 200px" fit="cover" class=al-hover-img ></ALImage>
                                             <div style="padding: 14px;">
                                                 <span>{{item.title}}</span>
                                             </div>
@@ -47,6 +47,11 @@
                                 </el-col>
                             </el-row>
                         </div>
+
+                        <!-- 查看更多 -->
+                        <el-divider content-position="right">
+                            <div class="al-cursor-pointer" @click="goPage('appointment/all')">更多</div>
+                        </el-divider>
                     </div>
 
 
@@ -108,9 +113,44 @@
                     </div>
 
 
-                    <!-- 文章推荐 -->
+                    <!-- 作品展示 -->
                     <div>
-                        <TitleNode title-text="文章推荐" />
+                        <TitleNode title-text="作品展示" />
+
+                        <!--显示作品-->
+                        <div class="">
+                            <div class="al-box-shadow-radius al-m-top-20px al-p-10px"
+                                 v-for="item in this.works.list">
+                                <!--显示作品信息-->
+                                <div class="al-cursor-pointer"
+                                     @click="goPage('/works/detail/' + item.id)">
+                                    <AvatarNickname
+
+                                            :avatar="item.tuser.headPortraitImg"
+                                            :nickname="item.tuser.nickname"
+                                            :desc="item.datetime"
+                                    />
+                                    <el-divider class="al-m-top--20px"></el-divider>
+                                    <div class="item_info">
+                                        <div>
+                                            {{item.introduction}}
+                                        </div>
+
+                                        <div class=" al-m-top-20px">
+                                            <DisplayGridImage :data-source="item.images" />
+                                            <!--                                <el-image v-for="(img, index_img) in item.images" :src="img" />-->
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 查看更多 -->
+                        <el-divider>
+                            <el-button @click="goPage('works/all')">查看更多</el-button>
+                        </el-divider>
+
                     </div>
 
                 </el-col>
@@ -130,17 +170,23 @@
     import {request} from "@/util/network/request";
     import HeaderTop from "@/components/public/HeaderTop";
     import TitleNode from "@/components/public/TitleNode";
+    import ALImage from "@/components/public/ALImage";
+    import AvatarNickname from "@/components/public/AvatarNickname";
+    import DisplayGridImage from "@/components/public/DisplayGridImage";
+
     import {CAROUSEL_GET_ALL} from "@/util/network/api/carousel/api-carousel";
     import {USER_GET_ALL_COMMON} from "@/util/network/api/user/api-user";
     import {APPOINTMENT_GET_NEWEST} from "@/util/network/api/appointment/api-appointment";
-    import ALImage from "@/components/public/ALImage";
+    import {WORKS_GET_ALL_USER_PAGINATION} from "@/util/network/api/works/api-works";
 
 
     export default {
         components: {
             ALImage,
             TitleNode,
-            HeaderTop
+            HeaderTop,
+            AvatarNickname,
+            DisplayGridImage
         },
         data() {
             return {
@@ -151,6 +197,7 @@
                 newestAppointment:{},
                 modelRecommend:{},
                 photographerRecommend:{},
+                works: {},
             }
         },
 
@@ -162,6 +209,8 @@
             this.getUserRecommend(1);
             //模特推荐
             this.getUserRecommend(2);
+            //作品展示
+            this.getAllWorks();
         },
 
         methods: {
@@ -233,6 +282,19 @@
             },
 
 
+            getAllWorks(pageNum=1, pageSize=3) {
+                request({
+                    url: WORKS_GET_ALL_USER_PAGINATION + `?pageNum=${pageNum}&pageSize=${pageSize}`,
+                    method:'get',
+                    data:{},
+                    headers:{}
+                }).then(res => {
+                    console.log(res);
+                    this.works = res.data.data;
+                }).catch(err => {
+                    console.log(err)
+                })
+            }
 
         }
 
@@ -240,7 +302,5 @@
 </script>
 
 <style scoped>
-    .cursor-pointer{
-        cursor: pointer;
-    }
+
 </style>

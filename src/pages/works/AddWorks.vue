@@ -27,7 +27,8 @@
                     <div class="al-m-top-20px">
                         <el-upload
                                 ref="upload2"
-                                :action="url"
+                                :action="uploadUrl"
+                                :data="this.uploadImgData"
                                 list-type="picture-card"
                                 multiple
                                 name="file"
@@ -89,15 +90,19 @@
         data() {
             return {
             	//上传图片的地址
-	            url: this.createUrl('/upload/image/return-id'),
+	            uploadUrl: this.createUrl('/upload/image/return-id'),
 	            // url:'https://jsonplaceholder.typicode.com/posts/',
 
 	            //要发送的数据
 	            sendData: {
-		            uid: 1,
+		            uid: this.$store.state.storeUserInfo.id,
 		            content: '',
 		            imgIds: ''
 	            },
+
+                uploadImgData: {
+	                uid: this.$store.state.storeUserInfo.id
+                },
 
                 dialogImageUrl: '',
                 dialogVisible: false,
@@ -150,20 +155,21 @@
 
 
 	        //发表按钮的点击事件
-            sendRequest: function () {
+            sendRequest() {
         		//this.showLoading = true;
             	//图片上传
                 this.submitUpload();
             },
 
 	        //发送请求
-	        startRequest:function(){
-		        let userinfo = this.getUserInfo();
-		        // this.sendData.uid = userinfo.id;
+	        startRequest(){
+
+                console.log("上传的数据：");
+                console.log(this.sendData);
 
 		        request({
 			        method:'post',
-			        url: '/works/add',
+			        url: this.createUrl('/works/add'),
 			        data: this.qsParam(this.sendData),
 			        headers:{
 				        'Content-Type': 'application/x-www-form-urlencoded'
@@ -173,16 +179,14 @@
 			        console.log(res);
 			        if (res.data.code == 200){
 			        	this.$message.success("发表成功");
-			        	setTimeout(function () {
-							//this.showLoading = false;
-					        this.goPage('/index');
-				        }, 500);
+                        this.goPage('/works/all')
 			        }else {
 				        this.$message.success("发表失败");
 			        }
 		        }).catch(err => {
 			        console.log(err);
 		        })
+
 	        },
 
 	        //图片上传成功的回调函数

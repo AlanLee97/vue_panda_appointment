@@ -13,44 +13,35 @@
 
     import {request} from "@/util/network/request";
     import store from "@/store";
-    import vueWaterfall from 'vue-waterfall-easy';
-    import {USER_GET_ALBUM} from "@/util/network/api/user/api-user";
 
     export default {
         name: 'app',
-        component: {
-            vueWaterfall
-        },
+        component: {},
 
         data(){
             return {
-                localUserInfo:{},
+                globalLocalUserInfo:{},
                 isLogin:false,
             }
         },
         created() {
             console.log(localStorage.getItem("isLogin"));
 
+            this.getLocalUserInfo();
 
             if ("yes" === localStorage.getItem("isLogin")){
                 this.isLogin = true;
                 this.$store.commit("setLoginState", true);
+                this.$store.commit("setStoreUserInfo", this.globalLocalUserInfo);
+
             }
 
-            console.log("打印store state的登录状态：" + this.$store.state.storeIsLogin);
-
-            this.getLocalUserInfo();
 
 
         },
         methods: {
             getLocalUserInfo:function () {
-
-                this.localUserInfo = JSON.parse(localStorage.getItem("userinfo"));
-                this.isLogin = JSON.parse(localStorage.getItem("isLogin"));
-                // console.log(this.sessionUserInfo);
-                // console.log("===========App.vue isLogin");
-                // console.log(this.isLogin);
+                this.globalLocalUserInfo = JSON.parse(localStorage.getItem("userinfo"));
             },
 
         }
