@@ -40,6 +40,20 @@
                                 动态
                             </span>
                         </el-menu-item>
+                        <el-menu-item
+                                index="4"
+                                @click="goPage('/spot/all')">
+                            <span class="al-title-h2">
+                                打卡点
+                            </span>
+                        </el-menu-item>
+                        <el-menu-item
+                                index="5"
+                                @click="goPage('/activity/all')">
+                            <span class="al-title-h2">
+                                活动
+                            </span>
+                        </el-menu-item>
                     </el-menu>
                 </div>
             </el-col>
@@ -47,13 +61,11 @@
             <el-col :span="4" class="" >
                 <div class="al-flex-container-center-vh al-height-100">
                     <div class="" v-if="isLogin != true">
-                        <a href="javascript:;"
-                                @click="goPage('/register')"
-                                class="al-p-10px">注册</a>
+                        <span @click="goPage('/register')"
+                                class="al-p-10px al-cursor-pointer">注册</span>
                                 /
-                        <a href="javascript:;"
-                                @click="goPage('/login')"
-                                class="al-p-10px">登录</a>
+                        <span @click="goPage('/login')"
+                                class="al-p-10px al-cursor-pointer">登录</span>
                     </div>
 
                     <div class="al-flex-container-center-vh" v-else>

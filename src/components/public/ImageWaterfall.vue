@@ -1,7 +1,8 @@
 <template>
-    <div>
-        <div id="content">
-            <vue-waterfall-easy :imgsArr="dataSource" ></vue-waterfall-easy>
+    <div class="">
+        <div id="content" >
+            <vue-waterfall-easy
+                    :imgsArr="dataSource" ></vue-waterfall-easy>
         </div>
     </div>
 </template>
@@ -43,6 +44,7 @@
         position: absolute;    /*必须*/
         top:10px;              /*top必须，大小可控制*/
         bottom:0;              /*bottom必须，一直延申到当前块底部*/
-        width:100%;
+        width:83%;
+        overflow: -moz-scrollbars-none;
     }
 </style>

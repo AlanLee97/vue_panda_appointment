@@ -39,19 +39,15 @@
         mounted(){
             this.getAppointmentType();
 
-            this.getUserRecommend(1);
-            this.getUserRecommend(2);
-
-
         },
 
         methods:{
-            getAppointmentType(){
+            getAppointmentType(pageNum=1){
                 request({
-                    url: APPOINTMENT_TYPE_GET_ALL,
+                    url: APPOINTMENT_TYPE_GET_ALL + `?pageNum=${pageNum}&pageSize=0`,
                 }).then(res => {
-                    // console.log(res);
-                    this.appointmentType = res.data.data;
+                    console.log(res);
+                    this.appointmentType = res.data.data.list;
                     this.appointmentType.map((item, index) => {
                         item.cover_url = this.cover_url[index]
                     });
@@ -60,34 +56,6 @@
                 })
             },
 
-            getUserRecommend(identity){
-                let headers = {
-                    // 'Content-Type': 'application/json'
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                };
-                let data = {
-                    identity: identity
-                };
-
-                request({
-                    url: USER_GET_ALL_COMMON + "/" + identity,
-                    method: 'post',
-                    data: this.qsParam(data),
-                    headers
-                }).then(res => {
-                    if (identity === 1){
-                        // console.log("==============摄影师用户信息");
-                        // console.log(res);
-                        this.photographerRecommend = res.data.data;
-                    }else if(identity === 2){
-                        // console.log("==============模特用户信息");
-                        // console.log(res);
-                        this.modelRecommend = res.data.data;
-                    }
-                }).catch(err => {
-                    console.log(err)
-                });
-            }
         }
     }
 </script>

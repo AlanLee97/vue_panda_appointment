@@ -40,18 +40,21 @@
                     <div class="al-m-left-20px">
                         <TitleNode title-text="推荐约拍" />
                         <div v-for="(item, index) in newestAppointment">
-                            <el-card
+                            <div @click="goPage('/appointment/detail/' + item.id)">
+                                <el-card
 
-                                    :body-style="{padding: '0px'}"
-                                     class="al-m-top-10px">
-                                <ALImage :src="item.image"
-                                          style="height: 150px"
-                                          fit="cover"></ALImage>
-                                <div @click="goPage('/appointment/detail/' + item.id)"
-                                        class="al-flex-container-center-h">
-                                    {{item.title}}
-                                </div>
-                            </el-card>
+                                        :body-style="{padding: '0px'}"
+                                        class="al-m-top-10px">
+                                    <ALImage :src="item.image"
+                                             class="al-cursor-pointer"
+                                             style="height: 150px"
+                                             fit="cover"></ALImage>
+                                    <div class="al-flex-container-center-h">
+                                        {{item.title}}
+                                    </div>
+                                </el-card>
+                            </div>
+
                         </div>
                     </div>
 
@@ -100,7 +103,7 @@
         },
 
         methods:{
-            goPage:function (path) {
+            goPage(path) {
                 this.gotoPage(path);
             },
 

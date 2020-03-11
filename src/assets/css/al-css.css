@@ -306,6 +306,15 @@
     flex-grow: 1;
 }
 
+.al-flex-justify-space-between{
+    display: flex;
+    justify-content: space-between;
+}
+
+.al-flex-justify-space-around{
+    display: flex;
+    justify-content: space-around;
+}
 /*----------- 弹性布局 ----------*/
 
 
@@ -1195,4 +1204,54 @@
     padding: 10px;
     margin: 10px;
 }
+
+.al-box-pretty-no-bottom{
+    box-shadow: 2px 2px 8px #EFEFEF;
+    border-radius:10px 10px 0 0;
+    background-color: #FFFFFF;
+    margin: 10px 10px 0 10px;
+}
 /*================END 盒子================*/
+
+
+/*================BEGIN 遮罩================*/
+/*使用时需指定元素的宽高*/
+.al-mask-black-10{
+    background-color: rgba(0,0,0,0.1);
+}
+
+.al-mask-black-20{
+    background-color: rgba(0,0,0,0.2);
+}
+
+.al-mask-black-30{
+    background-color: rgba(0,0,0,0.3);
+}
+
+.al-mask-black-40{
+    background-color: rgba(0,0,0,0.4);
+}
+
+.al-mask-black-50{
+    background-color: rgba(0,0,0,0.5);
+}
+
+.al-mask-black-60{
+    background-color: rgba(0,0,0,0.6);
+}
+
+
+.al-mask-black-70{
+    background-color: rgba(0,0,0,0.7);
+}
+
+
+.al-mask-black-80{
+    background-color: rgba(0,0,0,0.8);
+}
+
+.al-mask-black-90{
+    background-color: rgba(0,0,0,0.9);
+}
+
+/*================END 遮罩================*/

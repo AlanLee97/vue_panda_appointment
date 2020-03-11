@@ -252,29 +252,19 @@
             },
 
 
-            getUserRecommend(identity){
-                let headers = {
-                    // 'Content-Type': 'application/json'
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                };
-                let data = {
-                    identity: identity
-                };
+            getUserRecommend(identity, pageNum=1, pageSize=0){
 
                 request({
-                    url: USER_GET_ALL_COMMON + "/" + identity,
-                    method: 'post',
-                    data: this.qsParam(data),
-                    headers
+                    url: USER_GET_ALL_COMMON + identity + `?pageNum=${pageNum}&pageSize=${pageSize}`
                 }).then(res => {
                     if (identity === 1){
                         // console.log("==============摄影师用户信息");
                         // console.log(res);
-                        this.photographerRecommend = res.data.data;
+                        this.photographerRecommend = res.data.data.list;
                     }else if(identity === 2){
                         // console.log("==============模特用户信息");
                         // console.log(res);
-                        this.modelRecommend = res.data.data;
+                        this.modelRecommend = res.data.data.list;
                     }
                 }).catch(err => {
                     console.log(err)

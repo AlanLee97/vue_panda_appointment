@@ -2,6 +2,9 @@
 
 //登录
 export const USER_LOGIN = 'http://182.61.15.28:1111/login/';//post
+//注册
+export const USER_REGISTER = 'user/register/';//post
+
 
 //获取用户信息
 export const USER_GET_BY_ID = 'user/get/';

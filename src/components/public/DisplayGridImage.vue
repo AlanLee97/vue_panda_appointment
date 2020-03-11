@@ -4,10 +4,10 @@
         <div  class="al-flex-wrap " >
             <div v-for="item in dataSource" class="" >
                 <div v-if="dataSource.length <= 1" class="al-overflow-hide">
-                    <el-image :fit="displayMode"
+                    <ALImage :fit="displayMode"
                               :src="item"
                               :preview-src-list="dataSource"
-                              class="al-hover-img" ></el-image>
+                              class="al-hover-img" ></ALImage>
                 </div>
                 <div v-else>
                     <ALImage :fit="displayMode"

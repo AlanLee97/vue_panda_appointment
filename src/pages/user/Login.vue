@@ -18,7 +18,7 @@
                     </div>
 
                     <div>
-                        <div class="al-title-h1  al-flex-container-center-h">熊猫约拍</div>
+                        <div class="al-title-h1  al-flex-container-center-h">熊猫约拍 - 登录</div>
                     </div>
                     <br>
                     <el-form

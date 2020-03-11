@@ -71,7 +71,7 @@
                                 src="https://alanlee-panda-appointment.oss-cn-shenzhen.aliyuncs.com/images/assert/%E6%8B%8D%E7%85%A7.png" />
 
                         <div class="al-flex-container-center-h">
-                            发布我的约拍
+                            快来发布你的约拍吧！
                         </div>
                     </el-card>
                 </div>

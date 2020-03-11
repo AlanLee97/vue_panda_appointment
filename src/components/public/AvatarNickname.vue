@@ -6,6 +6,7 @@
         al-flex-container">
             <el-avatar :size="60"
                        :src="avatar"
+                       class="al-cursor-pointer"
                        @error="errorHandler">
                 <ALImage src="https://cube.elemecdn.com/e/fd/0fc7d20532fdaf769a25683617711png.png"/>
             </el-avatar>
@@ -39,6 +40,10 @@
         methods: {
             errorHandler() {
                 return true
+            },
+
+            goPage(path){
+                this.gotoPage(path);
             }
         },
 

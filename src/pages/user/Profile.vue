@@ -77,29 +77,35 @@
         <!--上半部分-->
         <el-row>
             <el-col :span="24">
-                <el-card :body-style="{ padding: '0px' }">
+                <div class="" >
+                    <!-- 背景图 -->
                     <ALImage
-                            class="image"
+                            class=""
                             :src="image_url"
                             :fit="fit">
-
                     </ALImage>
-                    <div class="al-flex-container-center-vh al-flex-direction-col al-m-bottom-20px">
 
-                        <div style="padding: 14px;">
-                            <div @click="drawer = true" class="block">
-                                <el-avatar :size="100" :src="userInfo.headPortraitImg"></el-avatar>
+                    <el-row>
+                        <el-col :span="2"><pre> </pre></el-col>
+                        <el-col :span="20">
+                            <!-- 头像与昵称 -->
+                            <div class="al-flex-container-center-v al-box-pretty" >
+                                <div style="padding: 14px;">
+                                    <div @click="drawer = true" class="block">
+                                        <el-avatar :size="100" :src="userInfo.headPortraitImg"></el-avatar>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <span class="al-font-weight-100 al-fontsize-50px">{{userInfo.nickname}}</span>
+                                </div>
                             </div>
-                        </div>
+                        </el-col>
+                        <el-col :span="2"><pre> </pre></el-col>
+                    </el-row>
 
-                        <div>
-                            <span class="al-font-weight-100 al-fontsize-50px">{{userInfo.nickname}}</span>
-                        </div>
 
-                        <!--<el-button @click="goPage('/index')">返回主页</el-button>-->
-                    </div>
-
-                </el-card>
+                </div>
             </el-col>
         </el-row>
 
@@ -107,42 +113,53 @@
         <!-- 下半部分-->
 
         <div>
-            <el-row class="al-overflow-scroll-hide-bar" style="height: 700px;">
-                <el-col :span="4">
+            <el-row>
+                <el-col :span="2"><pre> </pre></el-col>
+                <el-col :span="20">
                     <el-menu
+                            mode="horizontal"
                             default-active="1"
-                            class=""
-                            style="height: 700px"
+                            class="al-flex-justify-space-between al-box-pretty-no-bottom"
                             @select="handleSelect"
                             @open="handleOpen"
                             @close="handleCloseNav">
-                        <el-menu-item index="1">
-                            <i class="el-icon-camera"></i>
-                            <span slot="title">约拍</span>
+                        <el-menu-item index="1" class="">
+                            <div>
+                                <i class="el-icon-camera"></i>
+                                <span slot="title">约拍</span>
+                            </div>
                         </el-menu-item>
-                        <el-menu-item index="2">
-                            <i class="el-icon-document"></i>
-                            <span slot="title">作品</span>
+                        <el-menu-item index="2" class="">
+                            <div>
+                                <i class="el-icon-document"></i>
+                                <span slot="title">作品</span>
+                            </div>
                         </el-menu-item>
-                        <el-menu-item index="3">
-                            <i class="el-icon-picture-outline-round"></i>
-                            <span slot="title">相册</span>
+                        <el-menu-item index="3" class="">
+                            <div>
+                                <i class="el-icon-picture-outline-round"></i>
+                                <span slot="title">相册</span>
+                            </div>
                         </el-menu-item>
-                        <el-menu-item index="4">
-                            <i class="el-icon-setting"></i>
-                            <span slot="title">排期</span>
+                        <el-menu-item index="4" class="">
+                            <div>
+                                <i class="el-icon-setting"></i>
+                                <span slot="title">排期</span>
+                            </div>
                         </el-menu-item>
                     </el-menu>
                 </el-col>
+                <el-col :span="2"><pre> </pre></el-col>
+            </el-row>
 
-                <el-col :span="20" class="">
-                    <div v-if="this.menuSelect == 1" class=""
-                         style="height: 700px; overflow: scroll">
+            <el-row class="al-overflow-scroll-hide-bar al-m-left-10px al-m-right-10px ">
+                <el-col :span="2"><pre> </pre></el-col>
+                <el-col :span="20" class="al-bg-color-white">
+                    <div v-if="this.menuSelect == 1" class="">
                         <el-row>
                             <el-col :span="24">
-                                <div class="al-flex-wrap"
-                                     style="height: 100%; width: 100%;">
-                                    <div v-for="item in this.appointment"
+                                <div class="al-flex-justify-space-between al-flex-wrap">
+                                    <div v-for="item in this.appointment.list"
                                          class="">
                                         <div class="al-box-pretty al-cursor-pointer"
                                              style="width: 300px; height: 400px"
@@ -155,20 +172,35 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="al-flex-container-center-h al-m-10px">
+                                    <el-pagination
+                                            background
+                                            :page-size="appointment.pageSize"
+                                            @next-click="getAppointmentByUserId(appointment.nextPage)"
+                                            @prev-click="getAppointmentByUserId(appointment.prePage)"
+                                            @current-change="handleCurrentChangeAppointment"
+                                            layout="prev, pager, next"
+                                            :total="appointment.total">
+                                    </el-pagination>
+                                </div>
+
                             </el-col>
+
+
                         </el-row>
                     </div>
 
 
                     <!-- 我的作品 -->
-                    <div v-if="this.menuSelect == 2" class=""
-                         style="height: 700px; overflow: scroll">
+                    <div v-if="this.menuSelect == 2" >
                         <el-row>
                             <el-col :span="24">
-                                <div class="al-flex-wrap"
+                                <!-- 作品信息 -->
+                                <div class="al-flex-wrap al-flex-justify-space-between"
                                      style="height: 100%; width: 100%;">
                                     <div class="al-box-pretty al-m-top-20px "
-                                         style="width: 470px"
+                                         style="width: 470px; "
                                          v-for="item in works.list">
                                         <!--显示作品信息-->
                                         <div class="al-cursor-pointer"
@@ -189,33 +221,29 @@
 
                                     </div>
                                 </div>
+
+                                <!--分页-->
+                                <div class="al-flex-container-center-h">
+                                    <el-pagination
+                                            background
+                                            :page-size="works.pageSize"
+                                            @next-click="getWorks(works.nextPage)"
+                                            @prev-click="getWorks(works.prePage)"
+                                            @current-change="handleCurrentChangeWorks"
+                                            layout="prev, pager, next"
+                                            :total="works.total">
+                                    </el-pagination>
+                                </div>
                             </el-col>
                         </el-row>
 
-                        <!--分页-->
-                        <div class="al-width-100" style="bottom: 0;">
-                            <el-row class="al-m-top-20px">
-                                <el-col :span="4"><pre> </pre></el-col>
-                                <el-col :span="16">
-                                    <div class="al-flex-container-center-vh">
-                                        <el-pagination
-                                                background
-                                                :page-size="works.pageSize"
-                                                @next-click="getWorks(works.nextPage)"
-                                                @prev-click="getWorks(works.prePage)"
-                                                @current-change="handleCurrentChange"
-                                                layout="prev, pager, next"
-                                                :total="works.total">
-                                        </el-pagination>
-                                    </div>
-                                </el-col>
-                                <el-col :span="4"><pre> </pre></el-col>
-                            </el-row>
-                        </div>
+
                     </div>
 
-                    <div v-else-if="this.menuSelect == 3" class="al-m-left--100px">
-                        <ImageWaterfall :data-source="album" />
+
+                    <!-- 相册 -->
+                    <div v-else-if="this.menuSelect == 3" >
+                        <ImageWaterfall :data-source="album" style="height: 800px" />
 
                     </div>
 
@@ -245,7 +273,7 @@
 
                     </div>
                 </el-col>
-
+                <el-col :span="2"><pre> </pre></el-col>
             </el-row>
         </div>
 
@@ -270,7 +298,14 @@
 
 
     export default {
-        components: {ImageWaterfall, DescText, AvatarNickname, HeaderTop, DisplayGridImage, ALImage},
+        components: {
+            ImageWaterfall,
+            DescText,
+            AvatarNickname,
+            HeaderTop,
+            DisplayGridImage,
+            ALImage
+        },
 
         props: {
             uid: String | Array
@@ -311,7 +346,7 @@
             this.userInfo = this.getUserInfo(this.uid);
             // console.log(this.userInfo);
             this.getWorks(this.uid, 1);
-            this.getAppointmentByUserId(this.uid);
+            this.getAppointmentByUserId(this.uid, 1);
             this.getAlbum(this.uid);
             this.getOrderByUserId(this.uid);
             this.getSchedulingByUserId(this.uid);
@@ -320,9 +355,14 @@
             goPage: function (path) {
                 this.gotoPage(path);
             },
-            getUserInfo: function () {
-                //this.userInfo = var_userinfo;
+            handleCurrentChangeAppointment(pageNum){
+                this.getAppointmentByUserId(this.$route.params.uid, pageNum);
             },
+
+            handleCurrentChangeWorks(pageNum){
+                this.getWorks(this.uid, pageNum);
+            },
+
             handleClick(tab, event) {
                 console.log(tab, event);
             },
@@ -347,10 +387,10 @@
                 })
             },
 
-            getWorks(uid, pageNo = 1) {
+            getWorks(uid, pageNo = 1, pageSize=4) {
                 request({
                     method: 'get',
-                    url: WORKS_GET_BY_USER_ID + uid + `?pageNum=${pageNo}&pageSize=2`,
+                    url: WORKS_GET_BY_USER_ID + uid + `?pageNum=${pageNo}&pageSize=${pageSize}`,
                 }).then(res => {
                     // console.log(res);
                     this.works = res.data.data;
@@ -360,9 +400,9 @@
                 })
             },
 
-            getAppointmentByUserId(uid) {
+            getAppointmentByUserId(uid, pageNum=1, pageSize=6) {
                 request({
-                    url: APPOINTMENT_GET_BY_USER_ID + uid,
+                    url: APPOINTMENT_GET_BY_USER_ID + uid + `?pageNum=${pageNum}&pageSize=${pageSize}`,
                     method: 'get',
                     headers: {}
                 }).then(res => {
@@ -488,5 +528,21 @@
 
     .is-selected-past {
         color: #C0C4CC;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        box-sizing: border-box;
+    }
+
+
+    li.el-menu-item{
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
 </style>

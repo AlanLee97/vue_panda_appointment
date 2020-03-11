@@ -23,9 +23,15 @@
                 </el-col>
                 <el-col :span="6">
                     <div class="al-box-pretty">
-                        <AvatarNickname :nickname="works.tuser.nickname"
-                                        :desc="works.tuser.identity"
-                                        :avatar="works.tuser.headPortraitImg"/>
+                        <div @click="goPage('/profile/' + works.tuser.id)">
+                            <AvatarNickname :nickname="works.tuser.nickname"
+                                            :desc="works.tuser.identity"
+                                            :avatar="works.tuser.headPortraitImg"
+
+
+                            />
+                        </div>
+
 
                         <el-divider class="al-m-top--20px"></el-divider>
 
@@ -39,15 +45,18 @@
                                       style="width: 100%; height: 200px"></ALImage>
                         </div>
 
-                        <div class="al-flex-container-center-h">
-                            <el-button>查看更多</el-button>
+                        <div class="al-flex-container-center-h al-m-top-20px">
+                            <el-button @click="goPage('/profile/' + works.tuser.id)">查看更多</el-button>
                         </div>
                     </div>
 
                     <div class="al-box-pretty">
-                        <AvatarNickname :nickname="works.tuser.nickname"
-                                        :desc="works.tuser.identity"
-                                        :avatar="works.tuser.headPortraitImg"/>
+                        <div @click="goPage('/profile/' + works.tuser.id)">
+                            <AvatarNickname :nickname="works.tuser.nickname"
+                                            :desc="works.tuser.identity"
+                                            :avatar="works.tuser.headPortraitImg"/>
+                        </div>
+
 
                         <el-divider class="al-m-top--20px"></el-divider>
 
@@ -87,6 +96,10 @@
         },
 
         methods:{
+            goPage(path) {
+                this.gotoPage(path);
+            },
+
             getWorks(worksId){
                 request({
                     url: WORKS_GET_BY_ID + worksId,

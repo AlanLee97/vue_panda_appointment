@@ -109,14 +109,14 @@ Vue.use(vueWaterfallEasy);
 Vue.config.productionTip = false;
 
 // let domain = '47.103.204.62';
-// let domain = '182.61.15.28';
-let domain = 'localhost';
+let domain = '182.61.15.28';
+// let domain = 'localhost';
 let port = '9999';
 // let port = '8764';
 
 // 生成url的函数
 Vue.prototype.createUrl = function (url) {
-    return 'http://' + domain + ':' + port + url;
+    return 'http://' + domain + ':' + port + "/" + url;
 };
 
 Vue.prototype.gotoPage = function(pagePath){
