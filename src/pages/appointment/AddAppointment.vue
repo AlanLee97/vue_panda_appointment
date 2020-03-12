@@ -39,12 +39,14 @@
 
                         <el-form-item label="约拍类型" prop="apt_type" align="left">
                             <el-select v-model="apt.apt_type" placeholder="请选择约拍类型">
-                                <el-option label="毕业照" value="graduatePhotograph"></el-option>
-                                <el-option label="婚纱照" value="lifePhotograph"></el-option>
-                                <el-option label="普通拍照" value="activePhotograph"></el-option>
-                                <el-option label="电商模特" value="othersPhotograph"></el-option>
+                                <el-option label="普通拍照" value="1"></el-option>
+                                <el-option label="毕业照" value="2"></el-option>
+                                <el-option label="婚纱照" value="3"></el-option>
+                                <el-option label="电商模特" value="4"></el-option>
                             </el-select>
                         </el-form-item>
+
+                        {{apt.apt_type}}
 
 
                         <el-form-item label="开始时间" prop="apt_date">

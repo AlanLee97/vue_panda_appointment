@@ -24,9 +24,9 @@
                         <el-divider class="al-m-top-20px">
 
                             <div v-if="appointment.userId != this.$store.state.storeUserInfo.id">
-                                <el-button type="primary"
-                                           @click="addOrder(appointment.userId, $store.state.storeUserInfo.id, appointment.id)">
-                                    {{this.appointmentStatus ? "取消预约" : "预约TA"}}
+                                <el-button :type="addedOrder == true ? 'danger' : 'primary'"
+                                           @click="addOrder(appointment.userId, $store.state.storeUserInfo.id, appointment.id, appointment.image)">
+                                    {{this.addedOrder ? "取消预约" : "预约TA"}}
                                 </el-button>
                             </div>
 
@@ -74,7 +74,7 @@
     import {APPOINTMENT_GET_BY_APTID, APPOINTMENT_GET_NEWEST} from "@/util/network/api/appointment/api-appointment";
     import {USER_GET_BY_ID} from "@/util/network/api/user/api-user";
     import ALImage from "@/components/public/ALImage";
-    import {ORDER_ADD} from "@/util/network/api/order/api-order";
+    import {ORDER_ADD, ORDER_IS_ADDED} from "@/util/network/api/order/api-order";
     import store from "@/store";
 
     export default {
@@ -86,16 +86,21 @@
         data(){
             return{
                 appointment: {},
-                userinfo:{},
+                userinfo: {},
                 newestAppointment:{},
-                appointmentStatus: false,
+                addedOrder: false
             }
         },
 
         mounted(){
+
+
             this.getAppointment(this.aptId);
 
             this.getNewestAppointment();
+
+            console.log(this.appointment);
+
 
 
             // console.log("全局的用户id：" + this.$store.state.storeUserInfo.id);
@@ -109,12 +114,15 @@
 
             getAppointment(aptId){
                 request({
-                    url: APPOINTMENT_GET_BY_APTID + '/' + aptId,
+                    url: APPOINTMENT_GET_BY_APTID + aptId,
                 }).then(res => {
                     console.log(res);
                     this.appointment = res.data.data;
 
-                    this.getUserInfo(res.data.data.userId);
+                    this.getUserInfo(this.appointment.userId);
+
+                    this.isAdded(this.appointment.userId, this.$store.state.storeUserInfo.id, this.aptId);
+
 
 
                 }).catch(err => {
@@ -135,12 +143,12 @@
 
             getUserInfo(uid){
                 request({
-                    url:USER_GET_BY_ID + uid,
+                    url: USER_GET_BY_ID + uid,
                 }).then(res => {
-                    // console.log(res);
+                    console.log(res);
                     this.userinfo = res.data.data;
                 }).catch(err => {
-                    console.log(err);
+                    console.log(err)
                 })
             },
 
@@ -151,11 +159,12 @@
              * @param acptUid 接单者的id
              * @param aptId 约拍信息的id
              */
-            addOrder(pubUid, acptUid, aptId){
+            addOrder(pubUid, acptUid, aptId, image=''){
                 let param = {
                     pub_uid : pubUid,
                     acpt_uid : acptUid,
                     apt_id : aptId,
+                    image: image
                 };
                 request({
                     url:ORDER_ADD,
@@ -165,11 +174,28 @@
                     console.log(res);
                     if (res.data.code == 200){
                         this.$message.success("预约成功");
-                        this.appointmentStatus = true;
+                        this.addedOrder = true;
                     }
                 }).catch(err => {
                     console.log(err);
                     this.$message.error("预约失败, 请稍候重试");
+                })
+            },
+
+
+            //判断是否添加过约拍
+            isAdded(pub_uid, acpt_uid, apt_id){
+                request({
+                    url: ORDER_IS_ADDED + `${pub_uid}/${acpt_uid}/${apt_id}`,
+                }).then(res => {
+                    // console.log(res);
+                    if (res.data.data == true){
+                        this.addedOrder = true;
+                    }else {
+                        this.addedOrder = false;
+                    }
+                }).catch(err => {
+                    console.log(err)
                 })
             }
         }

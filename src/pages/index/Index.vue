@@ -162,6 +162,7 @@
 
         <!-- foot 开始-->
 
+        <a-l-footer></a-l-footer>
         <!--foot 结束-->
     </div>
 </template>
@@ -178,10 +179,12 @@
     import {USER_GET_ALL_COMMON} from "@/util/network/api/user/api-user";
     import {APPOINTMENT_GET_NEWEST} from "@/util/network/api/appointment/api-appointment";
     import {WORKS_GET_ALL_USER_PAGINATION} from "@/util/network/api/works/api-works";
+    import ALFooter from "@/components/public/ALFooter";
 
 
     export default {
         components: {
+            ALFooter,
             ALImage,
             TitleNode,
             HeaderTop,

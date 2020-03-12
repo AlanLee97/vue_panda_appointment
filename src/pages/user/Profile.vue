@@ -158,32 +158,81 @@
                     <div v-if="this.menuSelect == 1" class="">
                         <el-row>
                             <el-col :span="24">
-                                <div class="al-flex-justify-space-between al-flex-wrap">
-                                    <div v-for="item in this.appointment.list"
-                                         class="">
-                                        <div class="al-box-pretty al-cursor-pointer"
-                                             style="width: 300px; height: 400px"
-                                             @click="goPage('/appointment/detail/' + item.id)"
+                                <el-divider content-position="right" class="al-m-top-50px">
+                                    <div style="">
+                                        <el-radio-group v-model="myAppointment"
+                                                        size="medium"
+                                                        @change="handleRadioChange"
                                         >
-                                            <DescText :plain-text="item"/>
-                                            <ALImage :src="item.image"
-                                                      fit="cover"
-                                                      class="al-width-100 al-height-50 "></ALImage>
+                                            <el-radio-button label="我发布的"></el-radio-button>
+                                            <el-radio-button label="我接单的">
+
+                                            </el-radio-button>
+                                        </el-radio-group>
+                                    </div>
+                                </el-divider>
+
+
+                                <!-- 显示信息 -->
+                                <div v-if="showOrder == false" >
+                                    <div class="al-flex-justify-space-between al-flex-wrap">
+                                        <div v-for="item in this.appointment.list" class="">
+                                            <div class="al-box-pretty al-cursor-pointer"
+                                                 style="width: 300px; height: 400px"
+                                                 @click="goPage('/appointment/detail/' + item.id)"
+                                            >
+                                                <DescText :plain-text="item"/>
+                                                <ALImage :src="item.image"
+                                                         fit="cover"
+                                                         class="al-width-100 al-height-50 "></ALImage>
+                                            </div>
                                         </div>
+                                    </div>
+
+
+                                    <!-- 分页 -->
+                                    <div class="al-flex-container-center-h al-m-10px">
+                                        <el-pagination
+                                                background
+                                                :page-size="appointment.pageSize"
+                                                @next-click="getAppointmentByUserId(appointment.nextPage)"
+                                                @prev-click="getAppointmentByUserId(appointment.prePage)"
+                                                @current-change="handleCurrentChangeAppointment"
+                                                layout="prev, pager, next"
+                                                :total="appointment.total">
+                                        </el-pagination>
                                     </div>
                                 </div>
 
-                                <div class="al-flex-container-center-h al-m-10px">
-                                    <el-pagination
-                                            background
-                                            :page-size="appointment.pageSize"
-                                            @next-click="getAppointmentByUserId(appointment.nextPage)"
-                                            @prev-click="getAppointmentByUserId(appointment.prePage)"
-                                            @current-change="handleCurrentChangeAppointment"
-                                            layout="prev, pager, next"
-                                            :total="appointment.total">
-                                    </el-pagination>
+                                <div v-else>
+                                    <div v-for="item in order" class="al-box-pretty">
+                                        <div>{{item.id}}</div>
+                                        <div>{{item.pubUid}}</div>
+                                        <div>{{item.evaluate}}</div>
+                                        <div>{{item.date}}</div>
+                                        <div>{{item.image}}</div>
+                                        <div>{{item.title}}</div>
+                                        <div>{{item.ask}}</div>
+                                        <div>{{item.address}}</div>
+                                        <div>{{item.type}}</div>
+                                    </div>
+
+                                    <!-- 分页 -->
+                                    <div class="al-flex-container-center-h al-m-10px">
+                                        <el-pagination
+                                                background
+                                                :page-size="appointment.pageSize"
+                                                @next-click="getAppointmentByUserId(appointment.nextPage)"
+                                                @prev-click="getAppointmentByUserId(appointment.prePage)"
+                                                @current-change="handleCurrentChangeAppointment"
+                                                layout="prev, pager, next"
+                                                :total="appointment.total">
+                                        </el-pagination>
+                                    </div>
                                 </div>
+
+
+
 
                             </el-col>
 
@@ -278,6 +327,7 @@
         </div>
 
 
+        <ALFooter></ALFooter>
     </div>
 </template>
 
@@ -288,17 +338,21 @@
     import HeaderTop from "@/components/public/HeaderTop";
     import AvatarNickname from "@/components/public/AvatarNickname";
     import DescText from "@/pages/appointment/component/DescText";
-    import {APPOINTMENT_GET_BY_USER_ID} from "@/util/network/api/appointment/api-appointment";
-    import {WORKS_GET_BY_USER_ID} from "@/util/network/api/works/api-works";
-    import {USER_GET_ALBUM, USER_GET_BY_ID} from "@/util/network/api/user/api-user";
     import ImageWaterfall from "@/components/public/ImageWaterfall";
     import DisplayGridImage from "@/components/public/DisplayGridImage";
     import ALImage from "@/components/public/ALImage";
+    import ALFooter from "@/components/public/ALFooter";
+
+    import {APPOINTMENT_GET_BY_USER_ID} from "@/util/network/api/appointment/api-appointment";
+    import {WORKS_GET_BY_USER_ID} from "@/util/network/api/works/api-works";
+    import {USER_GET_ALBUM} from "@/util/network/api/user/api-user";
     import {ORDER_GRT_BY_USER_ID, SCHEDULING_GRT_BY_USER_ID} from "@/util/network/api/order/api-order";
+
 
 
     export default {
         components: {
+            ALFooter,
             ImageWaterfall,
             DescText,
             AvatarNickname,
@@ -320,8 +374,7 @@
                 fit: 'cover',
                 cityLogin: 'https://www.mdyuepai.com/public/static/index/img/common/city.png',
                 image_url: 'https://cdn-isux.qq.com/upload/detail/f57Y2wEryDwjWmTr2BypYaCA6CgSKjknAJtGRIR4FcR.jpeg',
-                currentDate: new Date(),
-                userInfo: {},
+                userInfo: this.$store.state.storeUserInfo,
                 works: [],
                 appointment: [],
                 album: [],
@@ -337,19 +390,15 @@
                     }
                 },
                 pastTime: false,
+                myAppointment: '我发布的',
+                showOrder: false
             };
         },
         created() {
 
         },
         mounted() {
-            this.userInfo = this.getUserInfo(this.uid);
-            // console.log(this.userInfo);
-            this.getWorks(this.uid, 1);
             this.getAppointmentByUserId(this.uid, 1);
-            this.getAlbum(this.uid);
-            this.getOrderByUserId(this.uid);
-            this.getSchedulingByUserId(this.uid);
         },
         methods: {
             goPage: function (path) {
@@ -374,17 +423,6 @@
                     })
                     .catch(_ => {
                     });
-            },
-
-            getUserInfo(uid){
-                request({
-                    url: USER_GET_BY_ID + uid
-                }).then(res => {
-                    console.log(res);
-                    this.userInfo = res.data.data;
-                }).catch(err => {
-                    console.log(err)
-                })
             },
 
             getWorks(uid, pageNo = 1, pageSize=4) {
@@ -426,14 +464,15 @@
                         this.album.push(temp);
 
                     });
-                    console.log("新相册数组");
-                    console.log(this.album);
+                    // console.log("新相册数组");
+                    // console.log(this.album);
                 }).catch(err => {
                     console.log(err)
                 })
             },
 
             getOrderByUserId(uid){
+                this.showOrder = true;
                 request({
                     url: ORDER_GRT_BY_USER_ID + uid
                 }).then(res => {
@@ -457,6 +496,8 @@
                             this.appointmentScheduling[i].startDateTime.split(' ')[0]
                         );
                     }
+
+                    console.log(this.calendarData.data.day);
                 }).catch(err => {
                     console.log(err)
                 })
@@ -469,10 +510,46 @@
             handleCloseNav(key, keyPath) {
                 console.log(key, keyPath);
             },
+
+            //处理菜单栏选中的事件
             handleSelect(index, indexPath) {
                 console.log(index, indexPath);
                 this.menuSelect = index;
+
+                switch (index) {
+                    case "1":
+                        console.log("激活菜单1");
+                        this.getAppointmentByUserId(this.uid, 1);
+
+                        break;
+                    case "2":
+                        console.log("激活菜单2");
+                        this.getWorks(this.uid, 1);
+                        break;
+
+                    case "3":
+                        console.log("激活菜单3");
+                        this.getAlbum(this.uid);
+                        break;
+                    case "4":
+                        this.getSchedulingByUserId(this.uid);
+                        break;
+                    default:
+                        console.log("没有激活");
+                }
             },
+
+            //监听约拍下的两个按钮的点击事件
+            handleRadioChange(val){
+                console.log(val);
+                if (val === "我接单的"){
+                    this.showOrder = true;
+                    this.getOrderByUserId(this.uid);
+                }else if (val === "我发布的"){
+                    this.showOrder = false;
+                    this.getAppointmentByUserId(this.uid);
+                }
+            }
 
         },
 
